@@ -1,0 +1,184 @@
+﻿@model FixturesVer1.Models.Property
+
+@{
+    ViewBag.Title = "PostAd";
+}
+
+@*<h2>PostAdd</h2>*@
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Post Ad</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <h4>Property</h4>
+                @Html.ValidationSummary(true)
+
+                <div class="row">
+                    @*<div class="col-lg-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ID, new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.TextBoxFor(model => model.ID, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ID)
+                                </div>
+                            </div>
+                        </div>*@
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Name</span>
+                                    @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Name)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @* @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+
+
+                                @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.Type, "Select Home Type", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Type)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @* @Html.LabelFor(model => model.Location, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Location</span>
+                                    @Html.TextBoxFor(model => model.Location, new { @class = "form-control", @id = "txt_Location" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Location)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @*   @Html.LabelFor(model => model.Accomodates, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Accomodates</span>
+                                    @Html.EditorFor(model => model.Accomodates, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Accomodates)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Price</span>
+                                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Price)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.RateType, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Room Type</span>
+                                    @Html.TextBoxFor(model => model.RoomType, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.RoomType)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Description</span>
+                                    @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Rating, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Rating</span>
+
+                                    @Html.TextBoxFor(model => model.Rating, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Rating)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Owner</span>
+                                    @Html.TextBoxFor(model => model.Owner, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Owner)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+}
+
+
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+
+<script src="~/Content/jquery.geocomplete.js"></script>
+<script>
+    $(function () {
+        $("#txt_Location").geocomplete();
+    });
+
+</script>
+

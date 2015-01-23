@@ -1,0 +1,442 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C69871F1-24DA-4730-8D9B-CF69222FB1A8}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FixturesVer1</RootNamespace>
+    <AssemblyName>FixturesVer1</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\HomeController\css\colorbox.css" />
+    <Content Include="Content\HomeController\css\elastislide.css" />
+    <Content Include="Content\HomeController\css\magnific-popup.css" />
+    <Content Include="Content\HomeController\css\style.css" />
+    <Content Include="Content\HomeController\images\404.png" />
+    <Content Include="Content\HomeController\images\about-img.jpg" />
+    <Content Include="Content\HomeController\images\about-img2.jpg" />
+    <Content Include="Content\HomeController\images\about-img3.jpg" />
+    <Content Include="Content\HomeController\images\about-img4.jpg" />
+    <Content Include="Content\HomeController\images\about-img5.jpg" />
+    <Content Include="Content\HomeController\images\about-img6.jpg" />
+    <Content Include="Content\HomeController\images\about-img7.jpg" />
+    <Content Include="Content\HomeController\images\about-img8.jpg" />
+    <Content Include="Content\HomeController\images\about-img9.jpg" />
+    <Content Include="Content\HomeController\images\address.png" />
+    <Content Include="Content\HomeController\images\ajax-loader.gif" />
+    <Content Include="Content\HomeController\images\arrow.png" />
+    <Content Include="Content\HomeController\images\b-heart.png" />
+    <Content Include="Content\HomeController\images\banner-left.png" />
+    <Content Include="Content\HomeController\images\banner.jpg" />
+    <Content Include="Content\HomeController\images\bg-h2.png" />
+    <Content Include="Content\HomeController\images\blog-img1.jpg" />
+    <Content Include="Content\HomeController\images\blog-img10.jpg" />
+    <Content Include="Content\HomeController\images\blog-img2.jpg" />
+    <Content Include="Content\HomeController\images\blog-img3.jpg" />
+    <Content Include="Content\HomeController\images\blog-img4.jpg" />
+    <Content Include="Content\HomeController\images\blog-img5.jpg" />
+    <Content Include="Content\HomeController\images\blog-img6.jpg" />
+    <Content Include="Content\HomeController\images\blog-img7.jpg" />
+    <Content Include="Content\HomeController\images\blog-img8.jpg" />
+    <Content Include="Content\HomeController\images\blog-img9.jpg" />
+    <Content Include="Content\HomeController\images\c1.jpg" />
+    <Content Include="Content\HomeController\images\c2.jpg" />
+    <Content Include="Content\HomeController\images\c3.jpg" />
+    <Content Include="Content\HomeController\images\c4.jpg" />
+    <Content Include="Content\HomeController\images\client1.jpg" />
+    <Content Include="Content\HomeController\images\client2.jpg" />
+    <Content Include="Content\HomeController\images\client3.jpg" />
+    <Content Include="Content\HomeController\images\client4.jpg" />
+    <Content Include="Content\HomeController\images\client5.jpg" />
+    <Content Include="Content\HomeController\images\client6.jpg" />
+    <Content Include="Content\HomeController\images\client7.jpg" />
+    <Content Include="Content\HomeController\images\client8.jpg" />
+    <Content Include="Content\HomeController\images\close.png" />
+    <Content Include="Content\HomeController\images\email.png" />
+    <Content Include="Content\HomeController\images\f.png" />
+    <Content Include="Content\HomeController\images\g.png" />
+    <Content Include="Content\HomeController\images\g1.jpg" />
+    <Content Include="Content\HomeController\images\g2.jpg" />
+    <Content Include="Content\HomeController\images\g3.jpg" />
+    <Content Include="Content\HomeController\images\g4.jpg" />
+    <Content Include="Content\HomeController\images\g5.jpg" />
+    <Content Include="Content\HomeController\images\g6.jpg" />
+    <Content Include="Content\HomeController\images\g_zoom.jpg" />
+    <Content Include="Content\HomeController\images\heart.png" />
+    <Content Include="Content\HomeController\images\i.png" />
+    <Content Include="Content\HomeController\images\icon-remove.png" />
+    <Content Include="Content\HomeController\images\icon1.png" />
+    <Content Include="Content\HomeController\images\icon2.png" />
+    <Content Include="Content\HomeController\images\icon3.png" />
+    <Content Include="Content\HomeController\images\img-sprite.png" />
+    <Content Include="Content\HomeController\images\left-a.png" />
+    <Content Include="Content\HomeController\images\likes.png" />
+    <Content Include="Content\HomeController\images\list-img.jpg" />
+    <Content Include="Content\HomeController\images\list-img1.jpg" />
+    <Content Include="Content\HomeController\images\list-img2.jpg" />
+    <Content Include="Content\HomeController\images\list-img4.jpg" />
+    <Content Include="Content\HomeController\images\list-img5.jpg" />
+    <Content Include="Content\HomeController\images\loading.gif" />
+    <Content Include="Content\HomeController\images\loading_background.png" />
+    <Content Include="Content\HomeController\images\logo.png" />
+    <Content Include="Content\HomeController\images\msg.png" />
+    <Content Include="Content\HomeController\images\nav_thumbs.png" />
+    <Content Include="Content\HomeController\images\p1.jpg" />
+    <Content Include="Content\HomeController\images\p10.jpg" />
+    <Content Include="Content\HomeController\images\p2.jpg" />
+    <Content Include="Content\HomeController\images\p3.jpg" />
+    <Content Include="Content\HomeController\images\p4.jpg" />
+    <Content Include="Content\HomeController\images\p5.jpg" />
+    <Content Include="Content\HomeController\images\p6.jpg" />
+    <Content Include="Content\HomeController\images\p7.jpg" />
+    <Content Include="Content\HomeController\images\p8.jpg" />
+    <Content Include="Content\HomeController\images\p9.jpg" />
+    <Content Include="Content\HomeController\images\phone.png" />
+    <Content Include="Content\HomeController\images\pic.jpg" />
+    <Content Include="Content\HomeController\images\pic1.jpg" />
+    <Content Include="Content\HomeController\images\pic10.jpg" />
+    <Content Include="Content\HomeController\images\pic11.jpg" />
+    <Content Include="Content\HomeController\images\pic12.jpg" />
+    <Content Include="Content\HomeController\images\pic13.jpg" />
+    <Content Include="Content\HomeController\images\pic14.jpg" />
+    <Content Include="Content\HomeController\images\pic15.jpg" />
+    <Content Include="Content\HomeController\images\pic16.jpg" />
+    <Content Include="Content\HomeController\images\pic17.jpg" />
+    <Content Include="Content\HomeController\images\pic18.jpg" />
+    <Content Include="Content\HomeController\images\pic19.jpg" />
+    <Content Include="Content\HomeController\images\pic2.jpg" />
+    <Content Include="Content\HomeController\images\pic20.jpg" />
+    <Content Include="Content\HomeController\images\pic3.jpg" />
+    <Content Include="Content\HomeController\images\pic4.jpg" />
+    <Content Include="Content\HomeController\images\pic5.jpg" />
+    <Content Include="Content\HomeController\images\pic6.jpg" />
+    <Content Include="Content\HomeController\images\pic7.jpg" />
+    <Content Include="Content\HomeController\images\pic8.jpg" />
+    <Content Include="Content\HomeController\images\pic9.jpg" />
+    <Content Include="Content\HomeController\images\r-arrow.png" />
+    <Content Include="Content\HomeController\images\right-a.png" />
+    <Content Include="Content\HomeController\images\search.png" />
+    <Content Include="Content\HomeController\images\t-p1.jpg" />
+    <Content Include="Content\HomeController\images\t-pic1.jpg" />
+    <Content Include="Content\HomeController\images\t-pic2.jpg" />
+    <Content Include="Content\HomeController\images\t-pic3.jpg" />
+    <Content Include="Content\HomeController\images\t-pic4.jpg" />
+    <Content Include="Content\HomeController\images\t-pic5.jpg" />
+    <Content Include="Content\HomeController\images\t.png" />
+    <Content Include="Content\HomeController\images\tickmark-icon.png" />
+    <Content Include="Content\HomeController\images\tw.png" />
+    <Content Include="Content\HomeController\js\demoad.js" />
+    <Content Include="Content\HomeController\js\gallery.js" />
+    <Content Include="Content\HomeController\js\ios-orientationchange-fix.js" />
+    <Content Include="Content\HomeController\js\jquery-slider.js" />
+    <Content Include="Content\HomeController\js\jquery.colorbox-min.js" />
+    <Content Include="Content\HomeController\js\jquery.easing.min.js" />
+    <Content Include="Content\HomeController\js\jquery.elastislide.js" />
+    <Content Include="Content\HomeController\js\jquery.flexisel.js" />
+    <Content Include="Content\HomeController\js\jquery.imagesloaded.js" />
+    <Content Include="Content\HomeController\js\jquery.magnific-popup.js" />
+    <Content Include="Content\HomeController\js\jquery.min.js" />
+    <Content Include="Content\HomeController\js\jquery.mixitup.min.js" />
+    <Content Include="Content\HomeController\js\jquery.swipebox.min.js" />
+    <Content Include="Content\HomeController\js\jquery.tmpl.min.js" />
+    <Content Include="Content\HomeController\js\jquery.wmuSlider.js" />
+    <Content Include="Content\HomeController\js\jquery.wookmark.js" />
+    <Content Include="Content\HomeController\js\modernizr.custom.min.js" />
+    <Content Include="Content\Images\ImgPlaceHolder.gif" />
+    <Content Include="Content\ion.rangeSlider.css" />
+    <Content Include="Content\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\jquery.geocomplete.js" />
+    <Content Include="Content\normalize.css" />
+    <Content Include="Content\PropertiesController\assets\css\bootstrap.css" />
+    <Content Include="Content\PropertiesController\assets\css\style-responsive.css" />
+    <Content Include="Content\PropertiesController\assets\css\style.css" />
+    <Content Include="Content\PropertiesController\assets\css\table-responsive.css" />
+    <Content Include="Content\PropertiesController\assets\css\to-do.css" />
+    <Content Include="Content\PropertiesController\assets\css\zabuto_calendar.css" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\PropertiesController\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\PropertiesController\assets\img\blog-bg.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\checkbox-gray.png" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-01.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-02.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-03.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-04.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-05.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-06.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-07.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-08.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-09.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-10.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\friends\fr-11.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\instagram.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\login-bg.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\lorde.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\mask.png" />
+    <Content Include="Content\PropertiesController\assets\img\ny.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port01.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port02.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port03.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port04.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port05.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\portfolio\port06.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\product.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\product.png" />
+    <Content Include="Content\PropertiesController\assets\img\profile-01.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\profile-02.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\radio-gray.png" />
+    <Content Include="Content\PropertiesController\assets\img\ui-danro.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\ui-divya.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\ui-sam.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\ui-sherman.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\ui-zac.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\weather.jpg" />
+    <Content Include="Content\PropertiesController\assets\img\zoom.png" />
+    <Content Include="Content\PropertiesController\assets\js\bootstrap-inputmask\bootstrap-inputmask.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\bootstrap-switch.js" />
+    <Content Include="Content\PropertiesController\assets\js\bootstrap.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\calendar-conf-events.js" />
+    <Content Include="Content\PropertiesController\assets\js\chart-master\Chart.js" />
+    <Content Include="Content\PropertiesController\assets\js\chartjs-conf.js" />
+    <Content Include="Content\PropertiesController\assets\js\common-scripts.js" />
+    <Content Include="Content\PropertiesController\assets\js\easy-pie-chart.js" />
+    <Content Include="Content\PropertiesController\assets\js\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\PropertiesController\assets\js\fancybox\jquery.fancybox.js" />
+    <Content Include="Content\PropertiesController\assets\js\form-component.js" />
+    <Content Include="Content\PropertiesController\assets\js\fullcalendar\bootstrap-fullcalendar.css" />
+    <Content Include="Content\PropertiesController\assets\js\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\gritter-conf.js" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\css\jquery.gritter.css" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\css\jquery.gritter0.css" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\images\gritter-light.png" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\images\gritter-long.png" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\images\gritter.png" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\images\ie-spacer.gif" />
+    <Content Include="Content\PropertiesController\assets\js\gritter\js\jquery.gritter.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery-1.8.3.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.css" />
+    <Content Include="Content\PropertiesController\assets\js\jquery-easy-pie-chart\jquery.easy-pie-chart.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery-ui-1.9.2.custom.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.backstretch.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.dcjqaccordion.2.7.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.nicescroll.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.scrollTo.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.sparkline.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.tagsinput.js" />
+    <Content Include="Content\PropertiesController\assets\js\jquery.ui.touch-punch.min.js" />
+    <Content Include="Content\PropertiesController\assets\js\morris-conf.js" />
+    <Content Include="Content\PropertiesController\assets\js\sparkline-chart.js" />
+    <Content Include="Content\PropertiesController\assets\js\tasks.js" />
+    <Content Include="Content\PropertiesController\assets\js\zabuto_calendar.js" />
+    <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.svg" />
+    <Content Include="Content\PropertiesController\assets\lineicons\index.html" />
+    <Content Include="Content\PropertiesController\assets\lineicons\lte-ie7.js" />
+    <Content Include="Content\PropertiesController\assets\lineicons\style.css" />
+    <Content Include="Content\Site.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\HomeController\images\img-sprite.psd" />
+    <Content Include="Content\HomeController\images\logo.psd" />
+    <Content Include="Content\HomeController\images\soc.psd" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\PropertiesController\assets\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\PropertiesController\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\PropertiesController\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\PropertiesController\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\PropertiesController\assets\js\bootstrap-inputmask\.DS_Store" />
+    <Content Include="Content\PropertiesController\assets\js\fancybox\.DS_Store" />
+    <Content Include="Content\PropertiesController\assets\js\fullcalendar\.DS_Store" />
+    <Content Include="Content\PropertiesController\assets\lineicons\fonts\.DS_Store" />
+    <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.eot" />
+    <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.ttf" />
+    <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.woff" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\ion.rangeSlider.js" />
+    <Content Include="Scripts\ion.rangeSlider.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Site.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Users\Profile.cshtml" />
+    <Content Include="Views\Properties\Listing.cshtml" />
+    <Content Include="Views\Properties\PostAd.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PropertiesController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\RequestToBook.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\WishList.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountsService.cs" />
+    <Compile Include="Services\FixturesDb.cs" />
+    <Compile Include="Services\HomeService.cs" />
+    <Compile Include="Services\PropertiesService.cs" />
+    <Compile Include="Services\UsersService.cs" />
+    <Compile Include="Utility\CookieHelper.cs" />
+    <Compile Include="Utility\Cryptography.cs" />
+    <Compile Include="Utility\CustomAuthentication.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55827</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:55794/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
