@@ -24,7 +24,7 @@ namespace FixturesVer1.Controllers
             return View();
         }
 
-        // Login action method which displays blank form for authentication.
+        //Login action method which displays blank form for authentication.
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Login()
