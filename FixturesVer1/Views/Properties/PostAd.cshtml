@@ -51,11 +51,13 @@
                         <div class="form-group">
                             @* @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Home Type</span>
 
-
-                                @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.Type, "Select Home Type", new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.Type)
-                            </div>
+                                    @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.Type, "Select Home Type", new { @class = "form-control" })
+                                </div>
+                                     @Html.ValidationMessageFor(model => model.Type)
+                                </div>
                         </div>
                     </div>
                     <div class="col-lg-6">

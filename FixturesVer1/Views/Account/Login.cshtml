@@ -1,17 +1,5 @@
 ﻿@model FixturesVer1.Models.LoginViewModel
 
-<style>
-    .center {
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-
-
-
-
-@*<div class="login center col-md-4">*@
     @{
         ViewBag.Title = "Login";
 
@@ -24,8 +12,6 @@
             <h3 class="panel-title">Log In</h3>
         </div>
 
-        @*<div class="container">*@
-
         <div class="tab-content">
             <div id="login" class="tab-pane active">
 
@@ -34,42 +20,35 @@
                     {
 
 
-
-                        @*<div class="form-horizontal">*@
-
                         @Html.ValidationSummary(true)
-
-
-                        @*<div class="row">*@
 
                         <div class="form-group">
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            @* <div class="col-md-4">*@
+                          
                             <div class="input-group">
                                 <span class="input-group-addon">Username</span>
                                 @Html.TextBoxFor(model => model.usr_Username, new { @class = "form-control" })
                             </div>
                             @Html.ValidationMessageFor(model => model.usr_Username)
                         </div>
-                        @*</div>*@
-                        @*</div>*@
+                     
+                     
 
-                        @*<div class="row">*@
+                     
 
                         <div class="form-group">
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            @*<div class="col-md-4">*@
+                           
                             <div class="input-group">
                                 <span class="input-group-addon">Password</span>
                                 @Html.PasswordFor(model => model.usr_Password, new { @class = "form-control" })
                             </div>
                             @Html.ValidationMessageFor(model => model.usr_Password)
                         </div>
-                        @*</div>*@
-                        @*</div>*@
+                     
                         <div class="form-group">
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-1">
+                            <div class="col-md-2">
                                 <div class="row">
                                     <button class="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
                                     <div id="msgdiv" class="hide" style="margin-top:5px;"><p id="msg" class="text-center"> @ViewBag.Message </p></div>
