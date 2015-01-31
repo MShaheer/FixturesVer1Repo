@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FixturesVer1.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,8 +14,16 @@ namespace FixturesVer1.Services
             _db = new FixturesDb();
         }
 
-
-
+        public User GetUserById(string userName)
+        {
+            var user = _db.Users.Find(userName);
+            if (user != null)
+            {
+                return user;
+            }
+            else
+                return null;
+        }
 
 
     }

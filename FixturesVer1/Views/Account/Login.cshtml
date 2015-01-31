@@ -1,122 +1,104 @@
 ﻿@model FixturesVer1.Models.LoginViewModel
 
-<style>
-    .center {
-        float: none;
-        margin-left: auto;
-        margin-right: auto;
-    }
-</style>
-
-
-
-
-<div class="login center col-md-4">
     @{
         ViewBag.Title = "Login";
 
     }
-    <div class="panel panel-default">
+
+<div class="col-md-5 center">
+
+    <div class=" panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Log In</h3>
         </div>
 
-        <div class="container">
-            @*<div class="text-center">
-                   <img src="~/Content/assets/img/logologin.png" alt="C21 Logo">
-                </div>*@
-            <div class="tab-content">
-                <div id="login" class="tab-pane active">
+        <div class="tab-content">
+            <div id="login" class="tab-pane active">
 
-
+                <div class="panel-body">
                     @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["returnUrl"] }, FormMethod.Post, new { @class = "form-signin" }))
-{
+                    {
 
 
-    <div class="panel-body">
-        <div class="form-horizontal">
+                        @Html.ValidationSummary(true)
 
-            @Html.ValidationSummary(true)
-
-
-            <div class="row">
-
-                <div class="form-group">
-                    @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        <div class="input-group">
-                            <span class="input-group-addon">Username</span>
-                            @Html.TextBoxFor(model => model.usr_Username, new { @class = "form-control" })
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                          
+                            <div class="input-group">
+                                <span class="input-group-addon">Username</span>
+                                @Html.TextBoxFor(model => model.usr_Username, new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.usr_Username)
                         </div>
-                        @Html.ValidationMessageFor(model => model.usr_Username)
-                    </div>
-                </div>
-            </div>
+                     
+                     
 
-            <div class="row">
+                     
 
-                <div class="form-group">
-                    @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-5">
-                        <div class="input-group">
-                            <span class="input-group-addon">Password</span>
-                            @Html.PasswordFor(model => model.usr_Password, new { @class = "form-control" })
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                           
+                            <div class="input-group">
+                                <span class="input-group-addon">Password</span>
+                                @Html.PasswordFor(model => model.usr_Password, new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.usr_Password)
                         </div>
-                        @Html.ValidationMessageFor(model => model.usr_Password)
-                    </div>
+                     
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-2">
+                                <div class="row">
+                                    <button class="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
+                                    <div id="msgdiv" class="hide" style="margin-top:5px;"><p id="msg" class="text-center"> @ViewBag.Message </p></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        @*<div id="forgot" class="tab-pane">
+                                <form action="index.html" class="form-signin">
+                                    <p class="text-muted text-center">Enter your valid e-mail</p>
+                                    <input type="email" placeholder="mail@domain.com" required="required" class="form-control">
+                                    <br>
+                                    <button class="btn btn-lg btn-danger btn-block" type="submit">Recover Password</button>
+                                </form>
+                            </div>
+                            <div id="signup" class="tab-pane">
+                                <form action="index.html" class="form-signin">
+                                    <input type="text" placeholder="username" class="form-control">
+                                    <input type="email" placeholder="mail@domain.com" class="form-control">
+                                    <input type="password" placeholder="password" class="form-control">
+                                    <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
+                                </form>
+                            </div>*@
+
+
+                        @*</div>*@
+
+                    }
                 </div>
-            </div>
-            <div class="form-group">
-                @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                <div class="col-md-1">
-                    <div class="row">
-                        <button class="btn btn-sm btn-primary btn-block" type="submit">Sign in</button>
-                        <div id="msgdiv" class="hide" style="margin-top:5px;"><p id="msg" class="text-center"> @ViewBag.Message </p></div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-            @*<div id="forgot" class="tab-pane">
-                <form action="index.html" class="form-signin">
-                    <p class="text-muted text-center">Enter your valid e-mail</p>
-                    <input type="email" placeholder="mail@domain.com" required="required" class="form-control">
-                    <br>
-                    <button class="btn btn-lg btn-danger btn-block" type="submit">Recover Password</button>
-                </form>
-            </div>
-            <div id="signup" class="tab-pane">
-                <form action="index.html" class="form-signin">
-                    <input type="text" placeholder="username" class="form-control">
-                    <input type="email" placeholder="mail@domain.com" class="form-control">
-                    <input type="password" placeholder="password" class="form-control">
-                    <button class="btn btn-lg btn-success btn-block" type="submit">Register</button>
-                </form>
-            </div>*@
-
-            
-        </div>
-    </div>
-}
-           
             </div>
         </div><!-- /container -->
-        
-    </div>
-        <div class="text-center">
-            <ul class="list-inline">
-                <li> <a class="text-muted" href="#login" data-toggle="tab">Login</a>  </li>
-                <li> <a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a>  </li>
-                <li> <a class="text-muted" href="#signup" data-toggle="tab">Signup</a>  </li>
-            </ul>
-        </div>
+        @*</div>*@
+        @*<div class="text-center">
+                <ul class="list-inline">
+                    <li> <a class="text-muted" href="#login" data-toggle="tab">Login</a>  </li>
+                    <li> <a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a>  </li>
+                    <li> <a class="text-muted" href="#signup" data-toggle="tab">Signup</a>  </li>
+                </ul>
+            </div>*@
         <hr style="box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3) inset;" />
         <p style="text-align:center">2014 &copy; C21 Financials</p>
-</div>
     </div>
+</div>
+
+
+    @*</div>*@
 
 
 <script src="~/Scripts/bootstrap.min.js"></script>

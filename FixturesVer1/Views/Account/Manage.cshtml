@@ -1,0 +1,198 @@
+﻿@model FixturesVer1.Models.User
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Manage</h3>
+        </div>
+        <div class="panel-body">
+
+
+
+
+            <div class="form-horizontal">
+                <h4>User</h4>
+               
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.usr_Username)
+
+
+                <div class="row">
+                  <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.usr_Password)</span>
+                                    @Html.PasswordFor(model => model.usr_Password, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.usr_Password)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.FirstName)</span>
+                                    @Html.PasswordFor(model => model.FirstName, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.FirstName)
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.LastName)</span>
+                                    @Html.PasswordFor(model => model.LastName, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.LastName)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Gender)</span>
+                                    @Html.PasswordFor(model => model.Gender, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Gender)
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.BirthDate)</span>
+                                    @Html.PasswordFor(model => model.BirthDate, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.BirthDate)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Email)</span>
+                                    @Html.PasswordFor(model => model.Email, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Email)
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+           
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.City)</span>
+                                    @Html.PasswordFor(model => model.City, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.City)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Country)</span>
+                                    @Html.PasswordFor(model => model.Country, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Country)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.PhoneNumber)</span>
+                                    @Html.PasswordFor(model => model.PhoneNumber, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.PhoneNumber)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Description)</span>
+                                    @Html.PasswordFor(model => model.Description, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Description)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+}
+
