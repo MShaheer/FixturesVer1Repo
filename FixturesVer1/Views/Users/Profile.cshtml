@@ -11,7 +11,7 @@
     <a href="#" style="color:black">Edit Profile</a></br></br>
     <a href="#" style="color:black">Reviews</a></br></br>
     <a href="#" style="color:black">References</a></br></br>
-   
+
 </div>
 
 <div class="col-md-9">
@@ -36,7 +36,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Password</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.usr_Password)</span>
                                     @Html.TextBoxFor(model => model.usr_Password, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.usr_Password)
@@ -52,7 +52,8 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Name</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.FirstName)</span>
+
                                     @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.FirstName)
@@ -68,7 +69,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Last Name</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.LastName)</span>
                                     @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.LastName)
@@ -83,7 +84,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Gender</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Gender)</span>
                                     @Html.TextBoxFor(model => model.Gender, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.Gender)
@@ -100,7 +101,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">DOBLast Name</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.BirthDate)</span>
                                     @Html.TextBoxFor(model => model.BirthDate, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.BirthDate)
@@ -115,7 +116,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Email ID</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Email)</span>
                                     @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.Email)
@@ -130,7 +131,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">City</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.City)</span>
                                     @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.City)
@@ -145,7 +146,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Country</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Country)</span>
                                     @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.Country)
@@ -160,7 +161,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Phone No.#</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.PhoneNumber)</span>
                                     @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.PhoneNumber)
@@ -174,7 +175,7 @@
                             @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Description</span>
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Description)</span>
                                     @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.Description)
@@ -182,7 +183,7 @@
                         </div>
                     </div>
 
-                 
+
 
 
                     <div class="form-group">
