@@ -41,7 +41,6 @@ namespace FixturesVer1.Controllers
 
 
         [HttpPost]
-        [AllowAnonymous]
         new public ActionResult Profile(User userModel)
         {
             string encryptedPass = Utility.Cryptography.Encryption(userModel.usr_Password);
