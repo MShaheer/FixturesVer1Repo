@@ -22,19 +22,15 @@ namespace FixturesVer1.Services
         public DbSet<Reference> References { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<WishList> WishLists { get; set; }
+        public DbSet<PropertyDetail> PropertyDetails { get; set; }
+        public DbSet<PropertyAvailableDate> PropertyAvailableDates { get; set; }
+               
 
-
-
-
-
-
-
-
+        /* Not being used 
         public DbContext GetDbContext()
         {
             return this.GetDbContext(false);
         }
-
 
         protected virtual DbContext GetDbContext(bool canUseCachedContext)
         {
@@ -77,8 +73,9 @@ namespace FixturesVer1.Services
                 _isDisposed = true;
             }
         }
-
+         
         #endregion
 
+         */
     }
 }
