@@ -18,8 +18,11 @@ namespace FixturesVer1.Controllers
 
             _accountssService = new AccountsService();
         }
-       
 
+        public ActionResult DashBoard() 
+        {
+            return View();
+        }
 
         [HttpGet]
         new public ActionResult Profile()

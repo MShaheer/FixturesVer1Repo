@@ -7,7 +7,7 @@
 
 
 
-<div class="container">
+<div class="container" id="blackstrip">
     <div class="navbar navbar-inverse navbar-left " style="width: 1273px; margin-left: -67px; margin-top: -20px;">
 
         <div class="navbar-header">
@@ -16,7 +16,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="navbar-brand" href="#">DashBoard</a>
+        
+            @Html.ActionLink("Dashboard", "DashBoard", "Users", "", new { @class = "navbar-brand" })
+            
             <a class="navbar-brand" href="#">Inbox</a>
             <a class="navbar-brand" href="#">Your Listings</a>
             <a class="navbar-brand" href="#">Your Trips</a>
