@@ -213,6 +213,10 @@
 
 
         </header>
+       
+
+      
+
 
         <!--header end-->
         <!-- **********************************************************************************************************************************************************
@@ -305,10 +309,30 @@
         <!--sidebar end-->
         @*MAIN CONTENT START*@
         <section id="main-content">
+
             <section class="wrapper">
+
+              
+
+                <div class="row">
+
+                    <div class="col-lg-12 main-chart" id="black_menu">
+                        @if (Request.IsAuthenticated)
+                        {
+                            Html.RenderPartial("~/Views/Shared/_userNavbar.cshtml");
+
+                        }
+
+
+                    </div>
+
+
+
+                </div>
 
                 <div class="row">
                     <div class="col-lg-12 main-chart">
+                       
                         @RenderBody()
                     </div><!-- /col-lg-9 END SECTION MIDDLE -->
                     <!-- **********************************************************************************************************************************************************
