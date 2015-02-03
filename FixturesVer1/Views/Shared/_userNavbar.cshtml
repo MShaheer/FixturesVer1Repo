@@ -1,22 +1,23 @@
 ﻿
 
-<div class="container" id="blackstrip">
-    <div class="navbar navbar-inverse navbar-left " style="width: 1273px; margin-left: -67px; margin-top: -20px;">
+@*<div class="container" id="blackstrip">*@
+    <div class="navbar navbar-inverse col-lg-12" style="border-radius:0">
+    @*  width: 1273px; margin-left: -67px;*@
+    <div class="navbar-header">
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
 
-        <div class="navbar-header">
-            <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </a>
-        
-            @Html.ActionLink("Dashboard", "DashBoard", "Users", "", new { @class = "navbar-brand" })
-            
-            <a class="navbar-brand" href="#">Inbox</a>
-            <a class="navbar-brand" href="#">Your Listings</a>
-            <a class="navbar-brand" href="#">Your Trips</a>
-            <a class="navbar-brand" href="#">Profile</a>
-            <a class="navbar-brand" href="#">Account</a>
-        </div>
+        @Html.ActionLink("Dashboard", "DashBoard", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+
+        <a class="navbar-brand" href="#">Inbox</a>
+        <a class="navbar-brand" href="#">Your Listings</a>
+        <a class="navbar-brand" href="#">Your Trips</a>
+        @Html.ActionLink("Profile", "Profile", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+        <a class="navbar-brand" href="#">Account</a>
     </div>
 </div>
+
+@*</div>*@
