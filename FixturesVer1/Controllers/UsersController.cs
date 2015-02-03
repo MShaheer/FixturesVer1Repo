@@ -8,7 +8,7 @@ using FixturesVer1.Services;
 
 namespace FixturesVer1.Controllers
 {
-    
+    [Authorize]
     public class UsersController : Controller
     {
 
