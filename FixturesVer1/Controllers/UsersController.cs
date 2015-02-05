@@ -8,16 +8,38 @@ using FixturesVer1.Services;
 
 namespace FixturesVer1.Controllers
 {
-
+    
     public class UsersController : Controller
     {
+
+        AccountsService _accountssService;
+        public UsersController()
+        {
+
+            _accountssService = new AccountsService();
+        }
+
+        public ActionResult DashBoard() 
+        {
+            return View();
+        }
+
         [HttpGet]
-        [AllowAnonymous]
         new public ActionResult Profile()
         {
+            string userName = User.Identity.Name;
+            UsersService _usersservice = new UsersService();
+            var user = _usersservice.GetUserById(userName);
            
-            return View();
-           
+            if (user != null)
+            {
+                user.usr_Password = null;
+                return View(user);
+            }
+            else
+            {
+                return View();
+            }
         }
 
 
@@ -25,15 +47,17 @@ namespace FixturesVer1.Controllers
         [AllowAnonymous]
         new public ActionResult Profile(User userModel)
         {
-            //string encryptedPass = Utility.Cryptography.Encryption(userModel.usr_Password);
-            //userModel.usr_Password = encryptedPass;
-            return View();
-
-        }
-         public ActionResult DashBoard()
-        {
-
-            return View();
+            string encryptedPass = Utility.Cryptography.Encryption(userModel.usr_Password);
+            userModel.usr_Password = encryptedPass;
+            bool result = _accountssService.ManageUser(userModel);
+            if (result)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(userModel);
+            }
         }
          
 	}

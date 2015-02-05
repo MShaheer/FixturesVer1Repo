@@ -85,8 +85,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\blank.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\camera-loader.gif" />
+    <Content Include="Content\camera.css" />
+    <Content Include="Content\camera_skins.png" />
     <Content Include="Content\HomeController\css\colorbox.css" />
     <Content Include="Content\HomeController\css\elastislide.css" />
     <Content Include="Content\HomeController\css\magnific-popup.css" />
@@ -226,6 +230,17 @@
     <Content Include="Content\ion.rangeSlider.skinFlat.css" />
     <Content Include="Content\jquery.geocomplete.js" />
     <Content Include="Content\normalize.css" />
+    <Content Include="Content\patterns\overlay1.png" />
+    <Content Include="Content\patterns\overlay10.png" />
+    <Content Include="Content\patterns\overlay2.png" />
+    <Content Include="Content\patterns\overlay3.png" />
+    <Content Include="Content\patterns\overlay4.png" />
+    <Content Include="Content\patterns\overlay5.png" />
+    <Content Include="Content\patterns\overlay6.png" />
+    <Content Include="Content\patterns\overlay7.png" />
+    <Content Include="Content\patterns\overlay8.png" />
+    <Content Include="Content\patterns\overlay9.png" />
+    <Content Include="Content\patterns\_notes\dwsync.xml" />
     <Content Include="Content\PropertiesController\assets\css\bootstrap.css" />
     <Content Include="Content\PropertiesController\assets\css\style-responsive.css" />
     <Content Include="Content\PropertiesController\assets\css\style.css" />
@@ -313,6 +328,23 @@
     <Content Include="Content\PropertiesController\assets\lineicons\lte-ie7.js" />
     <Content Include="Content\PropertiesController\assets\lineicons\style.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\slides\big_bunny_fake.jpg" />
+    <Content Include="Content\slides\bridge.jpg" />
+    <Content Include="Content\slides\leaf.jpg" />
+    <Content Include="Content\slides\road.jpg" />
+    <Content Include="Content\slides\sea.jpg" />
+    <Content Include="Content\slides\shelter.jpg" />
+    <Content Include="Content\slides\thumbs\big_bunny_fake.jpg" />
+    <Content Include="Content\slides\thumbs\bridge.jpg" />
+    <Content Include="Content\slides\thumbs\header_bg.png" />
+    <Content Include="Content\slides\thumbs\leaf.jpg" />
+    <Content Include="Content\slides\thumbs\road.jpg" />
+    <Content Include="Content\slides\thumbs\sea.jpg" />
+    <Content Include="Content\slides\thumbs\shelter.jpg" />
+    <Content Include="Content\slides\thumbs\tree.jpg" />
+    <Content Include="Content\slides\thumbs\_notes\dwsync.xml" />
+    <Content Include="Content\slides\tree.jpg" />
+    <Content Include="Content\slides\_notes\dwsync.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -380,6 +412,8 @@
     </Compile>
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Property.cs" />
+    <Compile Include="Models\PropertyAvailabeDate.cs" />
+    <Compile Include="Models\PropertyDetail.cs" />
     <Compile Include="Models\Reference.cs" />
     <Compile Include="Models\RequestToBook.cs" />
     <Compile Include="Models\Review.cs" />
@@ -405,6 +439,9 @@
     <Content Include="Views\Users\DashBoard.cshtml" />
     <Content Include="Views\Shared\userNavbar.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Properties\BrowseListing.cshtml" />
+    <Content Include="Views\Properties\ManageListing.cshtml" />
+    <Content Include="Views\Shared\_userNavbar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

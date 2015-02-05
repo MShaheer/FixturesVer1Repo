@@ -1,0 +1,218 @@
+﻿@model FixturesVer1.Models.PropertyDetail
+
+@{
+    ViewBag.Title = "ManageListing";
+}
+
+<h2>ManageListing</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    
+    
+    
+    
+    
+    <div class="well wizard-example">
+  <div id="MyWizard" class="wizard">
+    <ul class="steps">
+      <li data-target="#step1" class="active"><span class="badge badge-info">1</span>Step 1<span class="chevron"></span></li>
+      <li data-target="#step2"><span class="badge">2</span>Step 2<span class="chevron"></span></li>
+      <li data-target="#step3"><span class="badge">3</span>Step 3<span class="chevron"></span></li>
+      <li data-target="#step4"><span class="badge">4</span>Step 4<span class="chevron"></span></li>
+      <li data-target="#step5"><span class="badge">5</span>Step 5<span class="chevron"></span></li>
+    </ul>
+    <div class="actions">
+      <button class="btn btn-mini btn-prev"> <i class="icon-arrow-left"></i>Prev</button>
+      <button class="btn btn-mini btn-next" data-last="Finish">Next<i class="icon-arrow-right"></i></button>
+    </div>
+  </div>
+  <div class="step-content">
+    <div class="step-pane active" id="step1"><h2><i class="icon-magic"> </i> &nbsp; Welcome to the Bootstrap Wizard Example.</h2>This is the first step in this wizard example...<br><img class="img-polaroid" src="//placehold.it/200x150"><br>Click 'Next' to continue.</div>
+    <div class="step-pane" id="step2"><h2>Step 2]</h2>Now you are at the 2nd step of this wizard example.<br></div>
+    <div class="step-pane" id="step3"><h2>Okay</h2>Now you are at the 3rd step of this wizard example.<br></div>
+    <div class="step-pane" id="step4"><h2>Almost Done.</h2>Now you are at the 4th step of this wizard example. Click 'Next' to finish up.</div>
+    <div class="step-pane" id="step5"><h2>Done!</h2>The wizard is complete. Pretty exciting stuff, eh?. <a href="#" id="btnStep2">Go back to step 2.</a></div>
+  </div>
+  <br>
+  <input class="btn" id="btnWizardPrev" value="Back" type="button">
+  <input class="btn btn-primary" id="btnWizardNext" value="Next" type="button">
+
+</div>
+<!-- /well -->
+
+<hr>
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="form-horizontal">
+        <h4>PropertyDetail</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PropertyId, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PropertyId)
+                @Html.ValidationMessageFor(model => model.PropertyId)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.usr_Username, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.usr_Username)
+                @Html.ValidationMessageFor(model => model.usr_Username)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.BasePrice, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BasePrice)
+                @Html.ValidationMessageFor(model => model.BasePrice)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title)
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CommonFacilities, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CommonFacilities)
+                @Html.ValidationMessageFor(model => model.CommonFacilities)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExtraFacilities, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ExtraFacilities)
+                @Html.ValidationMessageFor(model => model.ExtraFacilities)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Country, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Country)
+                @Html.ValidationMessageFor(model => model.Country)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreetAddress1, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreetAddress1)
+                @Html.ValidationMessageFor(model => model.StreetAddress1)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.StreetAddress2, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StreetAddress2)
+                @Html.ValidationMessageFor(model => model.StreetAddress2)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZipCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZipCode)
+                @Html.ValidationMessageFor(model => model.ZipCode)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Longitude, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Longitude)
+                @Html.ValidationMessageFor(model => model.Longitude)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Latitude, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Latitude)
+                @Html.ValidationMessageFor(model => model.Latitude)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Directions, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Directions)
+                @Html.ValidationMessageFor(model => model.Directions)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.AdCompleted, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AdCompleted)
+                @Html.ValidationMessageFor(model => model.AdCompleted)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+<script src="~/Scripts/wizardsteps.js"></script>

@@ -30,5 +30,6 @@ namespace FixturesVer1.Models
         public string Description { get; set; }
         public List<Reference> References { get; set; }
         public List<WishList> WishList { get; set; }
+        public List<Property> Properties { get; set; }
     }
 }
