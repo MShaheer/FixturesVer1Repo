@@ -9,8 +9,8 @@ namespace FixturesVer1.Services
 {
     public class FixturesDb :DbContext
     {
-        private FixturesDb _db;
-        bool _isDisposed = false;
+        //private FixturesDb _db;
+        //bool _isDisposed = false;
         public FixturesDb() :base("FixturesVer1DbConn")
         {
 

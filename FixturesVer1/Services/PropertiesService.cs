@@ -46,9 +46,29 @@ namespace FixturesVer1.Services
 
         }
 
-        public PropertyDetail GetPropertyDetailByPropertyId(int propertyId)
+        public PropertyDetail GetPropertyDetailByPropertyId(int? propertyId)
         {
-            return _db.PropertyDetails.Where(p => p.PropertyId == propertyId).ToList().FirstOrDefault();
+            string usr_userName = HttpContext.Current.User.Identity.Name;
+            List<Property> propertyList = new List<Property>();
+           
+            if(propertyId==null)
+            {
+                propertyList = GetPropertyListByUserId(usr_userName);
+                if(propertyList.Count==0)
+                {
+                    return null;
+                }
+                else {
+                    Property property = propertyList.FirstOrDefault();
+                    return _db.PropertyDetails.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault();
+                }
+            }
+            else
+            {
+                int intPropertyID = Convert.ToInt32(propertyId);
+                return _db.PropertyDetails.Where(p => p.PropertyId == intPropertyID).ToList().FirstOrDefault();
+            }
+         
 
         }
 
