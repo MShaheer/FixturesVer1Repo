@@ -1,0 +1,23 @@
+﻿
+
+@*<div class="container" id="blackstrip">*@
+    <div class="navbar navbar-inverse col-lg-12" style="border-radius:0">
+    @*  width: 1273px; margin-left: -67px;*@
+    <div class="navbar-header">
+        <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a>
+
+        @Html.ActionLink("Dashboard", "DashBoard", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+
+        <a class="navbar-brand" href="#">Inbox</a>
+        @Html.ActionLink("Your Listings", "browselisting", "Properties", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+         <a class="navbar-brand" href="#">Your Trips</a>
+        @Html.ActionLink("Profile", "Profile", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+        <a class="navbar-brand" href="#">Account</a>
+    </div>
+</div>
+
+@*</div>*@

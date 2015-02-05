@@ -10,11 +10,11 @@
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/
 
 /* styles for validation helpers */
 .field-validation-error {
@@ -41,3 +41,38 @@ input[type="checkbox"].input-validation-error {
     display: none;
 }
 
+.center {
+        float: none;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+#search-form{
+    width:280px;
+
+}
+
+input[type=number] {
+    height: 30px;
+    width: 100%;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    padding: 6px 12px;
+    height: 34px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+
+.navbar-brand {
+    font-size:   14px;
+    color: white !important;
+    
+}
+
+a.navbar-brand:hover {
+
+    color: #CCC !important;
+    
+}

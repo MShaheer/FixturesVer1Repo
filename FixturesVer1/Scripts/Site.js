@@ -17,4 +17,16 @@
         //$("#search-form").attr("action", "/Properties/Listing/?location=" + location);
         //$("#search-form").submit();
     });
+
+
+
+
+
+
+
+
+
+
+
+
 })

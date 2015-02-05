@@ -40,8 +40,78 @@ namespace FixturesVer1.Controllers
         {
             _propertiesService.AddProperty(propertyForm);
 
-            return View();
+            return RedirectToAction("Index", "Home");
         }
+
+        [HttpGet]
+        public ActionResult BrowseListing()
+        {
+            List<Property> propertiesList  = _propertiesService.GetPropertyListByUserId(User.Identity.Name);
+            List<SelectListItem> selectListItems = new List<SelectListItem>();
+            
+            foreach(var item in propertiesList)
+            {
+               selectListItems.Add(new SelectListItem {  Value = item.ID.ToString() , Text = item.Name });
+            }
+           
+            ViewBag.propertiesList = selectListItems; 
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult BrowseListing(int? propertyId)
+        {
+            if (propertyId == null)
+            {
+                return View("NoListings");
+            }
+            else
+            { 
+            var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(propertyId);
+            return View("ManageListing",propertyDetail);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult ManageListing(int? propertyId=null)
+        {
+            var propertyDetail =  _propertiesService.GetPropertyDetailByPropertyId(propertyId);
+            if(propertyDetail == null)
+            {
+                return View("NoListings");
+            }
+            else
+            { 
+            return View(propertyDetail);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult ManageListing(PropertyDetail propertyDetail)
+        {
+            if (_propertiesService.UpdatePropertyDetailByDetailId(propertyDetail))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+                return View(propertyDetail);
+            
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         public List<SelectListItem> PropertyTypeComboData()
         {
@@ -63,6 +133,8 @@ namespace FixturesVer1.Controllers
             return items;
 
         }
+
+        
 
 	}
 }

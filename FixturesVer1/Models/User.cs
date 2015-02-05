@@ -13,9 +13,11 @@ namespace FixturesVer1.Models
         [Key]
         [DisplayName("Username")]
         [System.ComponentModel.DataAnnotations.RegularExpression("^[^~`^|=<>]+$", ErrorMessage = "Invalid Characters")]
+        [Required]
         public string usr_Username { get; set; }
 
         [DisplayName("Password")]
+        [Required]
         //[RegularExpression("^[^~`^|=<>]+$", ErrorMessage = "Invalid Characters")]
         public string usr_Password { get; set; }
 
@@ -30,5 +32,6 @@ namespace FixturesVer1.Models
         public string Description { get; set; }
         public List<Reference> References { get; set; }
         public List<WishList> WishList { get; set; }
+        public List<Property> Properties { get; set; }
     }
 }

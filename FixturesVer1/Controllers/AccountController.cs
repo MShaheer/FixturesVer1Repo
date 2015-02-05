@@ -104,6 +104,36 @@ namespace FixturesVer1.Controllers
             else return View();
         }
 
+        [HttpGet]
+        public ActionResult Manage()
+        {
+            string userName = User.Identity.Name;
+            UsersService _usersService = new UsersService();
+            var user  =_usersService.GetUserById(userName);
+            user.usr_Password = null;
+            if (user!= null){
+
+                return View(user);
+            }
+            else{
+                return View();
+            }
+            
+        }
+
+        [HttpPost]
+        public ActionResult Manage(User userModel)
+        {
+            string encryptedPass = Utility.Cryptography.Encryption(userModel.usr_Password);
+            userModel.usr_Password = encryptedPass;
+            bool result = _accountssService.ManageUser(userModel);
+            if (result)
+            {
+                return RedirectToAction("Index", "Home");
+
+            }
+            else return View(userModel);
+        }
 
 	}
 }
