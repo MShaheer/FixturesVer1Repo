@@ -5,12 +5,10 @@
 
 
 <div class="col-md-2">
-    </br>
-    </br>
-    </br>
-    <a href="#" style="color:black">Edit Profile</a></br></br>
-    <a href="#" style="color:black">Reviews</a></br></br>
-    <a href="#" style="color:black">References</a></br></br>
+    <br /><br /><br />
+    <a href="#" style="color:black">Edit Profile</a><br/><br/>
+    <a href="#" style="color:black">Reviews</a><br><br/>
+    <a href="#" style="color:black">References</a><br/><br/>
 
 </div>
 
@@ -28,7 +26,7 @@
                 <div class="form-horizontal">
 
                     @Html.ValidationSummary(true)
-
+                    @Html.HiddenFor(model => model.usr_Username)
 
                     <div class="col-lg-6">
 

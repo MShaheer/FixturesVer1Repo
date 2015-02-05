@@ -63,3 +63,16 @@ input[type=number] {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
 }
+
+
+.navbar-brand {
+    font-size:   14px;
+    color: white !important;
+    
+}
+
+a.navbar-brand:hover {
+
+    color: #CCC !important;
+    
+}
