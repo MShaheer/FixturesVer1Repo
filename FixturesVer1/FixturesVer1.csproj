@@ -410,6 +410,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501171104288_InitialCreate.cs" />
+    <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
+      <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyAvailabeDate.cs" />
@@ -448,6 +453,11 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
+      <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
