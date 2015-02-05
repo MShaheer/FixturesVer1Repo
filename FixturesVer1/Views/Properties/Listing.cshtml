@@ -14,6 +14,7 @@
     }
 
     #listing-panel {
+        margin-left:350px;
     }
 
     .listing-item {
@@ -57,11 +58,6 @@
     </div>
 </div>
 
-@*<div id="container" class="container col-md-12">*@
-<div id="map-panel" class="col-md-5">
-    <div id="map" style="margin-top:15px; margin-left:-15px; width:550px; height: 680px; position: fixed;"></div>
-</div>
-
 <div id="listing-panel" class="col-md-7">
     @foreach (var property in Model)
     {
@@ -81,12 +77,7 @@
         </div>
     }
 </div>
-@*</div>*@
 
-
-
-
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBsQ9piGaNjNqQmHRS6uclvLnEbtAsKvLE&sensor=false"></script>
 <script src="~/Scripts/ion.rangeSlider.js"></script>
 
 <script>

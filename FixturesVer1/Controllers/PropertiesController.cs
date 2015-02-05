@@ -19,7 +19,7 @@ namespace FixturesVer1.Controllers
         }
 
 
-        public ActionResult Listing(string location)
+        public ActionResult Listing(string location, string pageIndex = 0, string pageSize = 2)
         {
             if (location != null)
             {
