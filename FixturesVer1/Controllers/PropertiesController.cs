@@ -61,19 +61,31 @@ namespace FixturesVer1.Controllers
         }
 
         [HttpPost]
-        public ActionResult BrowseListing(int propertyId)
+        public ActionResult BrowseListing(int? propertyId)
         {
+            if (propertyId == null)
+            {
+                return View("NoListings");
+            }
+            else
+            { 
             var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(propertyId);
-
             return View("ManageListing",propertyDetail);
+            }
         }
 
         [HttpGet]
-        public ActionResult ManageListing(int propertyId)
+        public ActionResult ManageListing(int? propertyId=null)
         {
             var propertyDetail =  _propertiesService.GetPropertyDetailByPropertyId(propertyId);
-
+            if(propertyDetail == null)
+            {
+                return View("NoListings");
+            }
+            else
+            { 
             return View(propertyDetail);
+            }
         }
 
         [HttpPost]

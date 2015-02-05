@@ -13,8 +13,8 @@
         @Html.ActionLink("Dashboard", "DashBoard", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
 
         <a class="navbar-brand" href="#">Inbox</a>
-        <a class="navbar-brand" href="#">Your Listings</a>
-        <a class="navbar-brand" href="#">Your Trips</a>
+        @Html.ActionLink("Your Listings", "browselisting", "Properties", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
+         <a class="navbar-brand" href="#">Your Trips</a>
         @Html.ActionLink("Profile", "Profile", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
         <a class="navbar-brand" href="#">Account</a>
     </div>
