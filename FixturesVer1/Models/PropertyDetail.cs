@@ -15,7 +15,7 @@ namespace FixturesVer1.Models
         public int PropertyId { get; set; }
         public string usr_Username { get; set; }
         public float BasePrice { get; set; }
-        public float Currency { get; set; }
+        public string Currency { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string CommonFacilities { get; set; }

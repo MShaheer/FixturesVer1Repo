@@ -70,6 +70,7 @@ namespace FixturesVer1.Controllers
             else
             { 
             var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(propertyId);
+            //propertyDetail.CommonFacilities.Trim("\r\n");
             return View("ManageListing",propertyDetail);
             }
         }

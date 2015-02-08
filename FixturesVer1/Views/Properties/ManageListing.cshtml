@@ -8,32 +8,48 @@
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 <script src="../Scripts/jquery-ui.min.js"></script>
 <script src="../Scripts/jquery-ui.multidatespicker.js"></script>
-@using (Html.BeginForm())
+
+<style>
+
+    .textareatags {
+        resize: none;
+        overflow-y: scroll;
+        height: 100px;
+        max-height: 100px;
+        min-height: 100px;
+    }
+
+</style>
+
+
+@using (Html.BeginForm("ManageListing", "Properties", FormMethod.Post, new { @id="manageListingForm", @name="ManageListing" }))
 {
     @Html.AntiForgeryToken()
-    
-    
+
+
     <div class="row acc-wizard">
-      <div class="col-md-3" style="padding-left: 2em;">
-        <p style="margin-bottom: 2em;">
-          Publish your listing by completing th following steps:
-        </p>
-        <ol class="acc-wizard-sidebar">
-          <li class="acc-wizard-todo"><a href="#basics">Basics</a></li>
-          <li class="acc-wizard-todo"><a href="#description">Description</a></li>
-          <li class="acc-wizard-todo"><a href="#settings">Settings</a></li>
-         @* <li class="acc-wizard-todo"><a href="#viewpage">Release</a></li>*@
-        </ol>
-      </div>
+        <div class="col-md-3" style="padding-left: 2em;">
+            <p style="margin-bottom: 2em;">
+                Publish your listing by completing the following steps:
+            </p>
+            <ol class="acc-wizard-sidebar">
+                <li class="acc-wizard-todo"><a href="#basics">Basics</a></li>
+                <li class="acc-wizard-todo"><a href="#description">Description</a></li>
+                <li class="acc-wizard-todo"><a href="#settings">Settings</a></li>
+                <li class="acc-wizard-todo"><a href="#location">Location</a></li>
+            </ol>
+        </div>
         <div class="col-md-9" style="padding-right: 2em;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a href="#Property">
-                            Property</a>
-                    </h4>
-                </div>
-           
+            <div id="accordion-demo" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#Property">
+                                Property
+                            </a>
+                        </h4>
+                    </div>
+
                     <div class="panel-body">
                         <div class="form-horizontal">
 
@@ -41,7 +57,7 @@
 
                             @Html.ValidationSummary(true)
                             @Html.HiddenFor(model => model.ID)
-
+                          
                             <div class="col-lg-6">
 
                                 <div class="form-group">
@@ -51,6 +67,8 @@
                                             <span class="input-group-addon">@Html.DisplayNameFor(model => model.PropertyId)</span>
 
                                             @Html.TextBoxFor(model => model.PropertyId, new { @class = "form-control", @disabled = "true" })
+
+                                            @Html.HiddenFor(model => model.PropertyId)
                                         </div>
                                         @Html.ValidationMessageFor(model => model.PropertyId)
                                     </div>
@@ -68,6 +86,7 @@
                                             <span class="input-group-addon">@Html.DisplayNameFor(model => model.usr_Username)</span>
 
                                             @Html.TextBoxFor(model => model.usr_Username, new { @class = "form-control", @disabled = "true" })
+                                            @Html.HiddenFor(model => model.usr_Username)
                                         </div>
                                         @Html.ValidationMessageFor(model => model.usr_Username)
                                     </div>
@@ -75,530 +94,690 @@
                             </div>
 
 
+                            @*<div class="col-lg-6">
 
+                            <div class="form-group">
+
+                                <div class="col-md-10">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">@Html.DisplayNameFor(model => model.AdCompleted)</span>
+
+                                        @Html.TextBoxFor(model => model.AdCompleted, new { @class = "form-control", @disabled = "true" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.AdCompleted)
+                                </div>
+                            </div>
+
+                        </div>*@
 
 
 
 
 
                         </div>
-                        </div>
-               
                     </div>
+
+                </div>
+                </div>
             </div>
 
-                    <div class="col-md-9" style="padding-right: 2em;">
-                        <div id="accordion-demo" class="panel-group">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#basics" data-parent="#accordion-demo" data-toggle="collapse">
-                                            Basics
-                                        </a>
-                                    </h4>
+        <div class="col-md-9" style="padding-right: 2em;">
+            <div id="accordion-demo" class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#basics" data-parent="#accordion-demo" data-toggle="collapse">
+                                Basics
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="basics" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @*<form id="form-basics">*@
+
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        <h3>Choose Availability of your property</h3>
+                                        <br />
+                                        <h4 id="availableLabel"></h4>
+                                        @Html.HiddenFor(model => model.Availability, new { @id = "AvailabilityHdnTxt" })
+                                        <div id="availabilityButtonList">
+                                            @Html.Label("One Time")   @Html.RadioButtonFor(model => model.Availability, "onetime")
+                                            <br />
+                                            @Html.Label("Sometimes")  @Html.RadioButtonFor(model => model.Availability, "sometime")
+                                            <br />
+                                            @Html.Label("Always")    @Html.RadioButtonFor(model => model.Availability, "everytime")
+                                        </div>
+                                       @* @Html.Label("", "", new { @id = "availableLabel" })*@
+                                        
+                                    </div>
+                                   
                                 </div>
-                                <div id="basics" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <form id="form-basics">
+
+                                <div class="row">
+                                    <div class="box" id="from--input" hidden="hidden">
+                                        @* <input type="text" id="from-input">*@
+                                        <div class="col-lg-6">
 
                                             <div class="form-group">
+                                                @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                                                 <div class="col-md-10">
-                                                    <h3>Choose Availability of your property</h3>
-                                                    <br />
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">@Html.DisplayNameFor(model => model.AvailabilityFromDate)</span>
 
-                                                    <div id="availabilityButtonList">
-                                                        @Html.Label("One Time")   @Html.RadioButtonFor(model => model.Availability, "onetime")
-                                                        <br />
-                                                        @Html.Label("Sometimes")  @Html.RadioButtonFor(model => model.Availability, "sometime")
-                                                        <br />
-                                                        @Html.Label("Always")    @Html.RadioButtonFor(model => model.Availability, "everytime")
+                                                        @Html.TextBoxFor(model => model.AvailabilityFromDate, new { @class = "form-control", id = "from-input" })
+                                                        @Html.HiddenFor(model => model.AvailabilityFromDate)
                                                     </div>
+                                                    @Html.ValidationMessageFor(model => model.AvailabilityFromDate)
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
 
-                                            <div class="row">
-                                                <div class="box" id="from--input" hidden="hidden">
-                                                    @* <input type="text" id="from-input">*@
-                                                    <div class="col-lg-6">
+                                    <div class="box" id="from--input2" hidden="hidden">
+                                        @*<input type="text" id="from-input2">*@
 
-                                                        <div class="form-group">
-                                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                            <div class="col-md-10">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.AvailabilityFromDate)</span>
+                                        <div class="col-lg-6">
 
-                                                                    @Html.TextBoxFor(model => model.AvailabilityFromDate, new { @class = "form-control", id = "from-input" })
-                                                                </div>
-                                                                @Html.ValidationMessageFor(model => model.AvailabilityFromDate)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="box" id="from--input2" hidden="hidden">
-                                                    @*<input type="text" id="from-input2">*@
-
-                                                    <div class="col-lg-6">
-
-                                                        <div class="form-group">
-                                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                            <div class="col-md-10">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.AvailabilityFromDate)</span>
-
-                                                                    @Html.TextBoxFor(model => model.AvailabilityFromDate, new { @class = "form-control", id = "from-input2" })
-                                                                </div>
-                                                                @Html.ValidationMessageFor(model => model.AvailabilityFromDate)
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <br />
-                                            <div class="form-group" id="btnSelectAgain" hidden="hidden">
+                                            <div class="form-group">
+                                                @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                                                 <div class="col-md-10">
-                                                    <input id="toggleAvailabilityBtn" type="button" value="Select Again" class="btn btn-default" />
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">@Html.DisplayNameFor(model => model.AvailabilityToDate)</span>
+
+                                                        @Html.TextBoxFor(model => model.AvailabilityToDate, new { @class = "form-control", id = "from-input2" })
+                                                        @Html.HiddenFor(model => model.AvailabilityToDate)
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.AvailabilityToDate)
                                                 </div>
                                             </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group" id="btnSelectAgain" hidden="hidden">
+                                    <div class="col-md-10">
+                                        <input id="toggleAvailabilityBtn" type="button" value="Select Again" class="btn btn-default" />
+                                    </div>
+                                </div>
 
 
 
 
 
+                                <div class="col-md-10">
+                                    <h3>Base Price</h3>
+                                </div><div class="row">
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
                                             <div class="col-md-10">
-                                                <h3>Base Price</h3>
-                                            </div><div class="row">
-                                                <div class="col-lg-6">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.BasePrice)</span>
 
-                                                    <div class="form-group">
-                                                        @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                        <div class="col-md-10">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">@Html.DisplayNameFor(model => model.BasePrice)</span>
-
-                                                                @Html.TextBoxFor(model => model.BasePrice, new { @class = "form-control" })
-                                                            </div>
-                                                            @Html.ValidationMessageFor(model => model.BasePrice)
-                                                        </div>
-                                                    </div>
-
+                                                    @Html.TextBoxFor(model => model.BasePrice, new { @class = "form-control" })
                                                 </div>
+                                                @Html.ValidationMessageFor(model => model.BasePrice)
+                                            </div>
+                                        </div>
 
-                                                <div class="col-lg-6">
+                                    </div>
 
-                                                    <div class="form-group">
-                                                        @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                        <div class="col-md-10">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">@Html.DisplayNameFor(model => model.Currency)</span>
+                                    <div class="col-lg-6">
 
-                                                                @Html.TextBoxFor(model => model.Currency, new { @class = "form-control" })
-                                                            </div>
-                                                            @Html.ValidationMessageFor(model => model.Currency)
-                                                        </div>
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Currency)</span>
+
+                                                    @Html.TextBoxFor(model => model.Currency, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Currency)
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            @*</form>*@
+                        </div> <!--/.panel-body -->
+                    </div> <!-- /#prerequisites -->
+                </div> <!-- /.panel.panel-default -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#description" data-parent="#accordion-demo" data-toggle="collapse">
+                                Description
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="description" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                @*<form id="form-description">*@
+
+                                    <div class="row">
+                                        <div class="col-lg-6">
+
+                                            <div class="form-group">
+                                                @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">@Html.DisplayNameFor(model => model.Title)</span>
+
+                                                        @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
                                                     </div>
-
+                                                    @Html.ValidationMessageFor(model => model.Title)
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div> <!--/.panel-body -->
-                                </div> <!-- /#prerequisites -->
-                            </div> <!-- /.panel.panel-default -->
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#description" data-parent="#accordion-demo" data-toggle="collapse">
-                                            Description
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="description" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <form id="form-description">
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-6">
+
+                                            <div class="form-group">
+                                                @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                                <div class="col-md-10">
+                                                    <div class="input-group">
+                                                        <span class="input-group-addon">@Html.DisplayNameFor(model => model.Description)</span>
+
+                                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control" })
+                                                    </div>
+                                                    @Html.ValidationMessageFor(model => model.Description)
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+                                @*</form>*@
+                            </div>
+                            </div> <!--/.panel-body -->
+                    </div> <!-- /#addwizard -->
+                </div> <!-- /.panel.panel-default -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#settings" data-parent="#accordion-demo" data-toggle="collapse">
+                                Settings
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="settings" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            @*<form id="form-settings">*@
+                                <div class="col-lg-6">
+                                    <h3>
+                                        Common Facilities
+                                    </h3>
+
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.CommonFacilities)</span>
+
+                                                    @Html.TextAreaFor(model => model.CommonFacilities, new { @class = "form-control textareatags", @id = "commonFacilitiesTxt", @readonly = true })
+                                                    @Html.HiddenFor(model => model.CommonFacilities, new {@id = "commonFacilitiesHdnTxt"  })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.CommonFacilities)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-10">
+                                        @* <textarea class="textfield" id="commonFacilitiesTxt" name="CommonFacilities"></textarea>*@
+                                        <div class="taglist1">
+                                            <div class="row"><label><input type="checkbox" value="Essentials">Essentials</label></div>
                                             <div class="row">
-                                                <div class="col-lg-6">
-
-                                                    <div class="form-group">
-                                                        @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                        <div class="col-md-10">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">@Html.DisplayNameFor(model => model.Title)</span>
-
-                                                                @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
-                                                            </div>
-                                                            @Html.ValidationMessageFor(model => model.Title)
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
-
-                                                <div class="col-lg-6">
-
-                                                    <div class="form-group">
-                                                        @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                                                        <div class="col-md-10">
-                                                            <div class="input-group">
-                                                                <span class="input-group-addon">@Html.DisplayNameFor(model => model.Description)</span>
-
-                                                                @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
-                                                            </div>
-                                                            @Html.ValidationMessageFor(model => model.Description)
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
+                                                <label><input type="checkbox" value="TV">TV</label>
                                             </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Cable TV">Cable TV</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Air Conditioning">Air Conditioning</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Heating">Heating</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Kitchen">Kitchen</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Internet">Internet</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Wireless Internet">Wireless Internet</label>
+                                            </div>
+                                        </div>
 
-
-
-
-
-
-                                        </form>
-                                    </div> <!--/.panel-body -->
-                                </div> <!-- /#addwizard -->
-                            </div> <!-- /.panel.panel-default -->
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#settings" data-parent="#accordion-demo" data-toggle="collapse">
-                                            Settings
-                                        </a>
-                                    </h4>
+                                    </div>
                                 </div>
-                                <div id="settings" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <form id="form-settings"></form>
-                                    </div> <!--/.panel-body -->
-                                </div> <!-- /#adjusthtml -->
-                            </div> <!-- /.panel.panel-default -->
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a href="#overview" data-parent="#accordion-demo" data-toggle="collapse">
-                                            Overview
-                                        </a>
-                                    </h4>
+                                <div class="col-lg-6">
+                                    <h3>
+                                        Extra Facilities
+                                    </h3>
+
+                                    <div class="row">
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.ExtraFacilities)</span>
+
+                                                    @Html.TextAreaFor(model => model.ExtraFacilities, new { @class = "form-control textareatags", @id = "extraFacilitiesTxt", @readonly = true })
+                                                    @Html.HiddenFor(model => model.ExtraFacilities, new { @id = "extraFacilitiesHdnTxt" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.ExtraFacilities)
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @* <textarea class="textfield" id="extraFacilitiesTxt" name="ExtraFacilities"></textarea>*@
+                                    <div class="col-md-10">
+                                        <div class="taglist2">
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Hot Tub">Hot Tub</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Washer">Washer</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Cable TV">Cable TV</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Pool">Pool</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Dryer">Dryer</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Breakfast">Breakfast</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Free Parking on Premises">Free Parking on Premises</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Gym">Gym</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Elevator in Building">Elevator in Building</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Wireless Intercom">Wireless Intercom </label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Doorman">Doorman</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Shampoo">Shampoo</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Smoking Allowed">Smoking Allowed </label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Pets Allowed">Pets Allowed</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Wheelchair Accessible">Wheelchair Accessible</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Smoke Detector">Smoke Detector</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="First Aid Kit">First Aid Kit</label>
+                                            </div>
+                                            <div class="row">
+                                                <label><input type="checkbox" value="Fire Extinguisher">Fire Extinguisher</label>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="overview" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        <form id="form-overview"></form>
-                                    </div> <!--/.panel-body -->
-                                </div> <!-- /#adjusthtml -->
-                            </div> <!-- /.panel.panel-default -->
 
-                        </div>
+
+                            @*</form>*@
+                        </div> <!--/.panel-body -->
+                    </div> <!-- /#adjusthtml -->
+                </div> <!-- /.panel.panel-default -->
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#location" data-parent="#accordion-demo" data-toggle="collapse">
+                                Location
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="location" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                @*<form id="form-location">*@
+
+
+
+
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Country)</span>
+
+                                                    @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Country)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.City)</span>
+
+                                                    @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.City)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.StreetAddress1)</span>
+
+                                                    @Html.TextBoxFor(model => model.StreetAddress1, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.StreetAddress1)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.StreetAddress2)</span>
+
+                                                    @Html.TextBoxFor(model => model.StreetAddress2, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.StreetAddress2)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.State)</span>
+
+                                                    @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.State)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.ZipCode)</span>
+
+                                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.ZipCode)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Longitude)</span>
+
+                                                    @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Longitude)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Latitude)</span>
+
+                                                    @Html.TextBoxFor(model => model.Latitude, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Latitude)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+                                        <div class="form-group">
+                                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                                            <div class="col-md-10">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Directions)</span>
+
+                                                    @Html.TextBoxFor(model => model.Directions, new { @class = "form-control" })
+                                                </div>
+                                                @Html.ValidationMessageFor(model => model.Directions)
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+                                @*</form>*@
+                            </div>
+                            </div> <!--/.panel-body -->
+                    </div> <!-- /#adjusthtml -->
+                </div> <!-- /.panel.panel-default -->
+
+            </div>
+
+            <div class="form-horizontal">
+
+
+
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
                     </div>
                 </div>
+            </div>
+        </div>
+       
+    </div>
 
 
+}
 
 
-                <div class="form-horizontal">
-                    <h4>PropertyDetail</h4>
-                    <hr />
-                   
+<script src="~/Scripts/acc-wizard.js"></script>
 
-                   
+<script>
 
-                    
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.CommonFacilities)</span>
 
-                                    @Html.TextBoxFor(model => model.CommonFacilities, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.CommonFacilities)
-                            </div>
-                        </div>
 
-                    </div>
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.ExtraFacilities)</span>
+</script>
 
-                                    @Html.TextBoxFor(model => model.ExtraFacilities, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.ExtraFacilities)
-                            </div>
-                        </div>
 
-                    </div>
+<script>
+    function onNext(parent, panel) {
+        hash = "#" + panel.id;
+        $(".acc-wizard-sidebar", $(parent))
+            .children("li")
+            .children("a[href='" + hash + "']")
+            .parent("li")
+            .removeClass("acc-wizard-todo")
+            .addClass("acc-wizard-completed");
+    }
+    $(window).load(function () {
+        $(".acc-wizard").accwizard({ onNext: onNext });
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Country)</span>
 
-                                    @Html.TextBoxFor(model => model.Country, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Country)
-                            </div>
-                        </div>
+    })
 
-                    </div>
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.City)</span>
 
-                                    @Html.TextBoxFor(model => model.City, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.City)
-                            </div>
-                        </div>
+    $(document).ready(function () {
 
-                    </div>
+        function updateTextArea1() {
+            var allVals = [];
+            $('.taglist1 :checked').each(function (i) {
 
-                    <div class="col-lg-6">
+                allVals.push((i != 0 ? "\r\n" : "") + $(this).val());
+            });
+            $('#commonFacilitiesTxt').html(allVals).attr('rows', allVals.length);
+            $('#commonFacilitiesHdnTxt').val(allVals).attr('rows', allVals.length);
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.StreetAddress1)</span>
+        }
+        $(function () {
+            $('.taglist1 input').click(updateTextArea1);
+           // updateTextArea1();
+        }); 
 
-                                    @Html.TextBoxFor(model => model.StreetAddress1, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.StreetAddress1)
-                            </div>
-                        </div>
 
-                    </div>
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.StreetAddress2)</span>
 
-                                    @Html.TextBoxFor(model => model.StreetAddress2, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.StreetAddress2)
-                            </div>
-                        </div>
 
-                    </div>
+        function updateTextArea2() {
+            var allVals = [];
+            $('.taglist2 :checked').each(function (i) {
 
-                    <div class="col-lg-6">
+                allVals.push((i != 0 ? "\r\n" : "") + $(this).val());
+            });
+            $('#extraFacilitiesTxt').html(allVals).attr('rows', allVals.length);
+            $('#extraFacilitiesHdnTxt').val(allVals).attr('rows', allVals.length);
+        }
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.State)</span>
+        $(function () {
+            $('.taglist2 input').click(updateTextArea2);
+            //updateTextArea2();
+        });
 
-                                    @Html.TextBoxFor(model => model.State, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.State)
-                            </div>
-                        </div>
 
-                    </div>
+        $("#toggleAvailabilityBtn").click(function () {
+            $("#from--input").hide();
+            $("#from--input2").hide();
+            $("#availabilityButtonList").toggle();
+            console.log("Exiting click event");
+            $('#from-input').multiDatesPicker('resetDates');
+            $('#from-input2').multiDatesPicker('resetDates');
+            $("#availableLabel").text("Choose Availablity type");
+        });
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.ZipCode)</span>
+        $("input[name='Availability']:radio").change(function () {
 
-                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.ZipCode)
-                            </div>
-                        </div>
+            var selectedAvailability = $("input[name='Availability']:checked").val();
+            $("#toggleAvailabilityBtn").show();
+            $("#btnSelectAgain").show();
+            if (selectedAvailability == "onetime") {
+                $("AvailabilityHdnTxt").val("onetime");
+                $("#availableLabel").text("Availability: One Time");
+                $("#availabilityButtonList").toggle();
 
-                    </div>
+                $('#from--input').show()
+                $('#from--input2').show();
+                $('#from-input').multiDatesPicker({ maxPicks: 1 });
+                $('#from-input2').multiDatesPicker({ maxPicks: 1 });
 
 
-                    <div class="col-lg-6">
+            }
+            else if (selectedAvailability == "sometime") {
+                $("AvailabilityHdnTxt").val("sometime");
+                $("#availableLabel").text("Availability: Sometime");
+                $("#availabilityButtonList").toggle();
+                $('#from--input').show();
+                $('#from--input2').hide();
+                $('#from-input').multiDatesPicker({ maxPicks: 365 });
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Longitude)</span>
+            }
+            else if (selectedAvailability == "everytime") {
+                $("AvailabilityHdnTxt").val("everytime");
+                $("#availableLabel").text("Availability: Always");
+                $("#availabilityButtonList").toggle();
+                $("#from--input").hide();
+                $("#from--input2").hide();
+            }
 
-                                    @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Longitude)
-                            </div>
-                        </div>
 
-                    </div>
+        })
 
-                    <div class="col-lg-6">
+    })
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Latitude)</span>
 
-                                    @Html.TextBoxFor(model => model.Latitude, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Latitude)
-                            </div>
-                        </div>
 
-                    </div>
 
-                    <div class="col-lg-6">
 
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.Directions)</span>
 
-                                    @Html.TextBoxFor(model => model.Directions, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Directions)
-                            </div>
-                        </div>
 
-                    </div>
-
-                    <div class="col-lg-6">
-
-                        <div class="form-group">
-                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.AdCompleted)</span>
-
-                                    @Html.TextBoxFor(model => model.AdCompleted, new { @class = "form-control" })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.AdCompleted)
-                            </div>
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" value="Save" class="btn btn-default" />
-                        </div>
-                    </div>
-                </div>
-                }
-
-
-
-                <script src="~/Scripts/acc-wizard.js"></script>
-
-                <script>
-
-
-
-
-
-
-
-                </script>
-
-
-                <script>
-                    function onNext(parent, panel) {
-                        hash = "#" + panel.id;
-                        $(".acc-wizard-sidebar", $(parent))
-                            .children("li")
-                            .children("a[href='" + hash + "']")
-                            .parent("li")
-                            .removeClass("acc-wizard-todo")
-                            .addClass("acc-wizard-completed");
-                    }
-                    $(window).load(function () {
-                        $(".acc-wizard").accwizard({ onNext: onNext });
-
-
-
-                    })
-
-
-
-
-                    $(document).ready(function () {
-
-                        $("#toggleAvailabilityBtn").click(function () {
-                            $("#from--input").hide();
-                            $("#from--input2").hide();
-                            $("#availabilityButtonList").toggle();
-                            console.log("Exiting click event");
-                            $('#from-input').multiDatesPicker('resetDates');
-                            $('#from-input2').multiDatesPicker('resetDates');
-                        });
-
-
-                        $("input[name='Availability']:radio").change(function () {
-
-                            var selectedAvailability = $("input[name='Availability']:checked").val();
-                            $("#toggleAvailabilityBtn").show();
-                            $("#btnSelectAgain").show();
-                            if (selectedAvailability == "onetime") {
-                                $("#availabilityButtonList").toggle();
-
-                                $('#from--input').show()
-                                $('#from--input2').show();
-                                $('#from-input').multiDatesPicker({ maxPicks: 1 });
-                                $('#from-input2').multiDatesPicker({ maxPicks: 1 });
-
-
-                            }
-                            else if (selectedAvailability == "sometime") {
-                                $("#availabilityButtonList").toggle();
-                                $('#from--input').show();
-                                $('#from--input2').hide();
-                                $('#from-input').multiDatesPicker({ maxPicks: 365 });
-
-                            }
-                            else if (selectedAvailability == "everytime") {
-                                $("#availabilityButtonList").toggle();
-                                $("#from--input").hide();
-                                $("#from--input2").hide();
-                            }
-
-
-                        })
-
-                    })
-
-
-
-
-
-
-
-                </script>
+</script>
