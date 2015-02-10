@@ -81,7 +81,7 @@ namespace FixturesVer1.Controllers
         public ActionResult ManageListing(int? propertyId=null)
         {
             var propertyDetail =  _propertiesService.GetPropertyDetailByPropertyId(propertyId);
-            if(propertyDetail == null)
+            if(propertyDetail == null || propertyId == null)
             {
                 return View("NoListings");
             }
