@@ -2,6 +2,7 @@
 using FixturesVer1.Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -70,6 +71,7 @@ namespace FixturesVer1.Controllers
             else
             { 
             var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(propertyId);
+            ViewBag.imageList = getImageListOfProperty(propertyId.Value,propertyDetail.ID);
             //propertyDetail.CommonFacilities.Trim("\r\n");
             return View("ManageListing",propertyDetail);
             }
@@ -84,7 +86,8 @@ namespace FixturesVer1.Controllers
                 return View("NoListings");
             }
             else
-            { 
+            {
+            ViewBag.imageList = getImageListOfProperty(propertyId.Value, propertyDetail.ID);
             return View(propertyDetail);
             }
         }
@@ -102,13 +105,74 @@ namespace FixturesVer1.Controllers
         }
 
 
+        [HttpPost]
+        public ActionResult UploadImages(HttpPostedFileBase file, string propertyId, string propertyDetailId)
+        {
+            //foreach (var file in files)
+            //{
+            //    if (file.ContentLength > 0)
+            //    {
+                    //var fileName = Path.GetFileName(file.FileName);
+                    var fileName = DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day + User.Identity.Name;
+                    fileName += DateTime.Today.Ticks.ToString("0");
+                    fileName += Path.GetFileName(file.FileName);
+            //fileName += DateTime.Today..ToString();
 
+                   
+                    var path = Path.Combine(Server.MapPath("~/uploads/" +"Property"+ propertyId+"-Detail"+propertyDetailId+"/"), fileName);
+                    var directorypath = Server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+                    if (!Directory.Exists(directorypath))
+                    {
+                        Directory.CreateDirectory(directorypath);
+                    }
 
+                    file.SaveAs(path);
+            //    }
+            //}
+            return RedirectToAction("BrowseListing","Properties");
+        }
 
+        public List<ImageViewModel> getImageListOfProperty(int propertyId, int propertyDetailId)
+        {
+            var directorypath = Server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+           // var relativePath = "~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/";
 
+            if (!Directory.Exists(directorypath))
+            {
+                Directory.CreateDirectory(directorypath);
+            }
+           
+            List<string> ImageNames =  Directory.GetFiles(directorypath, "*.*", SearchOption.TopDirectoryOnly).ToList();
+            List<ImageViewModel> imageList = new List<ImageViewModel>();
+            int counter =1;
+            foreach(var item in ImageNames)
+            {
+                String absolutePath = item;
+                int relativePathStartIndex = absolutePath.IndexOf("uploads");
+                String relativePath ="../"+ absolutePath.Substring(relativePathStartIndex);
+                imageList.Add(new ImageViewModel { src = relativePath, altText = counter.ToString() });
+            counter++;
+            }
 
+            return imageList;
+        
+        }
 
-
+        //[HttpPost]
+        //public ActionResult UploadImages(IEnumerable<HttpPostedFileBase> files)
+        //{
+        //    foreach (var file in files)
+        //    {
+        //        if (file.ContentLength > 0)
+        //        {
+        //    var fileName = Path.GetFileName(file.FileName);
+        //    fileName = DateTime.Today.ToString() + User.Identity.Name;
+        //    var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+        //    file.SaveAs(path);
+        //        }
+        //    }
+        //    return RedirectToAction("BrowseListing", "Properties");
+        //}
 
 
 

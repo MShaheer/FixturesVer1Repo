@@ -1,4 +1,6 @@
 ﻿@model FixturesVer1.Models.PropertyDetail
+@using FixturesVer1.Utility
+
 
 @{
     ViewBag.Title = "ManageListing";
@@ -8,6 +10,9 @@
 <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 <script src="../Scripts/jquery-ui.min.js"></script>
 <script src="../Scripts/jquery-ui.multidatespicker.js"></script>
+<link href="~/Content/jquery.ui.plupload.css" rel="stylesheet" />
+<script src="~/Scripts/plupload.full.min.js"></script>
+<script src="~/Scripts/jquery.ui.plupload.min.js"></script>
 
 <style>
 
@@ -25,8 +30,8 @@
 @using (Html.BeginForm("ManageListing", "Properties", FormMethod.Post, new { @id="manageListingForm", @name="ManageListing" }))
 {
     @Html.AntiForgeryToken()
-
-
+     
+   
     <div class="row acc-wizard">
         <div class="col-md-3" style="padding-left: 2em;">
             <p style="margin-bottom: 2em;">
@@ -56,7 +61,7 @@
 
 
                             @Html.ValidationSummary(true)
-                            @Html.HiddenFor(model => model.ID)
+                            @Html.HiddenFor(model => model.ID, new { @id = "propertyDetailId" })
                           
                             <div class="col-lg-6">
 
@@ -66,7 +71,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon">@Html.DisplayNameFor(model => model.PropertyId)</span>
 
-                                            @Html.TextBoxFor(model => model.PropertyId, new { @class = "form-control", @disabled = "true" })
+                                            @Html.TextBoxFor(model => model.PropertyId, new { @id="propertyId", @class = "form-control", @disabled = "true" })
 
                                             @Html.HiddenFor(model => model.PropertyId)
                                         </div>
@@ -622,13 +627,71 @@
                                     </div>
 
 
-
+                            
 
 
 
                                 @*</form>*@
                             </div>
                             </div> <!--/.panel-body -->
+                    </div> <!-- /#adjusthtml -->
+                </div> <!-- /.panel.panel-default -->
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#existingimages" data-parent="#accordion-demo" data-toggle="collapse">
+                                Existing Images
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="existingimages" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                @*<form id="form-location">*@
+
+                                @{
+                                    
+                            foreach (FixturesVer1.Models.ImageViewModel item in ViewBag.imageList)
+                                    {
+                                         @Html.Image(@Url.Content(item.src),item.altText,"100")
+                                    }
+                                    
+                                }
+                                
+                                @*</form>*@
+                            </div>
+                        </div> <!--/.panel-body -->
+                    </div> <!-- /#adjusthtml -->
+                </div> <!-- /.panel.panel-default -->
+
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a href="#images" data-parent="#accordion-demo" data-toggle="collapse">
+                                Images
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="images" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                            <div class="form-horizontal">
+                                @*<form id="form-location">*@
+
+                                <div id="uploader">
+                                    <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+
+                                </div>
+                                <br />
+                             @*   <input type="submit" value="Submit" />*@
+
+
+                                @*</form>*@
+                            </div>
+                        </div> <!--/.panel-body -->
                     </div> <!-- /#adjusthtml -->
                 </div> <!-- /.panel.panel-default -->
 
@@ -654,16 +717,6 @@
 
 
 <script src="~/Scripts/acc-wizard.js"></script>
-
-<script>
-
-
-
-
-
-
-
-</script>
 
 
 <script>
@@ -772,12 +825,84 @@
 
         })
 
-    })
+        $("#uploader").plupload({
+            // General settings
+            runtimes: 'html5,flash,silverlight,html4',
+
+            // Fake server response here 
+            // url : '../upload.php',
+            url: "/Properties/UploadImages",
+
+            // Maximum file size
+            max_file_size: '1000mb',
+
+            // User can upload no more then 20 files in one go (sets multiple_queues to false)
+            max_file_count: 20,
+
+            chunk_size: '1mb',
+
+            // Resize images on clientside if we can
+            resize: {
+                width: 200,
+                height: 200,
+                quality: 90,
+                crop: true // crop to exact dimensions
+            },
+
+            // Specify what files to browse for
+            filters: [
+                { title: "Image files", extensions: "jpg,gif,png" },
+                { title: "Zip files", extensions: "zip,avi" }
+            ],
+
+            // Rename files by clicking on their titles
+            rename: true,
+
+            // Sort files
+            sortable: true,
+
+            // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+            dragdrop: true,
+
+            // Views to activate
+            views: {
+                list: true,
+                thumbs: true, // Show thumbs
+                active: 'thumbs'
+            },
+
+            multipart_params : {
+                "propertyId" : $("#propertyId").val(),
+                "propertyDetailId": $("#propertyDetailId").val()
+            },
+
+            // Flash settings
+            flash_swf_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
+
+            // Silverlight settings
+            silverlight_xap_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
+        });
 
 
+        // Handle the case when form was submitted before uploading has finished
+        $('#manageListingForm').submit(function (e) {
+            // Files in queue upload them first
+            if ($('#uploader').plupload('getFiles').length > 0) {
 
+                // When all files are uploaded submit form
+                $('#uploader').on('complete', function () {
+                    $('#form')[0].submit();
+                });
 
+                $('#uploader').plupload('start');
+                return false; // Keep the form from submitting
+            }
+            //else {
+            //    alert("You must have at least one file in the queue.");
+            //}
+            
+        });
 
-
+ })
 
 </script>
