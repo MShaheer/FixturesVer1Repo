@@ -10,7 +10,11 @@ namespace FixturesVer1.Models
         public int ID { get; set; }
         public int PropertyId { get; set; }
         public string Body { get; set; }
+        public int ReviewRating { get; set; }
         public DateTime DatePosted { get; set; }
         public string PostedBy { get; set; }
+        public string PropertyName { get; set; }
+        public Property Property { get; set; }
+        
     }
 }
