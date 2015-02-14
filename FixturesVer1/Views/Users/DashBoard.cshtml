@@ -15,11 +15,17 @@
         <div class="col-md-3">
             <div class="white-panel pn donut-chart">
                 <div class="white-header">
-                    <h5><b><a href="#">M.Shaheer</a></b></h5>
+                    <h5><b><a href="#">@User.Identity.Name</a></b></h5>
                 </div>
-                <div class="media media-photo-block
-            ">
-                    <a href="/users/show/22317732" title="View Profile"><img alt="Muhammad" class="img-responsive" height="209" src="https://a1.muscache.com/ic/users/22317732/profile_pic/1412848034/original.jpg?interpolation=lanczos-none&amp;crop=w:w;*,*&amp;crop=h:h;*,*&amp;resize=225:*&amp;output-format=jpg&amp;output-quality=70" title="Muhammad" width="290"></a>
+                <div class="media media-photo-block">
+                    @*<a href="/users/show/22317732" title="View Profile"><img alt="Muhammad" class="img-responsive" height="209" src="https://a1.muscache.com/ic/users/22317732/profile_pic/1412848034/original.jpg?interpolation=lanczos-none&amp;crop=w:w;*,*&amp;crop=h:h;*,*&amp;resize=225:*&amp;output-format=jpg&amp;output-quality=70" title="Muhammad" width="290"></a>*@
+                    @{
+    FixturesVer1.Models.ImageViewModel image = @ViewBag.image;
+    <a href="/users/Profile/" title="View Profile">
+        @Html.Image(@Url.Content(image.src), image.altText,"190","290");
+    </a>
+}
+
                 </div>
             </div>
         </div>
@@ -29,7 +35,7 @@
             <div class="white-panel pn donut-chart">
 
                 <div class="white-header">
-                    <h5><b>Hi Shaheer, WELCOME TO FIXTURES...!</b></h5>
+                    <h5><b>Hi @User.Identity.Name, WELCOME TO FIXTURES...!</b></h5>
                 </div>
                 <p>This is your dashboard, the place to manage your rental, check messages in your inbox, respond to reservation requests, view upcoming trip information and much more. We highly recommended the following:</p>
                 <a href="#">Edit your properties</a>

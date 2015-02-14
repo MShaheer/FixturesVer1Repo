@@ -76,3 +76,12 @@ a.navbar-brand:hover {
     color: #CCC !important;
     
 }
+
+#ref-panel {
+text-align: center !important;
+color:black;
+}
+#ref-table {
+    text-align: left !important;
+color:black;
+}
