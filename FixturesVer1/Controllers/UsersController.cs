@@ -30,11 +30,27 @@ namespace FixturesVer1.Controllers
             string userName = User.Identity.Name;
             UsersService _usersservice = new UsersService();
             var user = _usersservice.GetUserById(userName);
-           
             if (user != null)
             {
+            PropertiesService propertyservice = new PropertiesService();
+           var reviewsByUser= propertyservice.GetReviewsByUserId(userName);
+           var propertyList =  propertyservice.GetPropertyListByUserId(userName);
+           var reviewsForUser = propertyservice.GetReviewsForUserId(propertyList);
+
+           var referenceByUser = propertyservice.GetReferenceByUserId(userName);
+           var referenceAboutUser = propertyservice.GetReferenceAboutUserId(userName);
+
+           
                 user.usr_Password = null;
-                return View(user);
+                ProfileViewModel profileViewModel = new ProfileViewModel();
+                profileViewModel.reviewByUserList = reviewsByUser;
+                profileViewModel.reviewForUserList = reviewsForUser;
+                profileViewModel.userModel = user;
+
+               profileViewModel.referenceByUser = referenceByUser;
+               profileViewModel.referenceAboutUser = referenceAboutUser;
+
+                return View(profileViewModel);
             }
             else
             {

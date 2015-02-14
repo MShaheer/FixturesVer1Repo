@@ -33,6 +33,7 @@ namespace FixturesVer1.Migrations
                         Body = c.String(),
                         DatePosted = c.DateTime(nullable: false),
                         PostedBy = c.String(),
+                       // PropertyName = c.String(),
                         Property_ID = c.String(maxLength: 128),
                     })
                 .PrimaryKey(t => t.ID)
