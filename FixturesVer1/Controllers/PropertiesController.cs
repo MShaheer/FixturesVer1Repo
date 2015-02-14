@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Mvc.Mailer;
 
 namespace FixturesVer1.Controllers
 {
@@ -19,7 +22,7 @@ namespace FixturesVer1.Controllers
         }
 
 
-        public ActionResult Listing(string location, string pageIndex = 0, string pageSize = 2)
+        public ActionResult Listing(string location)
         {
             if (location != null)
             {
@@ -27,6 +30,30 @@ namespace FixturesVer1.Controllers
             }
             return View(_propertiesService.GetAllProperties());
         }
+
+        public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        {
+            var properties =  _propertiesService.GetPropertiesByType(house, sharedRoom, apartment, fromValue, toValue);
+
+            return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Detail()
+        {
+            return View();
+        }
+
+        public ActionResult ContactOwner(string username, string userEmail, string message) 
+        {
+            var _mailer = new MvcMailMessage();
+            _mailer.Subject = "Test Email";
+            _mailer.To.Add("otariqmvc@gmail.com");
+            _mailer.Body = "This is a test email";
+            _mailer.Send();
+
+            return Json(new { messageIsSent = true }, JsonRequestBehavior.AllowGet);
+        }
+
 
         [HttpGet]
         public ActionResult PostAd()

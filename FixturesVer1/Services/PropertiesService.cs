@@ -25,6 +25,16 @@ namespace FixturesVer1.Services
             return _db.Properties.Where(p => p.Location == location).ToList();
         }
 
+        public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        {
+            if (house == "" && sharedRoom == "" && apartment == "")
+            {
+                return _db.Properties.Where(p => p.Price >= fromValue && p.Price <= toValue).ToList();
+            }
+            return _db.Properties.Where(p => (p.Type == house || p.Type == sharedRoom || p.Type == apartment) && (p.Price >= fromValue && p.Price <= toValue)).ToList();
+        }
+
+
         public void AddProperty(Property property)
         {
             _db.Properties.Add(property);

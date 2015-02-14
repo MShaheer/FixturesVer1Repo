@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<style>
+    .galleria {
+        width: 700px;
+        height: 400px;
+        background: #000;
+    }
+
+    .custom-header {
+        margin-left: -15px;
+        margin-right: -15px;
+        height: 40px !important;
+        background: #428bca !important;
+    }
+</style>
+
+<div id="property-overview-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height: 600px;">
+    <div class="property-info" style="text-align: left;">
+        <h3 style="color: #428bca;">Property Detail</h3>
+        <h4>Property Address</h4>
+
+        <div id="image-slider" class="galleria">
+            <img src="~/Content/slides/slide1.jpg" />
+            <img src="~/Content/slides/slide2.jpg" />
+            <img src="~/Content/slides/slide3.jpg" />
+        </div>
+
+        <p>
+            Property Description.
+        </p>
+    </div>
+</div>
+
+<div id="property-features-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="margin-top: 40px;">
+    <div class="white-header custom-header">
+        Features
+    </div>
+</div>
+
+<div id="contact-owner-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height:300px; margin-top: 40px;">
+    <div class="white-header custom-header">
+        Contact Owner
+    </div>
+    <div>
+        @Html.TextBox("Username", null, new { @id = "usernameTextBox", @class = "form-control", @placeholder="Enter your name", @style="margin-top: 15px;" })
+        @Html.TextBox("Email", null, new { @id = "emailTextBox", @class = "form-control", @placeholder = "Enter your email", @style = "margin-top: 15px" })
+        @Html.TextArea("Message", new { @id = "messageTextBox", @class = "form-control", @placeholder = "Your message", @style = "margin-top: 15px" })
+        <input id="btnEmail" type="submit" class="btn btn-primary" value="Send Mail" style="margin-top: 15px;" />
+    </div>
+</div>
+
+<div id="property-review-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height:300px; margin-top: 40px;">
+    <div class="white-header custom-header">
+        Review
+    </div>
+    <div>
+        @Html.TextBox("Username", null, new { @id = "reviewUserTextBox", @class = "form-control", @placeholder = "Enter your name", @style = "margin-top: 15px;" })
+        @Html.TextArea("Review", new { @id = "reviewTextBox", @class = "form-control", @placeholder = "Review", @style = "margin-top: 15px" })
+        <input id="btnSubmitReview" type="submit" class="btn btn-primary" value="Submit" style="margin-top: 15px;" />
+    </div>
+</div>
+
+<script src="~/Scripts/galleria-1.4.2.js"></script>
+
+<script>
+    Galleria.configure({
+        lightbox: true
+    });
+    Galleria.loadTheme('/Content/galleria.classic.min.js');
+    Galleria.run('.galleria');
+
+    $("#btnEmail").click(function () 
+    {
+        var username = $("#usernameTextBox").val();
+        var email = $("#emailTextBox").val();
+        var message = $("#messageTextBox").val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/Properties/ContactOwner',
+            dataType: 'json',
+            data: {
+                username: username,
+                userEmail: email,
+                message: message
+            },
+            success: function (response) {
+                if (response.messageIsSent) {
+                    alert("Your message has been sent.");
+                }
+                else {
+                    alert("Message could not be sent. Please try again.");
+                }
+            }
+        });
+    });
+</script>
+
+
+
