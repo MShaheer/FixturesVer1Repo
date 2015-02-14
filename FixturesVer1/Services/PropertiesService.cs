@@ -89,5 +89,31 @@ namespace FixturesVer1.Services
             return true;
         }
 
+        public List<Review> GetReviewsByUserId(string usr_username)
+        {
+            return _db.Reviews.Where(p => p.PostedBy == usr_username).ToList();
+        }
+
+        public List<Review> GetReviewsForUserId(List<Property> propertyList)
+        {
+            List<Review> reviewsList = new List<Review>();
+            foreach(var property in propertyList)
+            {
+
+            reviewsList.Add(_db.Reviews.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault());
+            }
+            return reviewsList;
+
+        }
+        public List<Reference> GetReferenceByUserId(string usr_username)
+        {
+            return _db.References.Where(p => p.PostedBy == usr_username).ToList();
+        }
+        public List<Reference> GetReferenceAboutUserId(string usr_username)
+        {
+            return _db.References.Where(p => p.PostedFor == usr_username).ToList();
+            
+        }
     }
+
 }
