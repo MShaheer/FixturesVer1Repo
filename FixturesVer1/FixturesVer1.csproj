@@ -85,6 +85,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\acc-wizard.min.css" />
     <Content Include="Content\blank.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -228,7 +229,9 @@
     <Content Include="Content\Images\ImgPlaceHolder.gif" />
     <Content Include="Content\ion.rangeSlider.css" />
     <Content Include="Content\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.geocomplete.js" />
+    <Content Include="Content\jquery.ui.plupload.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\patterns\overlay1.png" />
     <Content Include="Content\patterns\overlay10.png" />
@@ -241,6 +244,14 @@
     <Content Include="Content\patterns\overlay8.png" />
     <Content Include="Content\patterns\overlay9.png" />
     <Content Include="Content\patterns\_notes\dwsync.xml" />
+    <Content Include="Content\pluploadimg\backgrounds.gif" />
+    <Content Include="Content\pluploadimg\buttons-disabled.png" />
+    <Content Include="Content\pluploadimg\buttons.png" />
+    <Content Include="Content\pluploadimg\delete.gif" />
+    <Content Include="Content\pluploadimg\done.gif" />
+    <Content Include="Content\pluploadimg\error.gif" />
+    <Content Include="Content\pluploadimg\throbber.gif" />
+    <Content Include="Content\pluploadimg\transp50.png" />
     <Content Include="Content\PropertiesController\assets\css\bootstrap.css" />
     <Content Include="Content\PropertiesController\assets\css\style-responsive.css" />
     <Content Include="Content\PropertiesController\assets\css\style.css" />
@@ -334,6 +345,12 @@
     <Content Include="Content\slides\road.jpg" />
     <Content Include="Content\slides\sea.jpg" />
     <Content Include="Content\slides\shelter.jpg" />
+    <Content Include="Content\slides\slide1.jpg" />
+    <Content Include="Content\slides\slide2.jpg" />
+    <Content Include="Content\slides\slide3.jpg" />
+    <Content Include="Content\slides\slide4.jpg" />
+    <Content Include="Content\slides\slide5.jpg" />
+    <Content Include="Content\slides\slide6.jpg" />
     <Content Include="Content\slides\thumbs\big_bunny_fake.jpg" />
     <Content Include="Content\slides\thumbs\bridge.jpg" />
     <Content Include="Content\slides\thumbs\header_bg.png" />
@@ -368,24 +385,35 @@
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.ttf" />
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\acc-wizard.js" />
+    <Content Include="Scripts\acc-wizard.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\camera.js" />
     <Content Include="Scripts\camera.min.js" />
+    <Content Include="Scripts\common-scripts.js" />
     <Content Include="Scripts\ion.rangeSlider.js" />
     <Content Include="Scripts\ion.rangeSlider.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery-ui.multidatespicker.js" />
+    <Content Include="Scripts\jquery.dcjqaccordion.2.7.js" />
     <Content Include="Scripts\jquery.easing.1.3.js" />
+    <Content Include="Scripts\jquery.fancybox.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.mobile.customized.min.js" />
+    <Content Include="Scripts\jquery.nicescroll.js" />
+    <Content Include="Scripts\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\jquery.ui.plupload.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plupload.full.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -414,8 +442,14 @@
     <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502131013043_initial.cs" />
+    <Compile Include="Migrations\201502131013043_initial.Designer.cs">
+      <DependentUpon>201502131013043_initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyAvailabeDate.cs" />
     <Compile Include="Models\PropertyDetail.cs" />
@@ -430,9 +464,11 @@
     <Compile Include="Services\HomeService.cs" />
     <Compile Include="Services\PropertiesService.cs" />
     <Compile Include="Services\UsersService.cs" />
+    <Compile Include="Utility\Constants.cs" />
     <Compile Include="Utility\CookieHelper.cs" />
     <Compile Include="Utility\Cryptography.cs" />
     <Compile Include="Utility\CustomAuthentication.cs" />
+    <Compile Include="Utility\ImageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -447,6 +483,7 @@
     <Content Include="Views\Properties\BrowseListing.cshtml" />
     <Content Include="Views\Properties\ManageListing.cshtml" />
     <Content Include="Views\Shared\_userNavbar.cshtml" />
+    <Content Include="Views\Properties\NoListings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -458,9 +495,13 @@
     <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502131013043_initial.resx">
+      <DependentUpon>201502131013043_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="displayImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
