@@ -91,7 +91,9 @@
     <Content Include="Content\blank.gif" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\camera-loader.gif" />
     <Content Include="Content\camera.css" />
+    <Content Include="Content\camera_skins.png" />
     <Content Include="Content\HomeController\css\colorbox.css" />
     <Content Include="Content\HomeController\css\elastislide.css" />
     <Content Include="Content\HomeController\css\magnific-popup.css" />
@@ -231,6 +233,7 @@
     <Content Include="Content\ion.rangeSlider.skinFlat.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery.geocomplete.js" />
+    <Content Include="Content\jquery.ui.plupload.css" />
     <Content Include="Content\normalize.css" />
     <Content Include="Content\patterns\overlay1.png" />
     <Content Include="Content\patterns\overlay10.png" />
@@ -243,6 +246,14 @@
     <Content Include="Content\patterns\overlay8.png" />
     <Content Include="Content\patterns\overlay9.png" />
     <Content Include="Content\patterns\_notes\dwsync.xml" />
+    <Content Include="Content\pluploadimg\backgrounds.gif" />
+    <Content Include="Content\pluploadimg\buttons-disabled.png" />
+    <Content Include="Content\pluploadimg\buttons.png" />
+    <Content Include="Content\pluploadimg\delete.gif" />
+    <Content Include="Content\pluploadimg\done.gif" />
+    <Content Include="Content\pluploadimg\error.gif" />
+    <Content Include="Content\pluploadimg\throbber.gif" />
+    <Content Include="Content\pluploadimg\transp50.png" />
     <Content Include="Content\PropertiesController\assets\css\bootstrap.css" />
     <Content Include="Content\PropertiesController\assets\css\style-responsive.css" />
     <Content Include="Content\PropertiesController\assets\css\style.css" />
@@ -352,6 +363,7 @@
     <Content Include="Content\slides\thumbs\tree.jpg" />
     <Content Include="Content\slides\thumbs\_notes\dwsync.xml" />
     <Content Include="Content\slides\tree.jpg" />
+    <Content Include="Content\slides\_notes\dwsync.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -396,12 +408,14 @@
     <Content Include="Scripts\jquery.mobile.customized.min.js" />
     <Content Include="Scripts\jquery.nicescroll.js" />
     <Content Include="Scripts\jquery.scrollTo.min.js" />
+    <Content Include="Scripts\jquery.ui.plupload.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <None Include="Scripts\_references.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\plupload.full.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
@@ -430,7 +444,12 @@
     <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502081057364_CurrencyMigration.cs" />
+    <Compile Include="Migrations\201502081057364_CurrencyMigration.Designer.cs">
+      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyAvailabeDate.cs" />
@@ -450,6 +469,7 @@
     <Compile Include="Utility\CookieHelper.cs" />
     <Compile Include="Utility\Cryptography.cs" />
     <Compile Include="Utility\CustomAuthentication.cs" />
+    <Compile Include="Utility\ImageHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -472,11 +492,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502081057364_CurrencyMigration.resx">
+      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
