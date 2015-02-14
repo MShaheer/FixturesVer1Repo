@@ -74,6 +74,24 @@ namespace FixturesVer1.Services
 
         public bool UpdatePropertyDetailByDetailId(PropertyDetail propertyDetail)
         {
+
+            if(propertyDetail.Availability == "sometime")
+            {
+               string[] dates= propertyDetail.AvailabilityDateString.Split(new char[] {','});
+
+                foreach(var item in dates)
+                {
+                    DateTime date=Convert.ToDateTime(item);
+                    int count = _db.PropertyAvailableDates.Where(p => p.PropertyId == propertyDetail.PropertyId && p.Date == date).Count();
+                    
+                    if(count <= 0)
+                    {
+                        _db.PropertyAvailableDates.Add(new PropertyAvailableDate { PropertyId = propertyDetail.PropertyId, Date = Convert.ToDateTime(item) });
+                    }
+                   
+                }
+            }
+
             _db.Entry(propertyDetail).State = EntityState.Modified;
             _db.SaveChanges();
             return true;
