@@ -32,6 +32,7 @@ namespace FixturesVer1.Models
         public string Availability { get; set; }
         public DateTime? AvailabilityFromDate { get; set; }
         public DateTime? AvailabilityToDate { get; set; }
+        public string AvailabilityDateString { get; set; }
         public bool AdCompleted { get; set; }
        
     }
