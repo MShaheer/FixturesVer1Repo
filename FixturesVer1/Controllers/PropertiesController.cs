@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using Mvc.Mailer;
 
 namespace FixturesVer1.Controllers
 {
@@ -27,6 +30,39 @@ namespace FixturesVer1.Controllers
                 return View(_propertiesService.GetPropertiesByLocation(location));
             }
             return View(_propertiesService.GetAllProperties());
+        }
+
+        public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        {
+            var properties =  _propertiesService.GetPropertiesByType(house, sharedRoom, apartment, fromValue, toValue);
+
+            return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Detail(int id)
+        {
+            var property = _propertiesService.GetPropertyById(id);
+
+            return View(property);
+        }
+
+        public ActionResult ContactOwner(string username, string userEmail, string message) 
+        {
+            var _mailer = new MvcMailMessage();
+            _mailer.Subject = "Test Email";
+            _mailer.To.Add("otariqmvc@gmail.com");
+            _mailer.Body = "This is a test email";
+            _mailer.Send();
+
+            return Json(new { messageIsSent = true }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult SubmitReview(string userName, int rating, string review, int propertyID, string propertyName)
+        {
+            _propertiesService.SubmitReview(userName, rating, review, propertyID, propertyName);
+
+            return Json(new { isReviewSubmitted = true }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]

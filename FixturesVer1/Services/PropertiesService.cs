@@ -20,10 +20,25 @@ namespace FixturesVer1.Services
             return _db.Properties.ToList();
         }
 
+        public Property GetPropertyById(int id)
+        {
+            return _db.Properties.Where(p => p.ID == id).FirstOrDefault();
+        }
+
         public List<Property> GetPropertiesByLocation(string location)
         {
             return _db.Properties.Where(p => p.Location == location).ToList();
         }
+
+        public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        {
+            if (house == "" && sharedRoom == "" && apartment == "")
+            {
+                return _db.Properties.Where(p => p.Price >= fromValue && p.Price <= toValue).ToList();
+            }
+            return _db.Properties.Where(p => (p.Type == house || p.Type == sharedRoom || p.Type == apartment) && (p.Price >= fromValue && p.Price <= toValue)).ToList();
+        }
+
 
         public void AddProperty(Property property)
         {
@@ -121,6 +136,21 @@ namespace FixturesVer1.Services
         {
             return _db.References.Where(p => p.PostedFor == usr_username).ToList();
             
+        }
+
+        internal void SubmitReview(string userName, int rating, string reviewBody, int propertyID, string propertyName)
+        {
+            var review = new Review { 
+                PostedBy = userName,
+                Body = reviewBody,
+                DatePosted = DateTime.Now,
+                PropertyId = propertyID,
+                PropertyName = propertyName,
+                ReviewRating = rating
+            };
+
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
         }
     }
 
