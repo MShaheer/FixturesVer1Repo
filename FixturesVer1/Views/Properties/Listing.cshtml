@@ -92,12 +92,12 @@
         $("#range").ionRangeSlider({
             hide_min_max: true,
             keyboard: true,
-            min: 100000,
-            max: 600000,
-            from: 100000,
-            to: 600000,
+            min: 0,
+            max: 9999999,
+            from: 0,
+            to: 9999999,
             type: 'double',
-            step: 1000,
+            step: 50000,
             prefix: "PKR",
             grid: true,
             onFinish: function () {
@@ -118,8 +118,8 @@
                 house: '',
                 sharedRoom: '',
                 apartment: '',
-                fromValue: 10000,
-                toValue: 60000,
+                fromValue: 0,
+                toValue: 9999999,
             };
 
             if ($('#house-checkBox').is(':checked')) {

@@ -42,7 +42,8 @@ namespace FixturesVer1.Controllers
         public ActionResult Detail(int id)
         {
             var property = _propertiesService.GetPropertyById(id);
-
+            var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(id);
+            ViewBag.imageList = getImageListOfProperty(id, propertyDetail.ID);
             return View(property);
         }
 
