@@ -45,14 +45,10 @@
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
     <Reference Include="Mvc.Mailer">
       <HintPath>..\packages\MvcMailer.4.5\lib\45\Mvc.Mailer.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -108,6 +104,11 @@
     <Content Include="Content\examples.css" />
     <Content Include="Content\galleria.classic.css" />
     <Content Include="Content\galleria.classic.min.js" />
+    <Content Include="Content\gmap\.gitignore" />
+    <Content Include="Content\gmap\css\demo.css" />
+    <Content Include="Content\gmap\css\jquery-gmaps-latlon-picker.css" />
+    <Content Include="Content\gmap\js\jquery-2.1.1.min.js" />
+    <Content Include="Content\gmap\js\jquery-gmaps-latlon-picker.js" />
     <Content Include="Content\HomeController\css\colorbox.css" />
     <Content Include="Content\HomeController\css\elastislide.css" />
     <Content Include="Content\HomeController\css\magnific-popup.css" />
@@ -377,6 +378,7 @@
     <Content Include="Content\slides\thumbs\tree.jpg" />
     <Content Include="Content\slides\thumbs\_notes\dwsync.xml" />
     <Content Include="Content\slides\tree.jpg" />
+    <Content Include="Content\slides\_notes\dwsync.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -399,6 +401,9 @@
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.eot" />
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.ttf" />
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.woff" />
+    <Content Include="Content\gmap\google-maps-latitude-longitude-picker.jquery.json" />
+    <Content Include="Content\gmap\LICENSE.md" />
+    <Content Include="Content\gmap\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="img\sprite-skin-flat.png" />
     <Content Include="img\star.png" />
@@ -461,6 +466,10 @@
     <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502081057364_CurrencyMigration.cs" />
+    <Compile Include="Migrations\201502081057364_CurrencyMigration.Designer.cs">
+      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
@@ -508,11 +517,15 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
+    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502081057364_CurrencyMigration.resx">
+      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
