@@ -1,4 +1,7 @@
-﻿@model IEnumerable<FixturesVer1.Models.Property>
+﻿@using FixturesVer1.Utility;
+@model IEnumerable<FixturesVer1.Models.Property>
+
+
 
 <link href="~/Content/normalize.css" rel="stylesheet" />
 <link href="~/Content/ion.rangeSlider.css" rel="stylesheet" />
@@ -72,7 +75,27 @@
         <div class="listing-item">
             <div class="row">
                 <div class="property-img-container col-md-2">
+                    @{
+                        
+                    if(@property.ImagePath != null){
+                    <img src="@Url.Content(@property.ImagePath)" class="property-img img-thumbnail">
+
+                    string imagePath = @property.ImagePath;
+                    
+                      //Html.Image(@Url.Content(imagePath),"pic","300","300");
+
+                     //   @Html.Image(@Url.Content(item.src), item.altText, "100","100")
+
+                    }
+                    else
+                    {
                     <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
+                    }
+                        
+                    }
+                  
+                    
+                    
                 </div>
                 <div class="property-desc-title col-md-7">
                     <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name</h2></a>

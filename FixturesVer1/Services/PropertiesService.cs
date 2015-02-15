@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -112,10 +113,31 @@ namespace FixturesVer1.Services
             property.Availability = propertyDetail.Availability;
             property.Description = propertyDetail.Description;
            // property.Name = propertyDetail.Title;
+
+            string imagePath = getPropertyImageById(propertyDetail.PropertyId, propertyDetail.ID);
+            property.ImagePath = imagePath;
+
             _db.Entry(property).State = EntityState.Modified;
             _db.Entry(propertyDetail).State = EntityState.Modified;
             _db.SaveChanges();
             return true;
+        }
+
+        public string getPropertyImageById(int propertyId, int propertyDetailId)
+        {
+            var directorypath = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+           // var directorypath = server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+            if (!Directory.Exists(directorypath))
+            {
+                Directory.CreateDirectory(directorypath);
+            }
+
+            string ImageName = Directory.GetFiles(directorypath, "*.*", SearchOption.TopDirectoryOnly).ToList().FirstOrDefault();
+            String absolutePath = ImageName;
+            int relativePathStartIndex = absolutePath.IndexOf("uploads");
+            String relativePath = "../" + absolutePath.Substring(relativePathStartIndex);
+            return relativePath;
+
         }
 
         public List<Review> GetReviewsByUserId(string usr_username)
