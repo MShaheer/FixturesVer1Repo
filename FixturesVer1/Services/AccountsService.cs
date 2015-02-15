@@ -21,8 +21,11 @@ namespace FixturesVer1.Services
             User user = _db.Users.Find(loginModel.usr_Username);
             if (user != null)
             {
-                user.usr_Password = loginModel.usr_Password;
-                return true;
+                if(user.usr_Password == Utility.Cryptography.Encryption(loginModel.usr_Password))
+                { return true; }
+                else
+                { return false; }
+                
             }
             else return false;
       
