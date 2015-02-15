@@ -152,6 +152,11 @@ namespace FixturesVer1.Services
             _db.Reviews.Add(review);
             _db.SaveChanges();
         }
+
+        public List<Review> GetReviews(int propertyID)
+        {
+            return _db.Reviews.Where(r => r.PropertyId == propertyID).ToList();
+        }
     }
 
 }

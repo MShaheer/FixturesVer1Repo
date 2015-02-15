@@ -8,7 +8,7 @@
 
 <style>
     p {
-        color: black;  
+        color: #333333;
     }
 
     .galleria {
@@ -86,6 +86,25 @@
     </div>
 </div>
 
+<div id="property-reviews-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height: 100%; display: inline-block; margin-top: 40px; text-align:left;">
+    <div class="white-header custom-header">
+        Review
+    </div>
+
+    <div class="showback review-panel" style="height: 150px; margin-top: 15px;">
+        <div class="review-body">
+            <div class="col-md-5">
+                <h2 style="padding: 0px 0px 0px 0px;">Omer</h2>
+                <h4>5 stars</h4>
+                <h4>14/2/2015 8:00 pm</h4>
+            </div>
+            <div class="col-md-7">
+                I really liked this place
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="~/Scripts/galleria-1.4.2.js"></script>
 <script src="~/Scripts/jquery.barrating.js"></script>
 
@@ -96,6 +115,50 @@
         });
         Galleria.loadTheme('/Content/galleria.classic.min.js');
         Galleria.run('.galleria');
+
+        var getPropertyReviews = function () {
+            propertyID = $("#propertyID").val();
+            $.ajax({
+                type: 'GET',
+                url: '/Properties/GetReviews',
+                dataType: 'json',
+                data: {propertyID: propertyID},
+                success: function (response) {
+                    if (response.reviews) {
+                        displayReviews(response.reviews);
+                    }
+                }
+            });
+        };
+
+        getPropertyReviews();
+        var displayReviews = function (reviews) {
+            $(".review-panel").remove();
+            var reviewsDiv = '';
+            for (var i = 0; i < reviews.length; i++) {
+                var date = new Date(parseFloat(reviews[i].DatePosted.substr(6)));
+                date = (date.getMonth() + 1) + "/" +
+                        date.getDate() + "/" +
+                        date.getFullYear() + " " +
+                        date.getHours() + ":" +
+                        date.getMinutes() + ":" +
+                        date.getSeconds();
+
+                var reviewDiv = "<div class='showback review-panel' style='height: 150px; margin-top: 15px;'>"+
+                                "<div class='review-body'>" +
+                                    "<div class='col-md-5'>" +
+                                        "<h2 style='padding: 0px 0px 0px 0px;'>"+ reviews[i].PostedBy +"</h2>" +
+                                        "<h4 style='color: #333333'>" + reviews[i].ReviewRating + " stars</h4>" +
+                                        "<h4 style='color: #333333'>" + date + "</h4>" +
+                                    "</div>" +
+                                        "<div class='col-md-7'><p>"+reviews[i].Body+"</p></div>" +
+                                    "</div>"+
+                                    "</div>";
+                reviewsDiv += reviewDiv;
+            }
+
+            $('#property-reviews-panel').append(reviewsDiv).hide().fadeIn(500);
+        }
 
         var rating;
         $('#example-f').barrating({
@@ -149,7 +212,7 @@
                 },
                 success: function (response) {
                     if (response.isReviewSubmitted) {
-                        alert("Your review has been submitted.");
+                        getPropertyReviews();
                     }
                     else {
                         alert("Review could not be submitted.");

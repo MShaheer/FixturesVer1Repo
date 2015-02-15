@@ -58,6 +58,13 @@ namespace FixturesVer1.Controllers
         }
 
 
+        public ActionResult GetReviews(int propertyID)
+        {
+            var reviews = _propertiesService.GetReviews(propertyID);
+
+            return Json(new { reviews = reviews }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult SubmitReview(string userName, int rating, string review, int propertyID, string propertyName)
         {
             _propertiesService.SubmitReview(userName, rating, review, propertyID, propertyName);
