@@ -39,9 +39,11 @@ namespace FixturesVer1.Controllers
             return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Detail()
+        public ActionResult Detail(int id)
         {
-            return View();
+            var property = _propertiesService.GetPropertyById(id);
+
+            return View(property);
         }
 
         public ActionResult ContactOwner(string username, string userEmail, string message) 
@@ -55,6 +57,13 @@ namespace FixturesVer1.Controllers
             return Json(new { messageIsSent = true }, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult SubmitReview(string userName, int rating, string review, int propertyID, string propertyName)
+        {
+            _propertiesService.SubmitReview(userName, rating, review, propertyID, propertyName);
+
+            return Json(new { isReviewSubmitted = true }, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpGet]
         public ActionResult PostAd()

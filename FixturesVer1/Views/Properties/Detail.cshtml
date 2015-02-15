@@ -1,9 +1,16 @@
-﻿
+﻿@model FixturesVer1.Models.Property
+
 @{
-    ViewBag.Title = "Detail";
+    ViewBag.Title = "Property Detail";
 }
 
+<link href="~/Content/examples.css" rel="stylesheet" />
+
 <style>
+    p {
+        color: black;  
+    }
+
     .galleria {
         width: 700px;
         height: 400px;
@@ -18,10 +25,14 @@
     }
 </style>
 
+<input id="propertyID" type="hidden" value="@Model.ID" />
+<input id="propertyName" type="hidden" value="@Model.Name" />
+
+
 <div id="property-overview-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height: 600px;">
     <div class="property-info" style="text-align: left;">
         <h3 style="color: #428bca;">Property Detail</h3>
-        <h4>Property Address</h4>
+        <h4>@Model.Name</h4>
 
         <div id="image-slider" class="galleria">
             <img src="~/Content/slides/slide1.jpg" />
@@ -29,9 +40,11 @@
             <img src="~/Content/slides/slide3.jpg" />
         </div>
 
-        <p>
-            Property Description.
-        </p>
+        <div id="description-container" style="margin-top: 20px;">
+            <p>
+                @Model.Description.
+            </p>
+        </div>
     </div>
 </div>
 
@@ -53,51 +66,98 @@
     </div>
 </div>
 
-<div id="property-review-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height:300px; margin-top: 40px;">
+<div id="property-review-panel" class="white-panel pn col-md-8 col-lg-offset-2" style="height:350px; margin-top: 40px; text-align:left;">
     <div class="white-header custom-header">
         Review
     </div>
     <div>
+        <div class="input select rating-f">
+            <select id="example-f" name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
         @Html.TextBox("Username", null, new { @id = "reviewUserTextBox", @class = "form-control", @placeholder = "Enter your name", @style = "margin-top: 15px;" })
-        @Html.TextArea("Review", new { @id = "reviewTextBox", @class = "form-control", @placeholder = "Review", @style = "margin-top: 15px" })
+        @Html.TextArea("Review", new { @id = "reviewTextBox", @class = "form-control", @rows = 6, @placeholder = "Review", @style = "margin-top: 15px" })
         <input id="btnSubmitReview" type="submit" class="btn btn-primary" value="Submit" style="margin-top: 15px;" />
     </div>
 </div>
 
 <script src="~/Scripts/galleria-1.4.2.js"></script>
+<script src="~/Scripts/jquery.barrating.js"></script>
 
 <script>
-    Galleria.configure({
-        lightbox: true
-    });
-    Galleria.loadTheme('/Content/galleria.classic.min.js');
-    Galleria.run('.galleria');
+    $(function () {
+        Galleria.configure({
+            lightbox: true
+        });
+        Galleria.loadTheme('/Content/galleria.classic.min.js');
+        Galleria.run('.galleria');
 
-    $("#btnEmail").click(function () 
-    {
-        var username = $("#usernameTextBox").val();
-        var email = $("#emailTextBox").val();
-        var message = $("#messageTextBox").val();
-
-        $.ajax({
-            type: 'POST',
-            url: '/Properties/ContactOwner',
-            dataType: 'json',
-            data: {
-                username: username,
-                userEmail: email,
-                message: message
-            },
-            success: function (response) {
-                if (response.messageIsSent) {
-                    alert("Your message has been sent.");
-                }
-                else {
-                    alert("Message could not be sent. Please try again.");
-                }
+        var rating;
+        $('#example-f').barrating({
+            showSelectedRating: false,
+            onSelect: function (value, text) {
+                rating = value;
             }
         });
-    });
+       
+        $("#btnEmail").click(function () {
+            var username = $("#usernameTextBox").val();
+            var email = $("#emailTextBox").val();
+            var message = $("#messageTextBox").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/ContactOwner',
+                dataType: 'json',
+                data: {
+                    username: username,
+                    userEmail: email,
+                    message: message
+                },
+                success: function (response) {
+                    if (response.messageIsSent) {
+                        alert("Your message has been sent.");
+                    }
+                    else {
+                        alert("Message could not be sent. Please try again.");
+                    }
+                }
+            });
+        });
+
+        $("#btnSubmitReview").click(function () {
+            var userName = $("#reviewUserTextBox").val();
+            var review = $("#reviewTextBox").val();
+            var propertyID = $("#propertyID").val();
+            var propertyName = $("#propertyName").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/SubmitReview',
+                dataType: 'json',
+                data: {
+                    username: userName,
+                    rating:  rating,
+                    review: review,
+                    propertyID: propertyID,
+                    propertyName: propertyName
+                },
+                success: function (response) {
+                    if (response.isReviewSubmitted) {
+                        alert("Your review has been submitted.");
+                    }
+                    else {
+                        alert("Review could not be submitted.");
+                    }
+                }
+            });
+        });
+    })
 </script>
 
 

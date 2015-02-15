@@ -51,6 +51,9 @@
         TOP BAR CONTENT & NOTIFICATIONS
         *********************************************************************************************************************************************************** -->
         <!--header start-->
+        <form id="search-form" action="/Properties/Listing">
+            <input id="locationTextBox" name="location" type="hidden" />
+        </form>
         <header class="header black-bg">
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
@@ -201,10 +204,7 @@
                     <li>@Html.ActionLink("Profile", "Profile", "Users") </li>
                     <li>@Html.ActionLink("About Us", "About", "Home") </li>
                     <li>@Html.ActionLink("Contact Us", "Contact", "Home") </li>
-                    <li>
-                        <form id="search-form" action="" method="get">
-                            <input type="text" id="search-box" name="location" class="form-control" placeholder="Search by location" />
-                        </form>
+                    <li><input type="text" id="search-box" name="location" class="form-control" placeholder="Search by location" />
                     </li>
                  
                 </ul>

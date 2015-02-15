@@ -75,7 +75,7 @@
                     <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
                 </div>
                 <div class="property-desc-title col-md-7">
-                    <a href="/Property/Detail"><h2>@property.Name</h2></a>
+                    <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name</h2></a>
                 </div>
                 <div class="property-desc-detail col-md-7">
                     <h4>@property.Type. @property.Rating Reviews. @property.Location</h4>
@@ -158,7 +158,7 @@
                                           "<img src='/Content/Images/ImgPlaceHolder.gif' class='property-img img-thumbnail'>" +
                                                 "</div>" +
                                                 "<div class='property-desc-title col-md-7'>" +
-                                                    "<a href='/Properties/Detail'><h2>" + properties[i].Name + "</h2></a>" +
+                                                    "<a href='/Properties/Detail/?id="+properties[i].ID+"'><h2>" + properties[i].Name + "</h2></a>" +
                                                 "</div>" +
                                                 "<div class='property-desc-detail col-md-7'>" +
                                                    "<h4>" + properties[i].Type + ". " + properties[i].Rating + " Reviews" + ". " + properties[i].Location + "</h4>" +
@@ -173,14 +173,6 @@
             });
         };
 
-
-        $('#search-box').keydown(function (e) {
-            if (e.keyCode == 13) {
-                var location = $('#search-box').val();
-                $("#locationTextBox").val(location);
-                $('#search-form').submit();
-            }
-        })
         //var myCenter = new google.maps.LatLng(24.9400, 67.1200);
         //var marker;
 

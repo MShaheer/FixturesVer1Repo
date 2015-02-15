@@ -20,6 +20,11 @@ namespace FixturesVer1.Services
             return _db.Properties.ToList();
         }
 
+        public Property GetPropertyById(int id)
+        {
+            return _db.Properties.Where(p => p.ID == id).FirstOrDefault();
+        }
+
         public List<Property> GetPropertiesByLocation(string location)
         {
             return _db.Properties.Where(p => p.Location == location).ToList();
@@ -113,6 +118,21 @@ namespace FixturesVer1.Services
         {
             return _db.References.Where(p => p.PostedFor == usr_username).ToList();
             
+        }
+
+        internal void SubmitReview(string userName, int rating, string reviewBody, int propertyID, string propertyName)
+        {
+            var review = new Review { 
+                PostedBy = userName,
+                Body = reviewBody,
+                DatePosted = DateTime.Now,
+                PropertyId = propertyID,
+                PropertyName = propertyName,
+                ReviewRating = rating
+            };
+
+            _db.Reviews.Add(review);
+            _db.SaveChanges();
         }
     }
 
