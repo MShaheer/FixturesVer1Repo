@@ -94,6 +94,11 @@
     <Content Include="Content\camera-loader.gif" />
     <Content Include="Content\camera.css" />
     <Content Include="Content\camera_skins.png" />
+    <Content Include="Content\gmap\.gitignore" />
+    <Content Include="Content\gmap\css\demo.css" />
+    <Content Include="Content\gmap\css\jquery-gmaps-latlon-picker.css" />
+    <Content Include="Content\gmap\js\jquery-2.1.1.min.js" />
+    <Content Include="Content\gmap\js\jquery-gmaps-latlon-picker.js" />
     <Content Include="Content\HomeController\css\colorbox.css" />
     <Content Include="Content\HomeController\css\elastislide.css" />
     <Content Include="Content\HomeController\css\magnific-popup.css" />
@@ -386,6 +391,9 @@
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.eot" />
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.ttf" />
     <Content Include="Content\PropertiesController\assets\lineicons\fonts\linecons.woff" />
+    <Content Include="Content\gmap\google-maps-latitude-longitude-picker.jquery.json" />
+    <Content Include="Content\gmap\LICENSE.md" />
+    <Content Include="Content\gmap\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\acc-wizard.js" />
     <Content Include="Scripts\acc-wizard.min.js" />
@@ -451,6 +459,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyAvailabeDate.cs" />
     <Compile Include="Models\PropertyDetail.cs" />
