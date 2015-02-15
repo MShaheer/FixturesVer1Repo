@@ -16,7 +16,7 @@ namespace FixturesVer1.Models
             public string Type { get; set; }
             public string Location { get; set; }
             public int Accomodates { get; set; }
-            public int Price { get; set; }
+            public float Price { get; set; }
             public string RoomType { get; set; }
             public string Description { get; set; }
             public int Rating { get; set; }

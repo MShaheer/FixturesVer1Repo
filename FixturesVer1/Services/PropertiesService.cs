@@ -106,7 +106,13 @@ namespace FixturesVer1.Services
                    
                 }
             }
-
+            Property property = _db.Properties.Where(p => p.ID == propertyDetail.PropertyId).ToList().FirstOrDefault();
+            property.Price = propertyDetail.BasePrice;
+            property.Location = propertyDetail.StreetAddress1 + "," + propertyDetail.City + "," + propertyDetail.State + "," + propertyDetail.Country;
+            property.Availability = propertyDetail.Availability;
+            property.Description = propertyDetail.Description;
+           // property.Name = propertyDetail.Title;
+            _db.Entry(property).State = EntityState.Modified;
             _db.Entry(propertyDetail).State = EntityState.Modified;
             _db.SaveChanges();
             return true;
