@@ -28,6 +28,7 @@ namespace FixturesVer1.Models
         public string ZipCode { get; set; }
         public string Longitude { get; set; }
         public string Latitude { get; set; }
+        public string MapZoom { get; set; }
         public string Directions { get; set; }
         public string Availability { get; set; }
         public DateTime? AvailabilityFromDate { get; set; }
