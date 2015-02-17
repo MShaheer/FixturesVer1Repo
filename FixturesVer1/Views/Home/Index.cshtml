@@ -1,13 +1,17 @@
-﻿@{
+﻿@model IEnumerable<FixturesVer1.Models.Property>
+
+@using FixturesVer1.Utility;
+
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Index";
 }
 @*
-    
-@*SLIDER CODE STARTS HERE*@
+
+    @*SLIDER CODE STARTS HERE*@
 
 
-    <link rel='stylesheet' id='camera-css' href='../Content/camera.css' type='text/css' media='all'>
+<link rel='stylesheet' id='camera-css' href='../Content/camera.css' type='text/css' media='all'>
 
 <link href="~/Content/PropertiesController/assets/js/fancybox/jquery.fancybox.css" rel="stylesheet" />
 <!-- Custom styles for this template -->
@@ -15,19 +19,17 @@
 <link href="~/Content/PropertiesController/assets/css/style-responsive.css" rel="stylesheet" />
 
 
-    <script type='text/javascript' src='../Scripts/jquery.min.js'></script>
-    <script type='text/javascript' src='../Scripts/jquery.mobile.customized.min.js'></script>
-    <script type='text/javascript' src='../Scripts/jquery.easing.1.3.js'></script>
-    <script type='text/javascript' src='../Scripts/camera.js'></script>
+<script type='text/javascript' src='../Scripts/jquery.min.js'></script>
+<script type='text/javascript' src='../Scripts/jquery.mobile.customized.min.js'></script>
+<script type='text/javascript' src='../Scripts/jquery.easing.1.3.js'></script>
+<script type='text/javascript' src='../Scripts/camera.js'></script>
 
 <script type='text/javascript' src="../Scripts/jquery.fancybox.js"></script>
- 
+
 
 <!--common script for all pages-->
 <script src="../Scripts/common-scripts.js"></script>
 <style>
-
-
     #back_to_camera {
         clear: both;
         display: block;
@@ -41,21 +43,19 @@
         max-width: 70%;
         width: 70%;
     }
-
-
 </style>
-    <script>
-        jQuery(function () {
+<script>
+    jQuery(function () {
 
-            jQuery('#camera_wrap_3').camera({
-                height: '56%',
-                pagination: true,
-                thumbnails: false,
-                imagePath: '../images/'
-            });
-
+        jQuery('#camera_wrap_3').camera({
+            height: '56%',
+            pagination: true,
+            thumbnails: false,
+            imagePath: '../images/'
         });
-    </script>
+
+    });
+</script>
 
 
 
@@ -74,32 +74,32 @@
 
 
 
-    <div class="fluid_container">
-        @*<p>Videos, HTML elements and data- attributes</p>*@
-        <div class="camera_wrap camera_emboss" id="camera_wrap_3">
-            <div data-src="../Content/slides/slide1.jpg">
-             </div>
-            <div  data-src="../Content/slides/slide2.jpg">
-                <div style="position:absolute; top:5%; left:5%; background:#000; color:#fff; padding:5px; width:25%" class="fadeIn camera_effected">@*This is an HTML element included in the transition effect*@</div>
+<div class="fluid_container">
+    @*<p>Videos, HTML elements and data- attributes</p>*@
+    <div class="camera_wrap camera_emboss" id="camera_wrap_3">
+        <div data-src="../Content/slides/slide1.jpg">
+        </div>
+        <div data-src="../Content/slides/slide2.jpg">
+            <div style="position:absolute; top:5%; left:5%; background:#000; color:#fff; padding:5px; width:25%" class="fadeIn camera_effected">@*This is an HTML element included in the transition effect*@</div>
+        </div>
+        <div data-src="../Content/slides/slide3.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
+            <div class="camera_caption fadeFromBottom">
+                @*Changed the time and the transition time of this slide*@
             </div>
-            <div  data-src="../Content/slides/slide3.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
-                <div class="camera_caption fadeFromBottom">
-                    @*Changed the time and the transition time of this slide*@
-                </div>
+        </div>
+        <div data-src="../Content/slides/slide4.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
+            <div class="camera_caption fadeFromBottom">
+                @*Changed the time and the transition time of this slide*@
             </div>
-            <div  data-src="../Content/slides/slide4.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
-                <div class="camera_caption fadeFromBottom">
-                    @*Changed the time and the transition time of this slide*@
-                </div>
+        </div>
+        <div data-src="../Content/slides/slide5.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
+            <div class="camera_caption fadeFromBottom">
+                @*Changed the time and the transition time of this slide*@
             </div>
-            <div  data-src="../Content/slides/slide5.jpg" data-time="1500" data-trasperiod="4000" data-link="http://www.google.com/" data-target="_blank">
-                <div class="camera_caption fadeFromBottom">
-                    @*Changed the time and the transition time of this slide*@
-                </div>
-            </div>
-        </div><!-- #camera_wrap_3 -->
+        </div>
+    </div><!-- #camera_wrap_3 -->
 
-    </div><!-- .fluid_container -->
+</div><!-- .fluid_container -->
 
 
 <div>
@@ -107,137 +107,244 @@
 
 
 
-     <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper site-min-height">
-          @*	<h3><i class="fa fa-angle-right"></i> Gallery</h3>*@
-          	<hr>
-				<div class="row mt">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port04.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
+
+
+
+    @*<div id="listing-panel" class="col-md-7">
+            @foreach (var property in Model)
+            {
+                <div class="listing-item">
+                    <div class="row">
+                        <div class="property-img-container col-md-2">
+                            @{
+
+                if (@property.ImagePath != null)
+                {
+                    <img src="@Url.Content(@property.ImagePath)" class="property-img img-thumbnail">
+
+                    string imagePath = @property.ImagePath;
+
+                    //Html.Image(@Url.Content(imagePath),"pic","300","300");
+
+                    //   @Html.Image(@Url.Content(item.src), item.altText, "100","100")
+
+                }
+                else
+                {
+                    <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
+                }
+
+                            }
+
+
+
+                        </div>
+                        <div class="property-desc-title col-md-7">
+                            <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name</h2></a>
+                        </div>
+                        <div class="property-desc-detail col-md-7">
+                            <h4>@property.Type. @property.Rating Reviews. @property.Location</h4>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>*@
+
+
+    <section id="main-content">
+        <section class="wrapper site-min-height">
+            <h3><i class="fa fa-angle-right"></i> Gallery</h3>
+            @{var count = 0;}
+            <hr>
+
+            @foreach(var property in Model){
+
+                
+
+                if(@property.ImagePath != null){
+
+                if (@property.ImagePath != null && count == 0)
+                {
+
+                   @: <div class="row mt">
+                    
+                            }
+                          if(@property.ImagePath != null && (count % 3) == 0 && count != 0){
+                    
+                   @: </div>
+                          @:      <div class="row mt">
+
+                                    }
+
+
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                        <div class="project-wrapper">
+                                            <div class="project">
+                                                <div class="photo-wrapper">
+                                                    <div class="photo">
+                                                        <a class="fancybox" href="/Properties/Detail/?id=@property.ID"><img class="img-responsive" src="@Url.Content(@property.ImagePath)" style="max-width: 100%; height: auto" alt=""></a>
+                                                    </div>
+                                                    <div class="overlay"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div><!-- col-lg-4 -->
+                                    if(@property.ImagePath != null && count == Model.Count()){
                         
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port05.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port06.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port06.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-				</div><!-- /row -->
+                          @:  </div>
+                        }
+                                    count++;
+                                    }
+                                    }
 
-				<div class="row mt">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port01.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port01.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port02.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port02.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port03.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port03.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-				</div><!-- /row -->
+                                </section>
+                            </section>
 
-				<div class="row mt mb">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port04.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port05.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port05.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-					
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
-						<div class="project-wrapper">
-		                    <div class="project">
-		                        <div class="photo-wrapper">
-		                            <div class="photo">
-                                        <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port06.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port06.jpg" alt=""></a>
-		                            </div>
-		                            <div class="overlay"></div>
-		                        </div>
-		                    </div>
-		                </div>
-					</div><!-- col-lg-4 -->
-				</div><!-- /row -->
 
-		</section>
-      </section>
 
-</div>
-   
+
+
+
+
+
+
+
+    <!--main content start-->
+                                @*<section id="main-content">
+                                        <section class="wrapper site-min-height">
+
+                                                <h3><i class="fa fa-angle-right"></i> Gallery</h3>
+
+                                            <hr>
+                                            <div class="row mt">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port04.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port05.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port05.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port06.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port06.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+                                            </div><!-- /row -->
+
+                                            <div class="row mt">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port01.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port01.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port02.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port02.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port03.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port03.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+                                            </div><!-- /row -->
+
+                                            <div class="row mt mb">
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port04.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port04.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port05.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port05.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+
+                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 desc">
+                                                    <div class="project-wrapper">
+                                                        <div class="project">
+                                                            <div class="photo-wrapper">
+                                                                <div class="photo">
+                                                                    <a class="fancybox" href="~/Content/PropertiesController/assets/img/portfolio/port06.jpg"><img class="img-responsive" src="~/Content/PropertiesController/assets/img/portfolio/port06.jpg" alt=""></a>
+                                                                </div>
+                                                                <div class="overlay"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- col-lg-4 -->
+                                            </div><!-- /row -->
+
+                                        </section>
+                                    </section>*@
+
+                            </div>
+
+
+
