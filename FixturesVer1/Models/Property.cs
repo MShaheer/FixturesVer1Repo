@@ -22,12 +22,14 @@ namespace FixturesVer1.Models
             public int Rating { get; set; }
             public string usr_Username { get; set; }
             public string Availability { get; set; }
+            public string ImagePath { get; set; }
             public DateTime? AvailabilityFromDate { get; set; }
             public DateTime? AvailabilityToDate { get; set; }
             public List<Review> Reviews { get; set; }
             public PropertyDetail PropertyDetail { get; set; }
             public List<PropertyAvailableDate> AvailableDates { get; set; }
             public User UserObj { get; set; }
+
     }
 
 }

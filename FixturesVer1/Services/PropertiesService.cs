@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -58,14 +59,14 @@ namespace FixturesVer1.Services
             _db.Properties.Add(property);
             _db.SaveChanges();
             int id = property.ID;
-            _db.PropertyDetails.Add(new PropertyDetail { PropertyId = property.ID, AdCompleted = false , usr_Username = property.usr_Username ,   }) ; 
+            _db.PropertyDetails.Add(new PropertyDetail { PropertyId = property.ID, AdCompleted = false, usr_Username = property.usr_Username, });
             _db.SaveChanges();
         }
 
         public List<Property> GetPropertyListByUserId(string usr_userName)
         {
             return _db.Properties.Where(p => p.usr_Username == usr_userName).ToList();
-            
+
         }
 
         public List<Property> GetPropertyListByType(string type)
@@ -78,15 +79,16 @@ namespace FixturesVer1.Services
         {
             string usr_userName = HttpContext.Current.User.Identity.Name;
             List<Property> propertyList = new List<Property>();
-           
-            if(propertyId==null)
+
+            if (propertyId == null)
             {
                 propertyList = GetPropertyListByUserId(usr_userName);
-                if(propertyList.Count==0)
+                if (propertyList.Count == 0)
                 {
                     return null;
                 }
-                else {
+                else
+                {
                     Property property = propertyList.FirstOrDefault();
                     return _db.PropertyDetails.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault();
                 }
@@ -96,27 +98,27 @@ namespace FixturesVer1.Services
                 int intPropertyID = Convert.ToInt32(propertyId);
                 return _db.PropertyDetails.Where(p => p.PropertyId == intPropertyID).ToList().FirstOrDefault();
             }
-         
+
 
         }
 
         public bool UpdatePropertyDetailByDetailId(PropertyDetail propertyDetail)
         {
 
-            if(propertyDetail.Availability == "sometime")
+            if (propertyDetail.Availability == "sometime")
             {
-               string[] dates= propertyDetail.AvailabilityDateString.Split(new char[] {','});
+                string[] dates = propertyDetail.AvailabilityDateString.Split(new char[] { ',' });
 
-                foreach(var item in dates)
+                foreach (var item in dates)
                 {
-                    DateTime date=Convert.ToDateTime(item);
+                    DateTime date = Convert.ToDateTime(item);
                     int count = _db.PropertyAvailableDates.Where(p => p.PropertyId == propertyDetail.PropertyId && p.Date == date).Count();
-                    
-                    if(count <= 0)
+
+                    if (count <= 0)
                     {
                         _db.PropertyAvailableDates.Add(new PropertyAvailableDate { PropertyId = propertyDetail.PropertyId, Date = Convert.ToDateTime(item) });
                     }
-                   
+
                 }
             }
             Property property = _db.Properties.Where(p => p.ID == propertyDetail.PropertyId).ToList().FirstOrDefault();
@@ -124,25 +126,55 @@ namespace FixturesVer1.Services
             property.Location = propertyDetail.StreetAddress1 + "," + propertyDetail.City + "," + propertyDetail.State + "," + propertyDetail.Country;
             property.Availability = propertyDetail.Availability;
             property.Description = propertyDetail.Description;
-           // property.Name = propertyDetail.Title;
+            // property.Name = propertyDetail.Title;
+
+            string imagePath = getPropertyImageById(propertyDetail.PropertyId, propertyDetail.ID);
+            property.ImagePath = imagePath;
+
             _db.Entry(property).State = EntityState.Modified;
             _db.Entry(propertyDetail).State = EntityState.Modified;
             _db.SaveChanges();
             return true;
         }
 
+        public string getPropertyImageById(int propertyId, int propertyDetailId)
+        {
+            var directorypath = System.Web.Hosting.HostingEnvironment.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+            // var directorypath = server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
+            if (!Directory.Exists(directorypath))
+            {
+                Directory.CreateDirectory(directorypath);
+            }
+
+            string ImageName = Directory.GetFiles(directorypath, "*.*", SearchOption.TopDirectoryOnly).ToList().FirstOrDefault();
+            String absolutePath = ImageName;
+            int relativePathStartIndex = absolutePath.IndexOf("uploads");
+            String relativePath = "../" + absolutePath.Substring(relativePathStartIndex);
+            return relativePath;
+
+        }
+
         public List<Review> GetReviewsByUserId(string usr_username)
         {
+           // var reviews=_db.Reviews.Where(p => p.PostedBy == usr_username).ToList();
             return _db.Reviews.Where(p => p.PostedBy == usr_username).ToList();
         }
 
         public List<Review> GetReviewsForUserId(List<Property> propertyList)
         {
             List<Review> reviewsList = new List<Review>();
-            foreach(var property in propertyList)
+            foreach (var property in propertyList)
             {
+                var reviews = _db.Reviews.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault();
 
-            reviewsList.Add(_db.Reviews.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault());
+                if (reviews == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    reviewsList.Add(_db.Reviews.Where(p => p.PropertyId == property.ID).ToList().FirstOrDefault());
+                }
             }
             return reviewsList;
 
@@ -154,12 +186,13 @@ namespace FixturesVer1.Services
         public List<Reference> GetReferenceAboutUserId(string usr_username)
         {
             return _db.References.Where(p => p.PostedFor == usr_username).ToList();
-            
+
         }
 
         internal void SubmitReview(string userName, int rating, string reviewBody, int propertyID, string propertyName)
         {
-            var review = new Review { 
+            var review = new Review
+            {
                 PostedBy = userName,
                 Body = reviewBody,
                 DatePosted = DateTime.Now,

@@ -13,7 +13,7 @@ namespace FixturesVer1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201502081057364_CurrencyMigration"; }
+            get { return "201502160336190_InitialMigrations"; }
         }
         
         string IMigrationMetadata.Source
