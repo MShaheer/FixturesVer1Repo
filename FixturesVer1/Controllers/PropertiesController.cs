@@ -37,9 +37,9 @@ namespace FixturesVer1.Controllers
 
         }
 
-        public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        public JsonResult GetProperties(string rent, string sell, string share, int fromValue, int toValue)
         {
-            var properties =  _propertiesService.GetPropertiesByType(house, sharedRoom, apartment, fromValue, toValue);
+            var properties =  _propertiesService.GetPropertiesByType(rent, sell, share, fromValue, toValue);
 
             return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
         }
