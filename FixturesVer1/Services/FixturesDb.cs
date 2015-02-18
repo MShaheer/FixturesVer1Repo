@@ -26,6 +26,8 @@ namespace FixturesVer1.Services
         public DbSet<PropertyAvailableDate> PropertyAvailableDates { get; set; }
         public DbSet<Conversation> Conversations { get; set; }
         public DbSet<ConversationReply> ConversationReplies { get; set; }
+
+        public System.Data.Entity.DbSet<FixturesVer1.Models.WishListViewModel> WishListViewModels { get; set; }
                
 
         /* Not being used 

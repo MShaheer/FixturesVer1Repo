@@ -473,6 +473,10 @@
     <Compile Include="Migrations\201502181646298_InitialMigrations.Designer.cs">
       <DependentUpon>201502181646298_InitialMigrations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502181916220_Initial.cs" />
+    <Compile Include="Migrations\201502181916220_Initial.Designer.cs">
+      <DependentUpon>201502181916220_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
     <Compile Include="Models\Conversation.cs" />
@@ -490,6 +494,7 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\WishList.cs" />
+    <Compile Include="Models\WishListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountsService.cs" />
     <Compile Include="Services\FixturesDb.cs" />
@@ -518,6 +523,7 @@
     <Content Include="Views\Properties\Detail.cshtml" />
     <Content Include="Views\Users\Messages.cshtml" />
     <Content Include="Views\Users\PostMessage.cshtml" />
+    <Content Include="Views\Properties\GetWishList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -534,6 +540,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502181646298_InitialMigrations.resx">
       <DependentUpon>201502181646298_InitialMigrations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502181916220_Initial.resx">
+      <DependentUpon>201502181916220_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<FixturesVer1.Models.WishListViewModel>
+
+@{
+    ViewBag.Title = "GetWishList";
+}
+
+<h2>WishList</h2>
+
+
+<div id="listing-panel" class="col-md-7">
+    @foreach (var wishListItem in Model)
+    {
+        <div class="listing-item">
+            <div class="row">
+                <div class="property-img-container col-md-2">
+                    @{
+
+        if (@wishListItem.WishListProperty.ImagePath != null)
+        {
+            <img src="@Url.Content(@wishListItem.WishListProperty.ImagePath)" class="property-img img-thumbnail">
+
+            string imagePath = @wishListItem.WishListProperty.ImagePath;
+
+        }
+        else
+        {
+            <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
+        }
+
+                    }
+
+
+
+                </div>
+                <div class="property-desc-title col-md-7">
+                    <a href="/Properties/Detail/?id=@wishListItem.WishListProperty.ID"><h2>@wishListItem.WishListProperty.Name by @wishListItem.Wish.usr_Username</h2></a>
+                </div>
+                <div class="property-desc-detail col-md-7">
+                    <h4>@wishListItem.WishListProperty.Location @wishListItem.WishListProperty.Price Price @wishListItem.WishListProperty.Reviews Reviews</h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
