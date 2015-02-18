@@ -1,0 +1,67 @@
+﻿@model FixturesVer1.Models.MessagesViewModel
+
+@{
+    ViewBag.Title = "Messages";
+}
+<div class="col-lg-6">
+
+    <div class="panel panel-default">
+        <div class=" panel-heading">
+            <h3 class="panel-title">Messages</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                
+                @Html.ValidationSummary(true)
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-12">
+                               
+
+                                <div id="listing-panel" class="col-md-7">
+                                    @foreach (var conversation in Model.ConversationList)
+                                    {
+                                        <div class="listing-item">
+                                            <div class="row">
+                                                <div class="property-img-container col-md-2">
+                                                    @{
+                                        <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
+                                    
+                                                    }
+
+
+
+                                                </div>
+                                                <div class="property-desc-title col-md-7">
+                                                    <a href="/Users/Conversation/?id=@conversation.ConversationId"><h2>@conversation.Title</h2></a>
+                                                </div>
+                                                <div class="property-desc-detail col-md-7">
+                                                    <h4>@conversation.TimeStamp </h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.ActionLink("New Message", "PostMessage", "Users", routeValues: null, htmlAttributes: new { id = "postMessageLink" })
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

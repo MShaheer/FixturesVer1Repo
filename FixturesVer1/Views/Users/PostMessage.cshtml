@@ -1,0 +1,83 @@
+﻿@model FixturesVer1.Models.ConversationViewModel
+
+@{
+    ViewBag.Title = "Post Message";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Post New Message</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <h4>New Message</h4>
+                @Html.ValidationSummary(true)
+
+               
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">To</span>
+                                    @Html.TextBoxFor(model => model.Conversation.UserTwo, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Conversation.UserTwo)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Title</span>
+                                    @Html.TextBoxFor(model => model.Conversation.Title, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Conversation.Title)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                            @*  @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })*@
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon">@Html.DisplayNameFor(model => model.ConversationReply.message)</span>
+
+                                    @Html.TextAreaFor(model => model.ConversationReply.message, new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ConversationReply.message)
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+                        @Html.ActionLink("New Message", "PostMessage", "Users", routeValues: null, htmlAttributes: new { id = "postMessageLink" })
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+}
