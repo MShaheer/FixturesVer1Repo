@@ -472,8 +472,12 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
+    <Compile Include="Models\Conversation.cs" />
+    <Compile Include="Models\ConversationReply.cs" />
+    <Compile Include="Models\ConversationViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\MessagesViewModel.cs" />
     <Compile Include="Models\ProfileViewModel.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\PropertyAvailabeDate.cs" />
@@ -509,6 +513,8 @@
     <Content Include="Views\Shared\_userNavbar.cshtml" />
     <Content Include="Views\Properties\NoListings.cshtml" />
     <Content Include="Views\Properties\Detail.cshtml" />
+    <Content Include="Views\Users\Messages.cshtml" />
+    <Content Include="Views\Users\PostMessage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
