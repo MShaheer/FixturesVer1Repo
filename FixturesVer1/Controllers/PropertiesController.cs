@@ -47,6 +47,22 @@ namespace FixturesVer1.Controllers
             return Json(new { IsAddToWishList = true }, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult GetWishList()
+        {
+            var username = User.Identity.Name;
+            List<WishList> wishlist= _propertiesService.GetWishListByUserId(username);
+            List<WishListViewModel> wishListViewModel = new List<WishListViewModel>();
+            int counter = 1;
+            foreach(var wish in wishlist)
+            {
+                wish.ID = counter;
+                var propertyObj = _propertiesService.GetPropertyByPropertyId(wish.PropertyId);
+                wishListViewModel.Add(new WishListViewModel { WishListProperty = propertyObj, Wish =wish });
+            }
+
+            return View(wishListViewModel);
+        }
+
         public ActionResult Detail(int id)
         {
             var property = _propertiesService.GetPropertyById(id);

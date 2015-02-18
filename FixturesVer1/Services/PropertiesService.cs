@@ -44,6 +44,11 @@ namespace FixturesVer1.Services
             return _db.Properties.Where(p => p.Location.Contains(location)).ToList();
         }
 
+        public Property GetPropertyByPropertyId(int propertyId)
+        {
+            return _db.Properties.Where(p => p.ID == propertyId).ToList().FirstOrDefault();
+        }
+
         public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
         {
             if (house == "" && sharedRoom == "" && apartment == "")
@@ -219,6 +224,14 @@ namespace FixturesVer1.Services
             _db.WishLists.Add(wishList);
             _db.SaveChanges();
         }
+
+        public List<WishList> GetWishListByUserId(string username)
+        {
+            var wishlist = _db.WishLists.Where(p => p.usr_Username == username).ToList();
+            return wishlist;
+        }
+
+
     }
 
 }
