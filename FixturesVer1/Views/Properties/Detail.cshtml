@@ -32,7 +32,7 @@
     }
 </style>
 
-<input id="propertyID" type="hidden" value="@Model.ID" />
+<input id="propertyID" type="hidden" value="@Model.PropertyId" />
 <input id="propertyName" type="hidden" value="@Model.Title" />
 <input id="locationLat" type="hidden" value="@Model.Latitude" />
 <input id="locationLong" type="hidden" value="@Model.Longitude" />
@@ -57,7 +57,7 @@
                 <div class="col-md-7">
                     <p style="color: #333333">@Model.Description</p>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5" style="height: 100%; width: 100%; display: inline-block;">
                     @if (@Model.Availability == "onetime")
                     {
                         <p style="color: #333333">Availablity: @Model.Availability</p><br />
@@ -115,7 +115,6 @@
     </div>
     <div>
         @Html.TextBox("Username", null, new { @id = "usernameTextBox", @class = "form-control", @placeholder="Enter your name", @style="margin-top: 15px;" })
-        @Html.TextBox("Email", null, new { @id = "emailTextBox", @class = "form-control", @placeholder = "Enter your email", @style = "margin-top: 15px" })
         @Html.TextArea("Message", new { @id = "messageTextBox", @class = "form-control", @placeholder = "Your message", @style = "margin-top: 15px" })
         <input id="btnEmail" type="submit" class="btn btn-primary" value="Send Mail" style="margin-top: 15px;" />
     </div>
@@ -146,7 +145,7 @@
         <h3 class="panel-heading">Property Reviews</h3>
        
         </div>
-    <div class='showback' style="height: 100%; width: 100%; display: inline-block; margin-top: 15px;">
+    <div class='showback review-panel' style="height: 100%; width: 100%; display: inline-block; margin-top: 15px;">
         <h3 style="color: #333333">There are currently no reviews for this property.</h3>
     </div>
 </div>
@@ -235,8 +234,8 @@
         });
        
         $("#btnEmail").click(function () {
+            var propertyID = $("#propertyID").val();
             var username = $("#usernameTextBox").val();
-            var email = $("#emailTextBox").val();
             var message = $("#messageTextBox").val();
 
             $.ajax({
@@ -244,8 +243,8 @@
                 url: '/Properties/ContactOwner',
                 dataType: 'json',
                 data: {
+                    propertyId: propertyID,
                     username: username,
-                    userEmail: email,
                     message: message
                 },
                 success: function (response) {

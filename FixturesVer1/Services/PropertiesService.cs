@@ -33,7 +33,7 @@ namespace FixturesVer1.Services
             string availableDates = null;
             foreach(var date in dates)
             {
-                availableDates += date + ",";
+                availableDates += date.Date + ",";
             }
 
             return availableDates;
@@ -42,11 +42,6 @@ namespace FixturesVer1.Services
         public List<Property> GetPropertiesByLocation(string location)
         {
             return _db.Properties.Where(p => p.Location.Contains(location)).ToList();
-        }
-
-        public Property GetPropertyByPropertyId(int propertyId)
-        {
-            return _db.Properties.Where(p => p.ID == propertyId).ToList().FirstOrDefault();
         }
 
         public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
@@ -225,13 +220,13 @@ namespace FixturesVer1.Services
             _db.SaveChanges();
         }
 
-        public List<WishList> GetWishListByUserId(string username)
+        public string GetOwnerEmail(int propertyId)
         {
-            var wishlist = _db.WishLists.Where(p => p.usr_Username == username).ToList();
-            return wishlist;
+            var userName = _db.PropertyDetails.Where(p => p.PropertyId == propertyId).Select(x => x.usr_Username).First();
+            var ownerEmail = _db.Users.Where(u => u.usr_Username == userName).Select(x => x.Email).First();
+
+            return ownerEmail;
         }
-
-
     }
 
 }
