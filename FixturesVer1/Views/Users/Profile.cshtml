@@ -14,23 +14,23 @@
 <script src="~/Scripts/jquery.ui.plupload.min.js"></script>
 
 
-    <div class="row acc-wizard">
-        <div class="col-md-2" style="padding-left: 2em;">
-            <ol class="acc-wizard-sidebar">
-                <li class="acc-wizard-todo"><a href="#prerequisites">Edit Profile</a></li>
-                <li class="acc-wizard-todo"><a href="#addwizard">Reviews</a></li>
-                <li class="acc-wizard-todo"><a href="#adjusthtml">References</a></li>
-                <li class="acc-wizard-todo"><a href="#viewpage">Upload Photo</a></li>
-            </ol>
-        </div>
+<div class="row acc-wizard">
+    <div class="col-md-2" style="padding-left: 2em;">
+        <ol class="acc-wizard-sidebar">
+            <li class="acc-wizard-todo"><a href="#prerequisites">Edit Profile</a></li>
+            <li class="acc-wizard-todo"><a href="#addwizard">Reviews</a></li>
+            <li class="acc-wizard-todo"><a href="#adjusthtml">References</a></li>
+            <li class="acc-wizard-todo"><a href="#uploadimages">Upload Photo</a></li>
+        </ol>
+    </div>
 
-    
 
-        <div class="col-md-10" style="padding-right: 2em;">
-            <div id="accordion-demo" class="panel-group">
 
-                @using (Html.BeginForm("Profile", "Users", FormMethod.Post, new { @id = "form-prerequisites", @name = "info" })) 
-                {
+    <div class="col-md-10" style="padding-right: 2em;">
+        <div id="accordion-demo" class="panel-group">
+
+            @using (Html.BeginForm("Profile", "Users", FormMethod.Post, new { @id = "form-prerequisites", @name = "info" }))
+            {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -200,179 +200,53 @@
                                         </div>
 
                                     </div>
-                                    </form>
-</div>
+                                </form>
+                            </div>
 
                         </div>
                     </div>
                 </div>
 
-                }
+            }
 
-                  <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#addwizard" data-parent="#accordion-demo" data-toggle="collapse">
-                                Reviews
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="addwizard" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <div class="form-horizontal">
-                                <form id="form-addwizard">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#addwizard" data-parent="#accordion-demo" data-toggle="collapse">
+                            Reviews
+                        </a>
+                    </h4>
+                </div>
+                <div id="addwizard" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            <form id="form-addwizard">
 
-
-                                    <div class="col-md-11 ">
-
-                                        <div class="@*white-panel pn donut-chart*@">
-
-                                            @*<div class="white-header">
-                                                <h5><b>Reviews</b></h5>
-                                            </div>*@
-                                            <table class="table table-striped" id="ref-table">
-                                                <tr>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().ID)
-                                                    </th>
-                                                    @*<th>
-                                                        @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().Name)
-                                                    </th>*@
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().PostedBy)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().Body)
-                                                    </th>
-
-                                                </tr>
-                                                @if (Model.reviewForUserList.Count == 0 || Model.reviewForUserList == null || Model.reviewForUserList.FirstOrDefault() == null)
-{
-    
-        <tr><td> @Html.Raw("No Records")</td></tr>
-   
-}
-else
-{
-    foreach (var review in Model.reviewByUserList)
-    {
-                                                        <tr>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().ID)
-                                                            </td>
-                                                            @*<td>
-                                                                @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().Name)
-                                                            </td>*@
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().PostedBy)
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().Body)
-                                                            </td>
-
-                                                        </tr>
-                                                    }
-                                                }
-                                            </table>
-
-                                            <table class="table table-striped" id="ref-table">
-                                                <tr>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().ID)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().PostedBy)
-                                                    </th>
-                                                    <th>
-                                                        @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().Body)
-                                                    </th>
-                                                </tr>
-                                                @if (Model.reviewForUserList.Count == 0 || Model.reviewForUserList == null || Model.reviewForUserList.FirstOrDefault() == null)
-                                                {
-                                                    <tr><td> @Html.Raw("No Records")</td></tr>
-                                                }
-                                                else
-                                                {
-
-                                                    foreach (var review in Model.reviewForUserList)
-                                                    {
-                                                        <tr>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().ID)
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().PostedBy)
-                                                            </td>
-                                                            <td>
-                                                                @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().Body)
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                }
-                                            </table>
-
-                                        </div>
-                                    </div>
-
-
-
-
-
-
-
-
-                                </form>
-                            </div> <!--/.panel-body -->
-                        </div>
-                    </div> <!-- /#addwizard -->
-                </div> <!-- /.panel.panel-default -->
-
-
-
-
-
-
-
-
-
-
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#adjusthtml" data-parent="#accordion-demo" data-toggle="collapse">
-                                 References  
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="adjusthtml" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <form id="form-adjusthtml">
 
                                 <div class="col-md-11 ">
 
-                                    <div class="" id="ref-panel">
+                                    <div class="@*white-panel pn donut-chart*@">
 
                                         @*<div class="white-header">
-                                            <h5><b>References</b></h5>
-                                        </div>*@
-                                        <table class="table table-striped" id ="ref-table">
-
+                                                <h5><b>Reviews</b></h5>
+                                            </div>*@
+                                        <table class="table table-striped" id="ref-table">
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().ID)
+                                                    @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().ID)
                                                 </th>
                                                 @*<th>
-                                                    @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().Name)
-                                                </th>*@
+                                                        @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().Name)
+                                                    </th>*@
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().PostedBy)
+                                                    @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().PostedBy)
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().Body)
+                                                    @Html.DisplayNameFor(model => model.reviewByUserList.FirstOrDefault().Body)
                                                 </th>
 
                                             </tr>
-                                            @if (Model.referenceByUser.Count == 0 || Model.referenceByUser == null || Model.referenceByUser.FirstOrDefault() == null)
+                                            @if (Model.reviewForUserList.Count == 0 || Model.reviewForUserList == null || Model.reviewForUserList.FirstOrDefault() == null)
                                             {
 
                                                 <tr><td> @Html.Raw("No Records")</td></tr>
@@ -380,117 +254,243 @@ else
                                             }
                                             else
                                             {
-                                                foreach (var review in Model.referenceByUser)
+                                                foreach (var review in Model.reviewByUserList)
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().ID)
+                                                            @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().ID)
                                                         </td>
                                                         @*<td>
-                                                            @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().Name
-                                                        </td>*@
+                                                                @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().Name)
+                                                            </td>*@
                                                         <td>
-                                                            @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().PostedBy)
+                                                            @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().PostedBy)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().Body)
+                                                            @Html.DisplayFor(model => model.reviewByUserList.FirstOrDefault().Body)
                                                         </td>
 
                                                     </tr>
                                                 }
                                             }
-
                                         </table>
 
                                         <table class="table table-striped" id="ref-table">
-
                                             <tr>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().ID)
-                                                </th>
-                                                @*<th>
-                                                    @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().Name)
-                                                </th>*@
-                                                <th>
-                                                    @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().PostedBy)
+                                                    @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().ID)
                                                 </th>
                                                 <th>
-                                                    @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().Body)
+                                                    @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().PostedBy)
                                                 </th>
-
+                                                <th>
+                                                    @Html.DisplayNameFor(model => model.reviewForUserList.FirstOrDefault().Body)
+                                                </th>
                                             </tr>
-                                            @if (Model.referenceAboutUser.Count == 0 || Model.referenceAboutUser == null || Model.referenceAboutUser.FirstOrDefault() == null)
+                                            @if (Model.reviewForUserList.Count == 0 || Model.reviewForUserList == null || Model.reviewForUserList.FirstOrDefault() == null)
                                             {
-
                                                 <tr><td> @Html.Raw("No Records")</td></tr>
-
                                             }
                                             else
                                             {
-                                                foreach (var review in Model.referenceAboutUser)
+
+                                                foreach (var review in Model.reviewForUserList)
                                                 {
                                                     <tr>
                                                         <td>
-                                                            @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().ID)
-                                                        </td>
-                                                        @*<td>
-                                                            @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().Name)
-                                                        </td>*@
-                                                        <td>
-                                                            @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().PostedBy)
+                                                            @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().ID)
                                                         </td>
                                                         <td>
-                                                            @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().Body)
+                                                            @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().PostedBy)
                                                         </td>
-
+                                                        <td>
+                                                            @Html.DisplayFor(model => model.reviewForUserList.FirstOrDefault().Body)
+                                                        </td>
                                                     </tr>
                                                 }
                                             }
-
                                         </table>
+
                                     </div>
                                 </div>
+
+
+
+
+
+
 
 
                             </form>
                         </div> <!--/.panel-body -->
-                    </div> <!-- /#adjusthtml -->
-                </div> <!-- /.panel.panel-default -->
-
-
-
-
-
-                   <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="#uploadimages" data-parent="#accordion-demo" data-toggle="collapse">
-                                Images
-                            </a>
-                        </h4>
                     </div>
-                    <div id="uploadimages" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <div class="form-horizontal">
-                                @*<form id="form-location">*@
+                </div> <!-- /#addwizard -->
+            </div> <!-- /.panel.panel-default -->
 
-                                <div id="uploader">
-                                    <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
 
+
+
+
+
+
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#adjusthtml" data-parent="#accordion-demo" data-toggle="collapse">
+                            References
+                        </a>
+                    </h4>
+                </div>
+                <div id="adjusthtml" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <form id="form-adjusthtml">
+
+                            <div class="col-md-11 ">
+
+                                <div class="" id="ref-panel">
+
+                                    @*<div class="white-header">
+                                            <h5><b>References</b></h5>
+                                        </div>*@
+                                    <table class="table table-striped" id="ref-table">
+
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().ID)
+                                            </th>
+                                            @*<th>
+                                                    @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().Name)
+                                                </th>*@
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().PostedBy)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceByUser.FirstOrDefault().Body)
+                                            </th>
+
+                                        </tr>
+                                        @if (Model.referenceByUser.Count == 0 || Model.referenceByUser == null || Model.referenceByUser.FirstOrDefault() == null)
+                                        {
+
+                                            <tr><td> @Html.Raw("No Records")</td></tr>
+
+                                        }
+                                        else
+                                        {
+                                            foreach (var review in Model.referenceByUser)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().ID)
+                                                    </td>
+                                                    @*<td>
+                                                            @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().Name
+                                                        </td>*@
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().PostedBy)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceByUser.FirstOrDefault().Body)
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        }
+
+                                    </table>
+
+                                    <table class="table table-striped" id="ref-table">
+
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().ID)
+                                            </th>
+                                            @*<th>
+                                                    @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().Name)
+                                                </th>*@
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().PostedBy)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.referenceAboutUser.FirstOrDefault().Body)
+                                            </th>
+
+                                        </tr>
+                                        @if (Model.referenceAboutUser.Count == 0 || Model.referenceAboutUser == null || Model.referenceAboutUser.FirstOrDefault() == null)
+                                        {
+
+                                            <tr><td> @Html.Raw("No Records")</td></tr>
+
+                                        }
+                                        else
+                                        {
+                                            foreach (var review in Model.referenceAboutUser)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().ID)
+                                                    </td>
+                                                    @*<td>
+                                                            @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().Name)
+                                                        </td>*@
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().PostedBy)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(model => model.referenceAboutUser.FirstOrDefault().Body)
+                                                    </td>
+
+                                                </tr>
+                                            }
+                                        }
+
+                                    </table>
                                 </div>
-                                <br />
-                                @*   <input type="submit" value="Submit" />*@
-
-
-                                @*</form>*@
                             </div>
-                        </div> <!--/.panel-body -->
-                    </div> <!-- /#adjusthtml -->
-                </div> <!-- /.panel.panel-default -->
-                
-            </div>
 
-            @*<div class="form-horizontal">
+
+                        </form>
+                    </div> <!--/.panel-body -->
+                </div> <!-- /#adjusthtml -->
+            </div> <!-- /.panel.panel-default -->
+
+
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a href="#uploadimages" data-parent="#accordion-demo" data-toggle="collapse">
+                            Images
+                        </a>
+                    </h4>
+                </div>
+                <div id="uploadimages" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-horizontal">
+                            @*<form id="form-location">*@
+
+                            <div id="uploader">
+                                <p>Your browser doesn't have Flash, Silverlight or HTML5 support.</p>
+
+                            </div>
+                            <br />
+                            @*   <input type="submit" value="Submit" />*@
+
+
+                            @*</form>*@
+                        </div>
+                    </div> <!--/.panel-body -->
+                </div> <!-- /#adjusthtml -->
+            </div> <!-- /.panel.panel-default -->
+
+        </div>
+
+        @*<div class="form-horizontal">
 
 
 
@@ -503,8 +503,8 @@ else
             </div>*@
 
 
-        </div>
     </div>
+</div>
 
 
 
@@ -550,81 +550,81 @@ else
 
 
 
-   $("#uploader").plupload({
-            // General settings
-            runtimes: 'html5,flash,silverlight,html4',
+    $("#uploader").plupload({
+        // General settings
+        runtimes: 'html5,flash,silverlight,html4',
 
-            // Fake server response here
-            // url : '../upload.php',
-            url: "/Users/UploadDisplayImage",
+        // Fake server response here
+        // url : '../upload.php',
+        url: "/Users/UploadDisplayImage",
 
-            // Maximum file size
-            max_file_size: '1000mb',
+        // Maximum file size
+        max_file_size: '1000mb',
 
-            // User can upload no more then 20 files in one go (sets multiple_queues to false)
-            max_file_count: 20,
+        // User can upload no more then 20 files in one go (sets multiple_queues to false)
+        max_file_count: 20,
 
-            chunk_size: '1mb',
+        chunk_size: '1mb',
 
-            // Resize images on clientside if we can
-            resize: {
-                width: 200,
-                height: 200,
-                quality: 90,
-                crop: true // crop to exact dimensions
-            },
+        // Resize images on clientside if we can
+        resize: {
+            width: 200,
+            height: 200,
+            quality: 90,
+            crop: true // crop to exact dimensions
+        },
 
-            // Specify what files to browse for
-            filters: [
-                { title: "Image files", extensions: "jpg,gif,png" },
-                { title: "Zip files", extensions: "zip,avi" }
-            ],
+        // Specify what files to browse for
+        filters: [
+            { title: "Image files", extensions: "jpg,gif,png" },
+            { title: "Zip files", extensions: "zip,avi" }
+        ],
 
-            // Rename files by clicking on their titles
-            rename: true,
+        // Rename files by clicking on their titles
+        rename: true,
 
-            // Sort files
-            sortable: true,
+        // Sort files
+        sortable: true,
 
-            // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
-            dragdrop: true,
+        // Enable ability to drag'n'drop files onto the widget (currently only HTML5 supports that)
+        dragdrop: true,
 
-            // Views to activate
-            views: {
-                list: true,
-                thumbs: true, // Show thumbs
-                active: 'thumbs'
-            },
+        // Views to activate
+        views: {
+            list: true,
+            thumbs: true, // Show thumbs
+            active: 'thumbs'
+        },
 
-            //multipart_params : {
-            //    "propertyId" : $("#propertyId").val(),
-            //    "propertyDetailId": $("#propertyDetailId").val()
-            //},
+        //multipart_params : {
+        //    "propertyId" : $("#propertyId").val(),
+        //    "propertyDetailId": $("#propertyDetailId").val()
+        //},
 
-            // Flash settings
-            flash_swf_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
+        // Flash settings
+        flash_swf_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/flash/Moxie.cdn.swf',
 
-            // Silverlight settings
-            silverlight_xap_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
-        });
+        // Silverlight settings
+        silverlight_xap_url: 'http://rawgithub.com/moxiecode/moxie/master/bin/silverlight/Moxie.cdn.xap'
+    });
 
 
-        // Handle the case when form was submitted before uploading has finished
-   $('#form-prerequisites').submit(function (e) {
-            // Files in queue upload them first
-            if ($('#uploader').plupload('getFiles').length > 0) {
+    // Handle the case when form was submitted before uploading has finished
+    $('#form-prerequisites').submit(function (e) {
+        // Files in queue upload them first
+        if ($('#uploader').plupload('getFiles').length > 0) {
 
-                // When all files are uploaded submit form
-                $('#uploader').on('complete', function () {
-                    $('#form')[0].submit();
-                });
+            // When all files are uploaded submit form
+            $('#uploader').on('complete', function () {
+                $('#form')[0].submit();
+            });
 
-                $('#uploader').plupload('start');
-                return false; // Keep the form from submitting
-            }
-            //else {
-            //    alert("You must have at least one file in the queue.");
-            //}
+            $('#uploader').plupload('start');
+            return false; // Keep the form from submitting
+        }
+        //else {
+        //    alert("You must have at least one file in the queue.");
+        //}
 
-        });
-        </script>
+    });
+</script>

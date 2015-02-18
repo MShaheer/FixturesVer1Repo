@@ -76,6 +76,7 @@ namespace FixturesVer1.Controllers
         [HttpPost]
         public ActionResult PostAd(Property propertyForm)
         {
+            propertyForm.usr_Username = User.Identity.Name;
             _propertiesService.AddProperty(propertyForm);
 
             return RedirectToAction("Index", "Home");
