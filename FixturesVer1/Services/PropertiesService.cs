@@ -227,6 +227,19 @@ namespace FixturesVer1.Services
 
             return ownerEmail;
         }
+
+        public List<WishList> GetWishListByUserId(string username)
+        {
+            var wishlist = _db.WishLists.Where(p => p.usr_Username == username).ToList();
+            return wishlist;
+        }
+
+        public Property GetPropertyByPropertyId(int propertyId)
+        {
+            return _db.Properties.Where(p => p.ID == propertyId).ToList().FirstOrDefault();
+        }
+
+
     }
 
 }
