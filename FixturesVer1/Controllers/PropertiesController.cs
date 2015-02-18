@@ -25,11 +25,16 @@ namespace FixturesVer1.Controllers
 
         public ActionResult Listing(string location)
         {
-            if (location != "" || location != null)
+            if (location == "" || location == null)
+            {
+                return View(_propertiesService.GetAllProperties());
+                
+            }
+            else 
             {
                 return View(_propertiesService.GetPropertiesByLocation(location));
             }
-            return View(_propertiesService.GetAllProperties());
+
         }
 
         public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)

@@ -131,6 +131,7 @@
         });
 
         $(".btnWishlist").click(function () {
+            var thisButton = this;
             var propertyId = $(this).attr("data-propid");
 
             $.ajax({
@@ -143,7 +144,7 @@
                 success: function (response) {
                     if (response.IsAddToWishList) {
                         alert("Property added to wish list.");
-                        $(".btnWishlist").attr("value", "Added to Wish List").attr('disabled','disabled');;
+                        $(thisButton).attr("value", "Added to Wish List").attr('disabled','disabled');
                     }
                 }
             });
