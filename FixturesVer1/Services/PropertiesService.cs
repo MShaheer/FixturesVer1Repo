@@ -33,7 +33,7 @@ namespace FixturesVer1.Services
             string availableDates = null;
             foreach(var date in dates)
             {
-                availableDates += date + ",";
+                availableDates += date.Date + ",";
             }
 
             return availableDates;
@@ -218,6 +218,14 @@ namespace FixturesVer1.Services
             };
             _db.WishLists.Add(wishList);
             _db.SaveChanges();
+        }
+
+        public string GetOwnerEmail(int propertyId)
+        {
+            var userName = _db.PropertyDetails.Where(p => p.PropertyId == propertyId).Select(x => x.usr_Username).First();
+            var ownerEmail = _db.Users.Where(u => u.usr_Username == userName).Select(x => x.Email).First();
+
+            return ownerEmail;
         }
     }
 

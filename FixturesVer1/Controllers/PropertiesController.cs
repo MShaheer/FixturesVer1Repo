@@ -70,12 +70,14 @@ namespace FixturesVer1.Controllers
             return View(property);
         }
 
-        public ActionResult ContactOwner(string username, string userEmail, string message) 
+        public ActionResult ContactOwner(int propertyId, string userEmail, string message) 
         {
+            var ownerEmail = _propertiesService.GetOwnerEmail(propertyId);
+
             var _mailer = new MvcMailMessage();
-            _mailer.Subject = "Test Email";
-            _mailer.To.Add("otariqmvc@gmail.com");
-            _mailer.Body = "This is a test email";
+            _mailer.Subject = "Message From The Fixtures App";
+            _mailer.To.Add(ownerEmail);
+            _mailer.Body = message;
             _mailer.Send();
 
             return Json(new { messageIsSent = true }, JsonRequestBehavior.AllowGet);
