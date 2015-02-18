@@ -193,20 +193,6 @@
                     if (response.reviews) {
                         displayReviews(response.reviews);
                     }
-                    else {
-                        var reviewsDiv = '';
-                        var reviewDiv = "<div class='showback review-panel' style='height: 150px; margin-top: 15px;'>" +
-                                        "<div class='review-body'>" +
-                                            "<div class='col-md-5'>" +
-                                                "<h2 style='padding: 0px 0px 0px 0px;'>There are no reviews for this property yet.</h2>" +
-                                            "</div>" +
-                                                "<div class='col-md-7'><p></p></div>" +
-                                            "</div>" +
-                                            "</div>";
-                        reviewsDiv += reviewDiv;
-
-                        $('#property-reviews-panel').append(reviewsDiv).hide().fadeIn(500);
-                    }
                 }
             });
         };

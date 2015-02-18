@@ -7,18 +7,18 @@ namespace FixturesVer1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class initial : IMigrationMetadata
+    public sealed partial class InitialMigrations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigrations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201502131013043_initial"; }
+            get { return "201502181646298_InitialMigrations"; }
         }
         
         string IMigrationMetadata.Source
         {
-            get { return Resources.GetString("Source"); }
+            get { return null; }
         }
         
         string IMigrationMetadata.Target

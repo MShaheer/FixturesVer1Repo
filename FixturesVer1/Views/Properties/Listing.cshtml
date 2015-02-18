@@ -76,7 +76,6 @@
         <div class="listing-item">
             <div class="row">
                 <input class="btn btn-theme04 btnWishlist" type="submit" value="Add To Wish List" style="margin-top: 10px;" data-propid="@property.ID" />
-                <input id="propertyId" type="hidden" value="@property.ID" />
                 <div class="property-img-container col-md-2">
                     @{
                         
@@ -101,7 +100,7 @@
                     
                 </div>
                 <div class="property-desc-title col-md-7">
-                    <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name</h2></a>
+                    <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name, @property.Price</h2></a>
                 </div>
                 <div class="property-desc-detail col-md-7">
                     <h4>@property.Type. @property.Rating Reviews. @property.Location</h4>
@@ -132,7 +131,7 @@
         });
 
         $(".btnWishlist").click(function () {
-            var propertyId = $("#propertyId").val();
+            var propertyId = $(this).attr("data-propid");
 
             $.ajax({
                 type: 'POST',
@@ -144,6 +143,7 @@
                 success: function (response) {
                     if (response.IsAddToWishList) {
                         alert("Property added to wish list.");
+                        $(".btnWishlist").attr("value", "Added to Wish List").attr('disabled','disabled');;
                     }
                 }
             });
@@ -201,7 +201,7 @@
                                           "<input class='btn btn-theme04 btnWishlist' type='submit' value='Add To Wish List' style='margin-top: 10px;' />" +
                                           "<input id='propertyId' type='hidden' value="+properties[i].ID+" />"+
                                           "<div class='property-img-container col-md-2'>" +
-                                          "<img src='/Content/Images/ImgPlaceHolder.gif' class='property-img img-thumbnail'>" +
+                                          "<img src="+properties[i].ImagePath+" class='property-img img-thumbnail'>" +
                                                 "</div>" +
                                                 "<div class='property-desc-title col-md-7'>" +
                                                     "<a href='/Properties/Detail/?id="+properties[i].ID+"'><h2>" + properties[i].Name + "</h2></a>" +

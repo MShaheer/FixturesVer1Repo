@@ -7,12 +7,10 @@ namespace FixturesVer1.Migrations
     {
         public override void Up()
         {
-            AlterColumn("dbo.Property", "Price", c => c.Single());
         }
         
         public override void Down()
         {
-
         }
     }
 }

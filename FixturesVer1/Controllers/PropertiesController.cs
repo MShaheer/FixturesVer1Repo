@@ -25,7 +25,7 @@ namespace FixturesVer1.Controllers
 
         public ActionResult Listing(string location)
         {
-            if (location != "")
+            if (location != "" || location != null)
             {
                 return View(_propertiesService.GetPropertiesByLocation(location));
             }
