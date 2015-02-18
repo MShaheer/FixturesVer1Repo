@@ -11,7 +11,5 @@ namespace FixturesVer1.Models
         public string altText { get; set; }
         public string height { get; set; }
         public string width { get; set; }
-
-
     }
 }

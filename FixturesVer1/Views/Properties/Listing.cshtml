@@ -69,11 +69,13 @@
     </div>
 </div>
 
+
 <div id="listing-panel" class="col-md-7">
     @foreach (var property in Model)
     {
         <div class="listing-item">
             <div class="row">
+                <input class="btn btn-theme04 btnWishlist" type="submit" value="Add To Wish List" style="margin-top: 10px;" data-propid="@property.ID" />
                 <div class="property-img-container col-md-2">
                     @{
                         
@@ -98,7 +100,7 @@
                     
                 </div>
                 <div class="property-desc-title col-md-7">
-                    <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name</h2></a>
+                    <a href="/Properties/Detail/?id=@property.ID"><h2>@property.Name, @property.Price</h2></a>
                 </div>
                 <div class="property-desc-detail col-md-7">
                     <h4>@property.Type. @property.Rating Reviews. @property.Location</h4>
@@ -126,6 +128,25 @@
             onFinish: function () {
                 getFiltertedProperties();
             }
+        });
+
+        $(".btnWishlist").click(function () {
+            var propertyId = $(this).attr("data-propid");
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/AddToWishList',
+                dataType: 'json',
+                data: {
+                    propertyId: propertyId
+                },
+                success: function (response) {
+                    if (response.IsAddToWishList) {
+                        alert("Property added to wish list.");
+                        $(".btnWishlist").attr("value", "Added to Wish List").attr('disabled','disabled');;
+                    }
+                }
+            });
         });
 
         $('.propertyFilterCheckBox').change(function () {
@@ -175,13 +196,18 @@
                     $('.listing-item').remove();
                     var propertiesDiv = '';
                     for (var i = 0; i < properties.length; i++) {
+                        if (properties[i].ImagePath == null) {
+                            properties[i].ImagePath = "/Content/Images/ImgPlaceHolder.gif";
+                        }
                         var propertyDiv = "<div class='listing-item'>" +
                                           "<div class='row'>" +
+                                          "<input class='btn btn-theme04 btnWishlist' type='submit' value='Add To Wish List' style='margin-top: 10px;' />" +
+                                          "<input id='propertyId' type='hidden' value="+properties[i].ID+" />"+
                                           "<div class='property-img-container col-md-2'>" +
-                                          "<img src='/Content/Images/ImgPlaceHolder.gif' class='property-img img-thumbnail'>" +
+                                          "<img src="+properties[i].ImagePath+" class='property-img img-thumbnail'>" +
                                                 "</div>" +
                                                 "<div class='property-desc-title col-md-7'>" +
-                                                    "<a href='/Properties/Detail/?id="+properties[i].ID+"'><h2>" + properties[i].Name + "</h2></a>" +
+                                                    "<a href='/Properties/Detail/?id="+properties[i].ID+"'><h2>" + properties[i].Name + ", "+properties[i].Price+"</h2></a>" +
                                                 "</div>" +
                                                 "<div class='property-desc-detail col-md-7'>" +
                                                    "<h4>" + properties[i].Type + ". " + properties[i].Rating + " Reviews" + ". " + properties[i].Location + "</h4>" +
@@ -191,7 +217,9 @@
                         propertiesDiv += propertyDiv;
                     }
 
-                    $('#listing-panel').append(propertiesDiv).hide().fadeIn(500);;
+                    $('#listing-panel').append(propertiesDiv).hide().fadeIn(500);
+
+
                 }
             });
         };
