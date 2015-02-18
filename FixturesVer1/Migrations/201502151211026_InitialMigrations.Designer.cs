@@ -7,13 +7,13 @@ namespace FixturesVer1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.2-31219")]
-    public sealed partial class CurrencyMigration : IMigrationMetadata
+    public sealed partial class InitialMigrations : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CurrencyMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigrations));
         
         string IMigrationMetadata.Id
         {
-            get { return "201502081057364_CurrencyMigration"; }
+            get { return "201502151211026_InitialMigrations"; }
         }
         
         string IMigrationMetadata.Source

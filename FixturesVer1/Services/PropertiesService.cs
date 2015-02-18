@@ -20,14 +20,27 @@ namespace FixturesVer1.Services
             return _db.Properties.ToList();
         }
 
-        public Property GetPropertyById(int id)
+        public PropertyDetail GetPropertyById(int id)
         {
-            return _db.Properties.Where(p => p.ID == id).FirstOrDefault();
+            return _db.PropertyDetails.Where(p => p.PropertyId == id).FirstOrDefault();
+        }
+
+        public string GetSometimeAvailableDates(int id)
+        {
+            var dates = _db.PropertyAvailableDates.Where(d => d.PropertyId == id).ToList();
+
+            string availableDates = null;
+            foreach(var date in dates)
+            {
+                availableDates += date + ",";
+            }
+
+            return availableDates;
         }
 
         public List<Property> GetPropertiesByLocation(string location)
         {
-            return _db.Properties.Where(p => p.Location == location).ToList();
+            return _db.Properties.Where(p => p.Location.Contains(location)).ToList();
         }
 
         public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
@@ -162,6 +175,16 @@ namespace FixturesVer1.Services
         public List<Review> GetReviews(int propertyID)
         {
             return _db.Reviews.Where(r => r.PropertyId == propertyID).ToList();
+        }
+
+        public void AddToWishList(int propertyId, string username)
+        {
+            WishList wishList = new WishList { 
+                PropertyId = propertyId,
+                usr_Username = username
+            };
+            _db.WishLists.Add(wishList);
+            _db.SaveChanges();
         }
     }
 

@@ -25,7 +25,7 @@ namespace FixturesVer1.Controllers
 
         public ActionResult Listing(string location)
         {
-            if (location != null)
+            if (location != "")
             {
                 return View(_propertiesService.GetPropertiesByLocation(location));
             }
@@ -39,11 +39,34 @@ namespace FixturesVer1.Controllers
             return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult AddToWishList(int propertyId)
+        {
+            var username = User.Identity.Name;
+            _propertiesService.AddToWishList(propertyId, username);
+
+            return Json(new { IsAddToWishList = true }, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Detail(int id)
         {
             var property = _propertiesService.GetPropertyById(id);
             var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(id);
-            ViewBag.imageList = getImageListOfProperty(id, propertyDetail.ID);
+
+            if (propertyDetail.Availability == "sometime")
+            {
+                propertyDetail.AvailabilityDateString = _propertiesService.GetSometimeAvailableDates(id);
+            }
+
+            ViewBag.commonFacililities = propertyDetail.CommonFacilities.Split(',');
+            ViewBag.extraFacililities = propertyDetail.ExtraFacilities.Split(',');
+            var imageList = getImageListOfProperty(id, propertyDetail.ID);
+
+            foreach(var image in imageList){
+                image.src = image.src.Substring(2);
+            }
+
+            ViewBag.imageList = imageList;
+
             return View(property);
         }
 
@@ -176,7 +199,8 @@ namespace FixturesVer1.Controllers
             return RedirectToAction("BrowseListing","Properties");
         }
 
-        public List<ImageViewModel> getImageListOfProperty(int propertyId, int propertyDetailId)
+        public List<ImageViewModel> 
+            getImageListOfProperty(int propertyId, int propertyDetailId)
         {
             var directorypath = Server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
            // var relativePath = "~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/";

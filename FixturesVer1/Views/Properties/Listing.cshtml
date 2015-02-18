@@ -71,6 +71,8 @@
     {
         <div class="listing-item">
             <div class="row">
+                <input class="btn btn-theme04 btnWishlist" type="submit" value="Add To Wish List" style="margin-top: 10px;" data-propid="@property.ID" />
+                <input id="propertyId" type="hidden" value="@property.ID" />
                 <div class="property-img-container col-md-2">
                     <img src="~/Content/Images/ImgPlaceHolder.gif" class="property-img img-thumbnail">
                 </div>
@@ -103,6 +105,24 @@
             onFinish: function () {
                 getFiltertedProperties();
             }
+        });
+
+        $(".btnWishlist").click(function () {
+            var propertyId = $("#propertyId").val();
+
+            $.ajax({
+                type: 'POST',
+                url: '/Properties/AddToWishList',
+                dataType: 'json',
+                data: {
+                    propertyId: propertyId
+                },
+                success: function (response) {
+                    if (response.IsAddToWishList) {
+                        alert("Property added to wish list.");
+                    }
+                }
+            });
         });
 
         $('.propertyFilterCheckBox').change(function () {
@@ -154,6 +174,8 @@
                     for (var i = 0; i < properties.length; i++) {
                         var propertyDiv = "<div class='listing-item'>" +
                                           "<div class='row'>" +
+                                          "<input class='btn btn-theme04 btnWishlist' type='submit' value='Add To Wish List' style='margin-top: 10px;' />" +
+                                          "<input id='propertyId' type='hidden' value="+properties[i].ID+" />"+
                                           "<div class='property-img-container col-md-2'>" +
                                           "<img src='/Content/Images/ImgPlaceHolder.gif' class='property-img img-thumbnail'>" +
                                                 "</div>" +
@@ -169,6 +191,8 @@
                     }
 
                     $('#listing-panel').append(propertiesDiv).hide().fadeIn(500);
+
+
                 }
             });
         };

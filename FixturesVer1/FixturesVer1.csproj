@@ -441,6 +441,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Site.js" />
+    <Content Include="uploads\Property6-Detail2\2032omer635595552000000000jtown1.jpg" />
+    <Content Include="uploads\Property6-Detail2\2032omer635595552000000000jtown2.jpg" />
+    <Content Include="uploads\Property6-Detail2\2032omer635595552000000000jtown3.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -466,9 +469,9 @@
     <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502081057364_CurrencyMigration.cs" />
-    <Compile Include="Migrations\201502081057364_CurrencyMigration.Designer.cs">
-      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201502151211026_InitialMigrations.cs" />
+    <Compile Include="Migrations\201502151211026_InitialMigrations.Designer.cs">
+      <DependentUpon>201502151211026_InitialMigrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
@@ -518,14 +521,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\" />
-    <Folder Include="uploads\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502081057364_CurrencyMigration.resx">
-      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502151211026_InitialMigrations.resx">
+      <DependentUpon>201502151211026_InitialMigrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
