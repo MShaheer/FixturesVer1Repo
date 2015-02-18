@@ -465,17 +465,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501171104288_InitialCreate.cs" />
-    <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
-      <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502181646298_InitialMigrations.cs" />
-    <Compile Include="Migrations\201502181646298_InitialMigrations.Designer.cs">
-      <DependentUpon>201502181646298_InitialMigrations.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502181916220_Initial.cs" />
-    <Compile Include="Migrations\201502181916220_Initial.Designer.cs">
-      <DependentUpon>201502181916220_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201502181945283_Initial.cs" />
+    <Compile Include="Migrations\201502181945283_Initial.Designer.cs">
+      <DependentUpon>201502181945283_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
@@ -535,18 +527,12 @@
     <Folder Include="App_Data\uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
-      <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502181646298_InitialMigrations.resx">
-      <DependentUpon>201502181646298_InitialMigrations.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502181916220_Initial.resx">
-      <DependentUpon>201502181916220_Initial.cs</DependentUpon>
-    </EmbeddedResource>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <EmbeddedResource Include="Migrations\201502181945283_Initial.resx">
+      <DependentUpon>201502181945283_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
