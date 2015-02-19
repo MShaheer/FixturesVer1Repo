@@ -3,7 +3,7 @@ namespace FixturesVer1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigrations : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {

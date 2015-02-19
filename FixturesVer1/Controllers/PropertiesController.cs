@@ -37,9 +37,9 @@ namespace FixturesVer1.Controllers
 
         }
 
-        public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)
+        public JsonResult GetProperties(string rent, string sell, string share, int fromValue, int toValue)
         {
-            var properties =  _propertiesService.GetPropertiesByType(house, sharedRoom, apartment, fromValue, toValue);
+            var properties =  _propertiesService.GetPropertiesByType(rent, sell, share, fromValue, toValue);
 
             return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
         }
@@ -122,7 +122,8 @@ namespace FixturesVer1.Controllers
         [HttpGet]
         public ActionResult PostAd()
         {
-            ViewBag.Type = PropertyTypeComboData();
+            ViewBag.Type = TypeComboData();
+            ViewBag.PropertyType = PropertyTypeComboData();
             return View();
         }
 
@@ -270,28 +271,43 @@ namespace FixturesVer1.Controllers
 
 
 
-        public List<SelectListItem> PropertyTypeComboData()
+        public List<SelectListItem> TypeComboData()
         {
-
             List<SelectListItem> items = new List<SelectListItem>();
 
-            items.Add(new SelectListItem { Text = "Apartment", Value = "0" });
+            items.Add(new SelectListItem { Text = "Rent", Value = "Rent" });
 
-            items.Add(new SelectListItem { Text = "House", Value = "1" });
+            items.Add(new SelectListItem { Text = "Sell", Value = "Sell" });
 
-            items.Add(new SelectListItem { Text = "Bed & Breakfast", Value = "2", Selected = true });
-
-            items.Add(new SelectListItem { Text = "Villa", Value = "3" });
-
-            items.Add(new SelectListItem { Text = "Other", Value = "4" });
-
-
-
+            items.Add(new SelectListItem { Text = "Share", Value = "Share", Selected = true });
+            
             return items;
-
         }
 
-        
+        public List<SelectListItem> PropertyTypeComboData()
+        {
+            List<SelectListItem> items = new List<SelectListItem>();
+
+            items.Add(new SelectListItem { Text = "House", Value = "House" });
+
+            items.Add(new SelectListItem { Text = "Apartment", Value = "Apartment" });
+
+            items.Add(new SelectListItem { Text = "Villa", Value = "Villa", Selected = true });
+
+            items.Add(new SelectListItem { Text = "Mansion", Value = "Mansion" });
+
+            items.Add(new SelectListItem { Text = "Farmhouse", Value = "Farmhouse" });
+
+            items.Add(new SelectListItem { Text = "Bunglow", Value = "Bunglow", Selected = true });
+
+            items.Add(new SelectListItem { Text = "Duplex", Value = "Duplex", Selected = true });
+
+            return items;
+        }
+
+
+
+
 
 	}
 }

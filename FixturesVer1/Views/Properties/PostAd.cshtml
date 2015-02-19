@@ -52,9 +52,9 @@
                             @* @Html.LabelFor(model => model.Type, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Home Type</span>
+                                    <span class="input-group-addon">Nature Of Ad</span>
 
-                                    @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.Type, "Select Home Type", new { @class = "form-control" })
+                                    @Html.DropDownList("Type", (IEnumerable<SelectListItem>)ViewBag.Type, "Select Type", new { @class = "form-control" })
                                 </div>
                                      @Html.ValidationMessageFor(model => model.Type)
                                 </div>
@@ -109,8 +109,8 @@
                             @*  @Html.LabelFor(model => model.RateType, new { @class = "control-label col-md-2" })*@
                             <div class="col-md-10">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Room Type</span>
-                                    @Html.TextBoxFor(model => model.RoomType, new { @class = "form-control" })
+                                    <span class="input-group-addon">Property Type</span>
+                                    @Html.DropDownList("RoomType", (IEnumerable<SelectListItem>)ViewBag.PropertyType, "Select Property Type", new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.RoomType)
                             </div>

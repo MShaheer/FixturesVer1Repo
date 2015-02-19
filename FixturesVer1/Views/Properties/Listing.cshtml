@@ -50,16 +50,16 @@
 <div id="filter-panel" class="col-md-10">
     <div class="col-md-8 col-lg-offset-3" style="margin-top: 20px;">
         <div class="col-md-3">
-            <h4>House</h4>
-            @Html.CheckBox("house", new { @class = "propertyFilterCheckBox", @id = "house-checkBox", @style = "margin-left: 20px;" })
+            <h4  style="margin-left: 5px;">Rent</h4>
+            @Html.CheckBox("rent", new { @class = "propertyFilterCheckBox", @id = "rent-checkBox", @style = "margin-left: 20px;" })
         </div>
         <div class="col-md-3">
-            <h4>Shared Room</h4>
-            @Html.CheckBox("shared-room", new { @class = "propertyFilterCheckBox", @id = "shared-room-checkBox", @style = "margin-left: 40px;" })
+            <h4 style="margin-left: 30px;">Sell</h4>
+            @Html.CheckBox("sell", new { @class = "propertyFilterCheckBox", @id = "sell-checkBox", @style = "margin-left: 40px;" })
         </div>
         <div class="col-md-3">
-            <h4>Aprartment</h4>
-            @Html.CheckBox("apartment", new { @class = "propertyFilterCheckBox", @id = "apartment-checkBox", @style = "margin-left: 40px;" })
+            <h4 style="margin-left: 15px;">Shared</h4>
+            @Html.CheckBox("share", new { @class = "propertyFilterCheckBox", @id = "share-checkBox", @style = "margin-left: 40px;" })
         </div>
     </div>
     <div class="col-lg-12">
@@ -160,21 +160,21 @@
 
         var getFiltertedProperties = function () {
             var propertyTypeFilter = {
-                house: '',
-                sharedRoom: '',
-                apartment: '',
+                rent: '',
+                sell: '',
+                share: '',
                 fromValue: 0,
                 toValue: 9999999,
             };
 
-            if ($('#house-checkBox').is(':checked')) {
-                propertyTypeFilter.house = 'House';
+            if ($('#rent-checkBox').is(':checked')) {
+                propertyTypeFilter.rent = 'Rent';
             }
-            if ($('#shared-room-checkBox').is(':checked')) {
-                propertyTypeFilter.sharedRoom = 'Shared Room';
+            if ($('#sell-checkBox').is(':checked')) {
+                propertyTypeFilter.sell = 'Sell';
             }
-            if ($('#apartment-checkBox').is(':checked')) {
-                propertyTypeFilter.apartment = 'Apartment';
+            if ($('#share-checkBox').is(':checked')) {
+                propertyTypeFilter.share = 'Share';
             }
 
             var sliderData = $("#range").data("ionRangeSlider");
@@ -186,9 +186,9 @@
                 url: '/Properties/GetProperties',
                 dataType: 'json',
                 data: {
-                    house: propertyTypeFilter.house,
-                    sharedRoom: propertyTypeFilter.sharedRoom,
-                    apartment: propertyTypeFilter.apartment,
+                    rent: propertyTypeFilter.rent,
+                    sell: propertyTypeFilter.sell,
+                    share: propertyTypeFilter.share,
                     fromValue: propertyTypeFilter.fromValue,
                     toValue: propertyTypeFilter.toValue
                 },
