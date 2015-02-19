@@ -466,9 +466,9 @@
     <Compile Include="Migrations\201501171104288_InitialCreate.Designer.cs">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201502081057364_CurrencyMigration.cs" />
-    <Compile Include="Migrations\201502081057364_CurrencyMigration.Designer.cs">
-      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201502160336190_InitialMigrations.cs" />
+    <Compile Include="Migrations\201502160336190_InitialMigrations.Designer.cs">
+      <DependentUpon>201502160336190_InitialMigrations.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ContactMessage.cs" />
@@ -524,8 +524,8 @@
     <EmbeddedResource Include="Migrations\201501171104288_InitialCreate.resx">
       <DependentUpon>201501171104288_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502081057364_CurrencyMigration.resx">
-      <DependentUpon>201502081057364_CurrencyMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502160336190_InitialMigrations.resx">
+      <DependentUpon>201502160336190_InitialMigrations.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
