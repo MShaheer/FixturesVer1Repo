@@ -25,6 +25,12 @@ namespace FixturesVer1.Services
                 return null;
         }
 
+        public MessagesViewModel GetMessagesByUserId(string userName)
+        {
+            //var messageList = _db
+            throw new NotImplementedException();
+        }
+
 
     }
 }

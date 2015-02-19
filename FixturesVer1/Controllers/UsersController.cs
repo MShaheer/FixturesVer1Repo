@@ -136,6 +136,28 @@ namespace FixturesVer1.Controllers
             image.altText = username + "Display Picture";
             return image;
         }
-         
+
+        [HttpGet]
+        public ActionResult Messages()
+        {
+           
+            return View();
+        }
+
+
+
+        [HttpGet]
+        public ActionResult PostMessage()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PostMessage(ConversationViewModel conversationViewodel)
+        {
+            return View();
+
+        }
+
 	}
 }

@@ -25,11 +25,16 @@ namespace FixturesVer1.Controllers
 
         public ActionResult Listing(string location)
         {
-            if (location != null)
+            if (location == "" || location == null)
+            {
+                return View(_propertiesService.GetAllProperties());
+                
+            }
+            else 
             {
                 return View(_propertiesService.GetPropertiesByLocation(location));
             }
-            return View(_propertiesService.GetAllProperties());
+
         }
 
         public JsonResult GetProperties(string house, string sharedRoom, string apartment, int fromValue, int toValue)
@@ -39,25 +44,73 @@ namespace FixturesVer1.Controllers
             return Json(new { properties = properties }, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult AddToWishList(int propertyId)
+        {
+            var username = User.Identity.Name;
+            _propertiesService.AddToWishList(propertyId, username);
+
+            return Json(new { IsAddToWishList = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult GetWishList()
+        {
+            var username = User.Identity.Name;
+            List<WishList> wishlist= _propertiesService.GetWishListByUserId(username);
+            List<WishListViewModel> wishListViewModel = new List<WishListViewModel>();
+            int counter = 1;
+            foreach(var wish in wishlist)
+            {
+                wish.ID = counter;
+                var propertyObj = _propertiesService.GetPropertyByPropertyId(wish.PropertyId);
+                wishListViewModel.Add(new WishListViewModel { WishListProperty = propertyObj, Wish =wish });
+            }
+
+            return View(wishListViewModel);
+        }
+
         public ActionResult Detail(int id)
         {
             var property = _propertiesService.GetPropertyById(id);
             var propertyDetail = _propertiesService.GetPropertyDetailByPropertyId(id);
-            ViewBag.imageList = getImageListOfProperty(id, propertyDetail.ID);
+
+            if (propertyDetail.Availability == "sometime")
+            {
+                propertyDetail.AvailabilityDateString = _propertiesService.GetSometimeAvailableDates(id);
+            }
+
+            ViewBag.commonFacililities = propertyDetail.CommonFacilities.Split(',');
+            ViewBag.extraFacililities = propertyDetail.ExtraFacilities.Split(',');
+            var imageList = getImageListOfProperty(id, propertyDetail.ID);
+
+            foreach(var image in imageList){
+                image.src = image.src.Substring(2);
+            }
+
+            ViewBag.imageList = imageList;
+
             return View(property);
         }
 
-        public ActionResult ContactOwner(string username, string userEmail, string message) 
+        public ActionResult ContactOwner(int propertyId, string userEmail, string message) 
         {
+            var ownerEmail = _propertiesService.GetOwnerEmail(propertyId);
+
             var _mailer = new MvcMailMessage();
-            _mailer.Subject = "Test Email";
-            _mailer.To.Add("otariqmvc@gmail.com");
-            _mailer.Body = "This is a test email";
+            _mailer.Subject = "Message From The Fixtures App";
+            _mailer.To.Add(ownerEmail);
+            _mailer.Body = message;
             _mailer.Send();
 
             return Json(new { messageIsSent = true }, JsonRequestBehavior.AllowGet);
         }
 
+
+        public ActionResult GetReviews(int propertyID)
+        {
+            var reviews = _propertiesService.GetReviews(propertyID);
+
+            return Json(new { reviews = reviews }, JsonRequestBehavior.AllowGet);
+        }
 
         public ActionResult SubmitReview(string userName, int rating, string review, int propertyID, string propertyName)
         {
@@ -170,7 +223,8 @@ namespace FixturesVer1.Controllers
             return RedirectToAction("BrowseListing","Properties");
         }
 
-        public List<ImageViewModel> getImageListOfProperty(int propertyId, int propertyDetailId)
+        public List<ImageViewModel> 
+            getImageListOfProperty(int propertyId, int propertyDetailId)
         {
             var directorypath = Server.MapPath("~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/");
            // var relativePath = "~/uploads/" + "Property" + propertyId + "-Detail" + propertyDetailId + "/";

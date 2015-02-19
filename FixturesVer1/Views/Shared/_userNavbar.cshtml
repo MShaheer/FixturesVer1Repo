@@ -14,7 +14,7 @@
 
         <a class="navbar-brand" href="#">Inbox</a>
         @Html.ActionLink("Your Listings", "browselisting", "Properties", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
-         <a class="navbar-brand" href="#">Your Trips</a>
+        @Html.ActionLink("Your WishList", "getwishlist", "Properties", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
         @Html.ActionLink("Profile", "Profile", "Users", routeValues: null, htmlAttributes: new { @class = "navbar-brand" })
         <a class="navbar-brand" href="#">Account</a>
     </div>

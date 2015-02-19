@@ -21,14 +21,27 @@ namespace FixturesVer1.Services
             return _db.Properties.ToList();
         }
 
-        public Property GetPropertyById(int id)
+        public PropertyDetail GetPropertyById(int id)
         {
-            return _db.Properties.Where(p => p.ID == id).FirstOrDefault();
+            return _db.PropertyDetails.Where(p => p.PropertyId == id).FirstOrDefault();
+        }
+
+        public string GetSometimeAvailableDates(int id)
+        {
+            var dates = _db.PropertyAvailableDates.Where(d => d.PropertyId == id).ToList();
+
+            string availableDates = null;
+            foreach(var date in dates)
+            {
+                availableDates += date.Date + ",";
+            }
+
+            return availableDates;
         }
 
         public List<Property> GetPropertiesByLocation(string location)
         {
-            return _db.Properties.Where(p => p.Location == location).ToList();
+            return _db.Properties.Where(p => p.Location.Contains(location)).ToList();
         }
 
         public List<Property> GetPropertiesByType(string house, string sharedRoom, string apartment, int fromValue, int toValue)
@@ -191,6 +204,42 @@ namespace FixturesVer1.Services
             _db.Reviews.Add(review);
             _db.SaveChanges();
         }
+
+        public List<Review> GetReviews(int propertyID)
+        {
+            return _db.Reviews.Where(r => r.PropertyId == propertyID).ToList();
+        }
+
+        public void AddToWishList(int propertyId, string username)
+        {
+            WishList wishList = new WishList { 
+                PropertyId = propertyId,
+                usr_Username = username
+            };
+            _db.WishLists.Add(wishList);
+            _db.SaveChanges();
+        }
+
+        public string GetOwnerEmail(int propertyId)
+        {
+            var userName = _db.PropertyDetails.Where(p => p.PropertyId == propertyId).Select(x => x.usr_Username).First();
+            var ownerEmail = _db.Users.Where(u => u.usr_Username == userName).Select(x => x.Email).First();
+
+            return ownerEmail;
+        }
+
+        public List<WishList> GetWishListByUserId(string username)
+        {
+            var wishlist = _db.WishLists.Where(p => p.usr_Username == username).ToList();
+            return wishlist;
+        }
+
+        public Property GetPropertyByPropertyId(int propertyId)
+        {
+            return _db.Properties.Where(p => p.ID == propertyId).ToList().FirstOrDefault();
+        }
+
+
     }
 
 }
