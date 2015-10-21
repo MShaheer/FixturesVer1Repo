@@ -91,9 +91,11 @@
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\System.Web.Mvc.dll" />
     <Content Include="Content\acc-wizard.min.css" />
     <Content Include="Content\blank.gif" />
     <Content Include="Content\bootstrap.css" />
